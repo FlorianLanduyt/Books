@@ -5,9 +5,24 @@
     android:id="@+id/navigation"
     app:startDestination="@id/homeFragment">
 
+
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.books.HomeFragment"
+        android:name="com.example.books.domain.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_titleFragment"
+            app:destination="@id/titleFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/titleFragment"
+        android:name="com.example.books.domain.TitleFragment"
+        android:label="fragment_title"
+        tools:layout="@layout/fragment_title">
+
+    </fragment>
+
+
 </navigation>

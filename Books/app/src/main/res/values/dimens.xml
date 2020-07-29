@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="normalMargin">16dp</dimen>
+    <dimen name="normalPadding">16dp</dimen>
+    <dimen name="smallPadding">8dp</dimen>
+    <dimen name="bigBtn">300dp</dimen>
+</resources>

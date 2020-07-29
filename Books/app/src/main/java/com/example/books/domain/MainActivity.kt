@@ -1,8 +1,9 @@
-package com.example.books
+package com.example.books.domain
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import com.example.books.R
 import com.example.books.databinding.ActivityMainBinding
 
 class  MainActivity : AppCompatActivity() {
@@ -10,6 +11,8 @@ class  MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this,
+            R.layout.activity_main
+        )
     }
 }

@@ -8,4 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="normalBtn">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/normalMargin</item>
+        <item name="android:layout_marginTop">@dimen/normalMargin</item>
+        <item name="android:layout_marginEnd">@dimen/normalMargin</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:paddingLeft">@dimen/normalPadding</item>
+        <item name="android:paddingTop">@dimen/smallPadding</item>
+        <item name="android:paddingRight">@dimen/normalPadding</item>
+        <item name="android:paddingBottom">@dimen/smallPadding</item>
+        <item name="android:width">@dimen/bigBtn</item>
+    </style>
+
 </resources>
