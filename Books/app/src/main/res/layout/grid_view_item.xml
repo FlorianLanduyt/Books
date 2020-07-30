@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.books.domain.searchBooks.SearchBooksViewModel" />
+    </data>
+
+    <ImageView
+        android:id="@+id/thumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:scaleType="centerCrop"
+        android:padding="2dp"
+        app:imageUrl="@{viewModel.book.volumeInfo.imageLinks.thumbnail}"
+        tools:srcCompat="@tools:sample/avatars" />
+</layout>
+

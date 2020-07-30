@@ -11,13 +11,14 @@ import androidx.lifecycle.ViewModelProviders
 
 import com.example.books.R
 import com.example.books.databinding.FragmentSearchBooksBinding
+import com.example.books.databinding.GridViewItemBinding
 
 /**
  * A simple [Fragment] subclass.
  */
 class SearchBooksFragment : Fragment() {
 
-    private lateinit var binding: FragmentSearchBooksBinding
+ //   private lateinit var binding: FragmentSearchBooksBinding
 
     /**
      * Lazily initialize our [OverviewViewModel].
@@ -31,14 +32,9 @@ class SearchBooksFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-//        binding = DataBindingUtil.inflate(
-//            inflater,
-//            R.layout.fragment_search_books,
-//            container,
-//            false
-//        )
+        val binding = GridViewItemBinding.inflate(inflater)
 
-        val binding = FragmentSearchBooksBinding.inflate(inflater)
+        //val binding: GridViewItemBinding = DataBindingUtil.inflate(inflater, R.layout.grid_view_item,container,false)
 
         binding.setLifecycleOwner(this)
 

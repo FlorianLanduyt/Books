@@ -29,5 +29,11 @@
         android:label="fragment_search_books"
         tools:layout="@layout/fragment_search_books" />
 
+    <fragment
+        android:id="@+id/thumbnail"
+        android:name="com.example.books.domain."
+        android:label="fragment_search_books"
+        tools:layout="@layout/fragment_search_books" />
+
 
 </navigation>

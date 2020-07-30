@@ -1,4 +1,4 @@
-package com.example.books.domain
+package com.example.books
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -45,7 +45,7 @@
             android:layout_marginEnd="@dimen/normalMargin"
             android:layout_marginBottom="@dimen/normalMargin"
             android:scrollbars="vertical"
-            android:text="@{viewModel.response}"
+            android:text="@{viewModel.book.volumeInfo.imageLinks.thumbnail}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,3 +53,5 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
+
+<!--    //android:text="@{viewModel.response.}"-->
