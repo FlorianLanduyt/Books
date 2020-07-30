@@ -1,4 +1,4 @@
-package com.example.books.domain
+package com.example.books.domain.home
 
 
 import android.os.Bundle
@@ -6,29 +6,30 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import com.example.books.R
-import com.example.books.databinding.FragmentHomeBinding
 import com.example.books.databinding.FragmentTitleBinding
 
 /**
  * A simple [Fragment] subclass.
  */
-class HomeFragment : Fragment() {
+class TitleFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentHomeBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_home, container, false
+        val binding:FragmentTitleBinding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_title, container, false
         )
 
-        binding.searchBtn.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_titleFragment)
-        }
+//        binding.titleScreen.setOnClickListener{ view: View ->
+//            {
+//                Navigation.findNavController(view).navigate(R.id.action_titleScreen_to_homeScreen)
+//            }
+//        }
+
         return binding.root
     }
 

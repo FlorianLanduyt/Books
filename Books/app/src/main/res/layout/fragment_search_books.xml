@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".domain.searchBooks.SearchBooksFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.books.domain.searchBooks.SearchBooksViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchEditTextditText"
+            style="@style/Widget.AppCompat.EditText"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="Hint"
+            android:inputType="textNoSuggestions|textPersonName"
+            android:paddingLeft="@dimen/normalPadding"
+            android:paddingRight="@dimen/normalPadding"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/jsonResponse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normalMargin"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/normalMargin"
+            android:layout_marginBottom="@dimen/normalMargin"
+            android:scrollbars="vertical"
+            android:text="@{viewModel.response}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchEditTextditText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
