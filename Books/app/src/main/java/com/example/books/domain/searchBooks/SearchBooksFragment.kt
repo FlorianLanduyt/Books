@@ -2,16 +2,17 @@ package com.example.books.domain.searchBooks
 
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 
-import com.example.books.R
 import com.example.books.databinding.FragmentSearchBooksBinding
-import com.example.books.databinding.GridViewItemBinding
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 /**
  * A simple [Fragment] subclass.
@@ -32,16 +33,23 @@ class SearchBooksFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = GridViewItemBinding.inflate(inflater)
+        val binding = FragmentSearchBooksBinding.inflate(inflater)
 
-        //val binding: GridViewItemBinding = DataBindingUtil.inflate(inflater, R.layout.grid_view_item,container,false)
 
         binding.setLifecycleOwner(this)
 
         binding.viewModel = viewModel
 
+        binding.booksPhotosGrid.adapter = BooksAdapter()
         return binding.root
     }
+
+
+//    private fun searchBookOnClick(viewModel: SearchBooksViewModel, binding: FragmentSearchBooksBinding){
+//        binding.searchBtn.setOnClickListener{
+//            viewModel.getBooks("superintelligence")
+//        }
+//    }
 
 
 }

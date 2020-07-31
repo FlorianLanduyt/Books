@@ -8,4 +8,6 @@
     <string name="searchBtn">Boek zoeken</string>
     <string name="readBtn">Gelezen boeken</string>
     <string name="waitList">Wachtrij</string>
+    <string name="searchButton">Zoek</string>
+    <string name="searchHint">Naam van een boek</string>
 </resources>

@@ -5,17 +5,18 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="viewModel"
-            type="com.example.books.domain.searchBooks.SearchBooksViewModel" />
+            name="book"
+            type="com.example.books.network.searchBooks.Book" />
     </data>
 
     <ImageView
         android:id="@+id/thumbnail"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:scaleType="centerCrop"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
         android:padding="2dp"
-        app:imageUrl="@{viewModel.book.volumeInfo.imageLinks.thumbnail}"
+        app:imageUrl="@{book.volumeInfo.imageLinks.thumbnail}"
         tools:srcCompat="@tools:sample/avatars" />
 </layout>
 

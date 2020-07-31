@@ -25,9 +25,9 @@ class SearchBooksViewModel : ViewModel() {
         get() = _status
 
 
-    private val _book = MutableLiveData<Book>()
-    val book: LiveData<Book>
-    get() = _book
+    private val _books = MutableLiveData<List<Book>>()
+    val books: LiveData<List<Book>>
+    get() = _books
 
 
 
@@ -36,19 +36,21 @@ class SearchBooksViewModel : ViewModel() {
 
     init {
         //_status.value = "Test"
-        getBooks()
+        getBooks("superintelligence")
     }
 
-    private fun getBooks(){
+    fun getBooks(
+        title: String
+    ){
         coroutineScope.launch {
-            var getBooksDeffered = BooksApi.retrofitService.getBooksOnName("superintelligence")
+            var getBooksDeffered = BooksApi.retrofitService.getBooksOnName(title)
 
             try {
 
                 var result = getBooksDeffered.await()
 
                 if(result.books.size > 0) {
-                    _book.value = result.books[0]
+                    _books.value = result.books
                 }
                 //_status.value = "Success: ${result.totalItems} boeken"
             } catch (e: Exception){
