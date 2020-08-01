@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 
 import com.example.books.databinding.FragmentSearchBooksBinding
@@ -35,6 +36,7 @@ class SearchBooksFragment : Fragment() {
     ): View? {
         val binding = FragmentSearchBooksBinding.inflate(inflater)
 
+        searchBookOnClick(viewModel, binding)
 
         binding.setLifecycleOwner(this)
 
@@ -45,11 +47,13 @@ class SearchBooksFragment : Fragment() {
     }
 
 
-//    private fun searchBookOnClick(viewModel: SearchBooksViewModel, binding: FragmentSearchBooksBinding){
-//        binding.searchBtn.setOnClickListener{
-//            viewModel.getBooks("superintelligence")
-//        }
-//    }
+    private fun searchBookOnClick(viewModel: SearchBooksViewModel, binding: FragmentSearchBooksBinding){
+        binding.searchBtn.setOnClickListener{
+            val searchText: String = binding.searchText.text.toString().trim().replace("\\s".toRegex(),"+")
+
+            viewModel.getBooks(searchText)
+        }
+    }
 
 
 }

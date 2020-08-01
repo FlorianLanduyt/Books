@@ -35,8 +35,8 @@ class SearchBooksViewModel : ViewModel() {
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
-        //_status.value = "Test"
-        getBooks("superintelligence")
+        //status.value = MyBooksApiStatus.EMPTY
+        //getBooks("")
     }
 
     fun getBooks(
