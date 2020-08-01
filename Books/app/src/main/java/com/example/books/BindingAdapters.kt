@@ -1,5 +1,6 @@
 package com.example.books
 
+import android.view.View
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.books.domain.searchBooks.BooksAdapter
+import com.example.books.domain.searchBooks.MyBooksApiStatus
 import com.example.books.network.searchBooks.Book
 
 
@@ -16,7 +18,7 @@ import com.example.books.network.searchBooks.Book
 class BindingAdapters {
     companion object {
 
-        @BindingAdapter("bind:imageUrl")
+        @BindingAdapter("imageUrl")
         @JvmStatic
         fun bindImage(imgView: ImageView, thumbnail: String?) {
             thumbnail?.let {
@@ -25,8 +27,9 @@ class BindingAdapters {
                     .load(imgUri)
                     .apply(
                         RequestOptions()
-                        .placeholder(R.drawable.loading_animation)
-                        .error(R.drawable.ic_broken_image))
+                            .placeholder(R.drawable.loading_animation)
+                            .error(R.drawable.ic_broken_image)
+                    )
                     .into(imgView)
             }
         }
@@ -34,9 +37,33 @@ class BindingAdapters {
 
         @BindingAdapter("listData")
         @JvmStatic
-        fun bindingRecycleView(recyclerView: RecyclerView, data: List<Book>?){
+        fun bindingRecycleView(recyclerView: RecyclerView, data: List<Book>?) {
             val adapter = recyclerView.adapter as BooksAdapter
             adapter.submitList(data)
         }
+
+
+        @BindingAdapter("bookApiStatus")
+        @JvmStatic
+        fun bindStatus(statusImageView: ImageView, status: MyBooksApiStatus) {
+            when (status) {
+                MyBooksApiStatus.LOADING -> {
+                    statusImageView.visibility = View.VISIBLE
+                    statusImageView.setImageResource(R.drawable.ic_loading_animation)
+                }
+                MyBooksApiStatus.ERROR -> {
+                    statusImageView.visibility = View.VISIBLE
+                    statusImageView.setImageResource(R.drawable.ic_connection_erro)
+                }
+                MyBooksApiStatus.DONE -> {
+                    statusImageView.visibility = View.GONE
+                }
+                else -> {
+                    statusImageView.visibility = View.GONE
+                }
+
+            }
+        }
+
     }
 }

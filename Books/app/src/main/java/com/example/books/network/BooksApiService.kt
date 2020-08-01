@@ -32,8 +32,6 @@ interface BooksApiService {
 }
 
 
-//@Query("t") titel: String
-//,@Query("a") author: String?
 
 object BooksApi {
     val retrofitService: BooksApiService by lazy {

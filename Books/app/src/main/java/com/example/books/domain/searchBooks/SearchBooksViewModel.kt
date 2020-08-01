@@ -20,8 +20,8 @@ enum class MyBooksApiStatus { LOADING, ERROR, DONE, EMPTY }
 
 class SearchBooksViewModel : ViewModel() {
 
-    private val _status = MutableLiveData<String>()
-    val status: LiveData<String>
+    private val _status = MutableLiveData<MyBooksApiStatus>()
+    val status: LiveData<MyBooksApiStatus>
         get() = _status
 
 
@@ -35,7 +35,7 @@ class SearchBooksViewModel : ViewModel() {
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
-        //status.value = MyBooksApiStatus.EMPTY
+        _status.value = MyBooksApiStatus.EMPTY
         //getBooks("")
     }
 
@@ -46,15 +46,17 @@ class SearchBooksViewModel : ViewModel() {
             var getBooksDeffered = BooksApi.retrofitService.getBooksOnName(title)
 
             try {
-
+                _status.value = MyBooksApiStatus.LOADING
                 var result = getBooksDeffered.await()
 
                 if(result.books.size > 0) {
                     _books.value = result.books
                 }
-                //_status.value = "Success: ${result.totalItems} boeken"
+
+                _status.value = MyBooksApiStatus.DONE
             } catch (e: Exception){
-                _status.value = "Failure" + e.message
+                _status.value = MyBooksApiStatus.ERROR
+                _books.value = ArrayList()
             }
         }
 

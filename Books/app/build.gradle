@@ -6,6 +6,9 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: "androidx.navigation.safeargs"
+
+
 
 android {
     compileSdkVersion 29
@@ -14,6 +17,9 @@ android {
         enabled = true
     }
 
+    androidExtensions {
+        experimental = true
+    }
 
     kotlinOptions {
         jvmTarget = "1.8"
@@ -24,7 +30,9 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         release {
@@ -47,8 +55,8 @@ dependencies {
 
 
     //Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:$version_navigation"
-    implementation "androidx.navigation:navigation-ui-ktx:$version_navigation"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
 
 
     //Retrofit with scalar converters
