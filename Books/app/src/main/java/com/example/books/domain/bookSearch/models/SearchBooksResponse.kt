@@ -1,4 +1,4 @@
-package com.example.books.network.searchBooks
+package com.example.books.domain.bookSearch.models
 
 import com.squareup.moshi.Json
 

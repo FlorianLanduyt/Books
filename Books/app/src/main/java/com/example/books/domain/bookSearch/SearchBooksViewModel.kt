@@ -1,20 +1,14 @@
-package com.example.books.domain.searchBooks
+package com.example.books.domain.bookSearch
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.books.network.BooksApi
-import com.example.books.network.searchBooks.Book
-import com.example.books.network.searchBooks.SearchBooksResponse
+import com.example.books.domain.bookSearch.models.Book
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.time.Duration
 
 enum class MyBooksApiStatus { LOADING, ERROR, DONE, EMPTY }
 
@@ -29,6 +23,13 @@ class SearchBooksViewModel : ViewModel() {
     val books: LiveData<List<Book>>
     get() = _books
 
+    private val _authors = MutableLiveData<List<String>>()
+    val authors: LiveData<List<String>>
+    get() = _authors
+
+    private val _navigateToSelectedBook = MutableLiveData<String>()
+    val navigateToSelectedBook: LiveData<String>
+        get() = _navigateToSelectedBook
 
 
     private var viewModelJob = Job()
@@ -36,7 +37,6 @@ class SearchBooksViewModel : ViewModel() {
 
     init {
         _status.value = MyBooksApiStatus.EMPTY
-        //getBooks("")
     }
 
     fun getBooks(
@@ -66,4 +66,37 @@ class SearchBooksViewModel : ViewModel() {
         super.onCleared()
         viewModelJob.cancel()
     }
+
+    fun displayBookDetails(book: String){
+        _navigateToSelectedBook.value = book
+    }
+
+    fun displayBookDetailsComplete(){
+        _navigateToSelectedBook.value = null
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

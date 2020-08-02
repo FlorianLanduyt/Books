@@ -6,7 +6,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="book"
-            type="com.example.books.network.searchBooks.Book" />
+            type="com.example.books.domain.bookSearch.models.Book" />
     </data>
 
     <ImageView

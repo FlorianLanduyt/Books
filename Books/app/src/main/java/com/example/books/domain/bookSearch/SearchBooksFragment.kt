@@ -1,19 +1,16 @@
-package com.example.books.domain.searchBooks
+package com.example.books.domain.bookSearch
 
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 
 import com.example.books.databinding.FragmentSearchBooksBinding
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 /**
  * A simple [Fragment] subclass.
@@ -40,9 +37,13 @@ class SearchBooksFragment : Fragment() {
 
         binding.setLifecycleOwner(this)
 
+        navigateToSelectedBook(viewModel, binding)
+
         binding.viewModel = viewModel
 
-        binding.booksPhotosGrid.adapter = BooksAdapter()
+        binding.booksPhotosGrid.adapter = BooksAdapter(BooksAdapter.OnClickListener{
+            viewModel.displayBookDetails(it)
+        })
         return binding.root
     }
 
@@ -53,6 +54,16 @@ class SearchBooksFragment : Fragment() {
 
             viewModel.getBooks(searchText)
         }
+    }
+
+    private fun navigateToSelectedBook(viewModel: SearchBooksViewModel, binding: FragmentSearchBooksBinding) {
+        viewModel.navigateToSelectedBook.observe(this, Observer {
+            if (it != null) {
+                this.findNavController().navigate(SearchBooksFragmentDirections.actionShowDetails(it))
+                viewModel.displayBookDetailsComplete()
+                binding.searchText.text = null
+            }
+        })
     }
 
 

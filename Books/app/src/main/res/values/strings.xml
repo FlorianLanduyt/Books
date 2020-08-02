@@ -10,4 +10,6 @@
     <string name="waitList">Wachtrij</string>
     <string name="searchButton">Zoek</string>
     <string name="searchHint">Naam van een boek</string>
+    <string name="descriptionLabel">Beschrijving</string>
+    <string name="authorsLabel">Authors</string>
 </resources>

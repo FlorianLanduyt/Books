@@ -25,15 +25,24 @@
     </fragment>
     <fragment
         android:id="@+id/searchBooksFragment"
-        android:name="com.example.books.domain.searchBooks.SearchBooksFragment"
+        android:name="com.example.books.domain.bookSearch.SearchBooksFragment"
         android:label="fragment_search_books"
-        tools:layout="@layout/fragment_search_books" />
-
+        tools:layout="@layout/fragment_search_books" >
+        <action
+            android:id="@+id/action_showDetails"
+            app:destination="@id/bookDetailFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/thumbnail"
-        android:name="com.example.books.domain."
-        android:label="fragment_search_books"
-        tools:layout="@layout/fragment_search_books" />
+        android:id="@+id/bookDetailFragment"
+        android:name="com.example.books.domain.bookDetails.BookDetailFragment"
+        android:label="BookDetailFragment">
+
+        <argument
+            android:name="bookId"
+            app:argType="string"/>
+
+    </fragment>
+
 
 
 </navigation>

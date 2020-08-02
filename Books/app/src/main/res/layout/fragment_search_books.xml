@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".domain.searchBooks.SearchBooksFragment">
+    tools:context=".domain.bookSearch.SearchBooksFragment">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.example.books.domain.searchBooks.SearchBooksViewModel" />
+            type="com.example.books.domain.bookSearch.SearchBooksViewModel" />
     </data>
 
 

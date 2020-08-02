@@ -1,6 +1,4 @@
-package com.example.books.network.searchBooks
-
-import com.squareup.moshi.Json
+package com.example.books.domain.bookSearch.models
 
 data class VolumeInfo(
     val title: String,

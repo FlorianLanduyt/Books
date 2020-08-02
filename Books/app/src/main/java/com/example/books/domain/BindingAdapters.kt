@@ -1,4 +1,4 @@
-package com.example.books
+package com.example.books.domain
 
 import android.view.View
 import android.widget.ImageView
@@ -7,9 +7,10 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.books.domain.searchBooks.BooksAdapter
-import com.example.books.domain.searchBooks.MyBooksApiStatus
-import com.example.books.network.searchBooks.Book
+import com.example.books.R
+import com.example.books.domain.bookSearch.BooksAdapter
+import com.example.books.domain.bookSearch.MyBooksApiStatus
+import com.example.books.domain.bookSearch.models.Book
 
 
 /**

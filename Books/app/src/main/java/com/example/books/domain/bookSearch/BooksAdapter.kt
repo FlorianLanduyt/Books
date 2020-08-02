@@ -1,14 +1,15 @@
-package com.example.books.domain.searchBooks
+package com.example.books.domain.bookSearch
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ExpandableListView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.books.databinding.GridViewItemBinding
-import com.example.books.network.searchBooks.Book
+import com.example.books.domain.bookSearch.models.Book
 
-class BooksAdapter : ListAdapter<Book, BooksAdapter.SearchBooksViewHolder>(DiffCallBack) {
+class BooksAdapter(private val onClickListener: OnClickListener) : ListAdapter<Book, BooksAdapter.SearchBooksViewHolder>(DiffCallBack) {
     class SearchBooksViewHolder(private var binding: GridViewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(book: Book) {
@@ -37,6 +38,14 @@ class BooksAdapter : ListAdapter<Book, BooksAdapter.SearchBooksViewHolder>(DiffC
 
     override fun onBindViewHolder(holder: SearchBooksViewHolder, position: Int) {
         val book = getItem(position)
+
+        holder.itemView.setOnClickListener( {
+            onClickListener.onClick(book)
+        })
         holder.bind(book)
+    }
+
+    class  OnClickListener(val clickListener: (book: String) -> Unit) {
+        fun onClick(book: Book) = clickListener(book.id)
     }
 }

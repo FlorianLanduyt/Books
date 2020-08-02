@@ -4,4 +4,5 @@
     <dimen name="normalPadding">16dp</dimen>
     <dimen name="smallPadding">8dp</dimen>
     <dimen name="bigBtn">300dp</dimen>
+    <dimen name="titleSize">30sp</dimen>
 </resources>
