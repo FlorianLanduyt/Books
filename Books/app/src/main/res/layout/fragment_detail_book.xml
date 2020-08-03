@@ -12,14 +12,15 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".BookDetailFragment">
+        android:layout_height="wrap_content">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bookDetailLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/normalPadding">
+            android:layout_height="wrap_content"
+            android:padding="@dimen/normalPadding"
+            tools:context=".BookDetailFragment">
 
             <ImageView
                 android:id="@+id/bookDetailPhoto"
@@ -30,7 +31,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:imageUrl="@{viewModel.selectedProperty.volumeInfo.imageLinks.thumbnail}"/>
+                app:imageUrl="@{viewModel.selectedBook.volumeInfo.imageLinks.thumbnail}"/>
 
             <TextView
                 android:id="@+id/titelText"
@@ -38,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:textSize="@dimen/titleSize"
+                android:text="@{viewModel.selectedBook.volumeInfo.title}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bookDetailPhoto" />
@@ -56,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
-                android:text="@{viewModel.selectedProperty.volumeInfo.description}"
+                android:text="@{viewModel.selectedBook.volumeInfo.description}"
                 app:layout_constraintBottom_toTopOf="@+id/authorsLabel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -77,7 +79,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                tools:layout_editor_absoluteX="16dp" />
+                tools:layout_editor_absoluteX="16dp"
+                android:text="@{viewModel.authors}"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

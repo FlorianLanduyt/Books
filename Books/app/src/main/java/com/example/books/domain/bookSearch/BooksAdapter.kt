@@ -39,13 +39,13 @@ class BooksAdapter(private val onClickListener: OnClickListener) : ListAdapter<B
     override fun onBindViewHolder(holder: SearchBooksViewHolder, position: Int) {
         val book = getItem(position)
 
-        holder.itemView.setOnClickListener( {
+        holder.itemView.setOnClickListener {
             onClickListener.onClick(book)
-        })
+        }
         holder.bind(book)
     }
 
-    class  OnClickListener(val clickListener: (book: String) -> Unit) {
-        fun onClick(book: Book) = clickListener(book.id)
+    class  OnClickListener(val clickListener: (book: Book) -> Unit) {
+        fun onClick(book: Book) = clickListener(book)
     }
 }

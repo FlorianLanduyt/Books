@@ -37,13 +37,13 @@ class SearchBooksFragment : Fragment() {
 
         binding.setLifecycleOwner(this)
 
-        navigateToSelectedBook(viewModel, binding)
-
         binding.viewModel = viewModel
 
         binding.booksPhotosGrid.adapter = BooksAdapter(BooksAdapter.OnClickListener{
             viewModel.displayBookDetails(it)
         })
+
+        navigateToSelectedBook(viewModel, binding)
         return binding.root
     }
 

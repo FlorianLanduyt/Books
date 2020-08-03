@@ -38,8 +38,8 @@
         android:label="BookDetailFragment">
 
         <argument
-            android:name="bookId"
-            app:argType="string"/>
+            android:name="book"
+            app:argType="com.example.books.domain.bookSearch.models.Book"/>
 
     </fragment>
 

@@ -27,8 +27,8 @@ class SearchBooksViewModel : ViewModel() {
     val authors: LiveData<List<String>>
     get() = _authors
 
-    private val _navigateToSelectedBook = MutableLiveData<String>()
-    val navigateToSelectedBook: LiveData<String>
+    private val _navigateToSelectedBook = MutableLiveData<Book>()
+    val navigateToSelectedBook: LiveData<Book>
         get() = _navigateToSelectedBook
 
 
@@ -67,7 +67,7 @@ class SearchBooksViewModel : ViewModel() {
         viewModelJob.cancel()
     }
 
-    fun displayBookDetails(book: String){
+    fun displayBookDetails(book: Book){
         _navigateToSelectedBook.value = book
     }
 

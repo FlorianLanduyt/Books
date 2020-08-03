@@ -4,9 +4,10 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.example.books.domain.bookSearch.models.Book
 
 class BookDetailsViewModelFactory(
-    private val book: String,
+    private val book: Book,
     private val application: Application) : ViewModelProvider.Factory {
 
     @Suppress("unchecked_cast")

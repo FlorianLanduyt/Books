@@ -8,6 +8,7 @@ import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 private const val BASE_URL = "https://www.googleapis.com/books/v1/"
@@ -31,8 +32,7 @@ interface BooksApiService {
 
     @GET("volumes")
     fun getBook(
-        @Query("q") query: String,
-        @Query("id") id: String
+        @Query("q") id: String
     ): Deferred<SearchBooksResponse>
 }
 
