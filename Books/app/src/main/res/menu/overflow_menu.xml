@@ -5,8 +5,8 @@
             android:title="@string/show_all" />
         <item
             android:id="@+id/show_ebooks_menu"
-            android:title="@string/show_nl" />
+            android:title="@string/show_ebooks" />
         <item
-            android:id="@+id/show_free_e_books_menu"
-            android:title="@string/show_en" />
+            android:id="@+id/aboutFragment"
+            android:title="@string/show_free_ebooks" />
 </menu>

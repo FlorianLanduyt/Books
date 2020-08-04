@@ -5,4 +5,5 @@
     <dimen name="smallPadding">8dp</dimen>
     <dimen name="bigBtn">300dp</dimen>
     <dimen name="titleSize">30sp</dimen>
+    <dimen name="textSize">18sp</dimen>
 </resources>

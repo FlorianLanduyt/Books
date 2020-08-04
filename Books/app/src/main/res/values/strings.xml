@@ -12,6 +12,8 @@
     <string name="descriptionLabel">Beschrijving</string>
     <string name="authorsLabel">Authors</string>
     <string name="show_all">Alles</string>
-    <string name="show_nl">E-boeken</string>
-    <string name="show_en">Gratis e-boeken</string>
+    <string name="show_ebooks">E-boeken</string>
+    <string name="show_free_ebooks">Gratis e-boeken</string>
+    <string name="aboutMenuItem">About</string>
+    <string name="aboutText">The Books app is an app where you can add your favorite books to all kind of lists. The app uses the data from the Google API.</string>
 </resources>

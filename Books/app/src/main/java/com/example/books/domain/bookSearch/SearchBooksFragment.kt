@@ -81,7 +81,7 @@ class SearchBooksFragment : Fragment() {
         viewModel.updateFilter(binding.searchText.text.toString(),
             when (item.itemId) {
                 R.id.show_ebooks_menu -> BookApiFilter.SHOW_E_BOOKS
-                R.id.show_free_e_books_menu -> BookApiFilter.SHOW_FREE_EBOOKS
+                R.id.aboutFragment -> BookApiFilter.SHOW_FREE_EBOOKS
                 else -> BookApiFilter.SHOW_ALL
             }
         )
