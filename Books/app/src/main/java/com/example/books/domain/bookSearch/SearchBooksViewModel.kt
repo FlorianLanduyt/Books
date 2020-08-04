@@ -1,14 +1,17 @@
 package com.example.books.domain.bookSearch
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.books.network.BooksApi
 import com.example.books.domain.bookSearch.models.Book
+import com.example.books.network.BookApiFilter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlin.math.log
 
 enum class MyBooksApiStatus { LOADING, ERROR, DONE, EMPTY }
 
@@ -40,10 +43,14 @@ class SearchBooksViewModel : ViewModel() {
     }
 
     fun getBooks(
-        title: String
+        title: String,
+        filter: BookApiFilter
     ){
         coroutineScope.launch {
-            var getBooksDeffered = BooksApi.retrofitService.getBooksOnName(title)
+            var getBooksDeffered = BooksApi.retrofitService.getBooksOnName(
+                title,
+                filter.value
+            )
 
             try {
                 _status.value = MyBooksApiStatus.LOADING
@@ -73,6 +80,12 @@ class SearchBooksViewModel : ViewModel() {
 
     fun displayBookDetailsComplete(){
         _navigateToSelectedBook.value = null
+    }
+
+    fun updateFilter(title: String, filter: BookApiFilter){
+        Log.d("DEBUGDEBUG",filter.value)
+        //_books.value = null
+        getBooks(title,filter)
     }
 }
 

@@ -11,4 +11,7 @@
     <string name="searchHint">Naam van een boek</string>
     <string name="descriptionLabel">Beschrijving</string>
     <string name="authorsLabel">Authors</string>
+    <string name="show_all">Alles</string>
+    <string name="show_nl">E-boeken</string>
+    <string name="show_en">Gratis e-boeken</string>
 </resources>

@@ -2,22 +2,22 @@ package com.example.books.domain.bookSearch
 
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.example.books.R
 
 import com.example.books.databinding.FragmentSearchBooksBinding
+import com.example.books.network.BookApiFilter
 
 /**
  * A simple [Fragment] subclass.
  */
 class SearchBooksFragment : Fragment() {
 
- //   private lateinit var binding: FragmentSearchBooksBinding
+    private lateinit var binding: FragmentSearchBooksBinding
 
     /**
      * Lazily initialize our [OverviewViewModel].
@@ -31,7 +31,7 @@ class SearchBooksFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentSearchBooksBinding.inflate(inflater)
+        binding = FragmentSearchBooksBinding.inflate(inflater)
 
         searchBookOnClick(viewModel, binding)
 
@@ -44,6 +44,8 @@ class SearchBooksFragment : Fragment() {
         })
 
         navigateToSelectedBook(viewModel, binding)
+
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -52,7 +54,9 @@ class SearchBooksFragment : Fragment() {
         binding.searchBtn.setOnClickListener{
             val searchText: String = binding.searchText.text.toString().trim().replace("\\s".toRegex(),"+")
 
-            viewModel.getBooks(searchText)
+            viewModel.getBooks(searchText
+                    ,BookApiFilter.SHOW_ALL
+            )
         }
     }
 
@@ -61,10 +65,26 @@ class SearchBooksFragment : Fragment() {
             if (it != null) {
                 this.findNavController().navigate(SearchBooksFragmentDirections.actionShowDetails(it))
                 viewModel.displayBookDetailsComplete()
-                binding.searchText.text = null
+                //binding.searchText.text = null
             }
         })
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.overflow_menu, menu)
+    }
 
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        viewModel.updateFilter(binding.searchText.text.toString(),
+            when (item.itemId) {
+                R.id.show_ebooks_menu -> BookApiFilter.SHOW_E_BOOKS
+                R.id.show_free_e_books_menu -> BookApiFilter.SHOW_FREE_EBOOKS
+                else -> BookApiFilter.SHOW_ALL
+            }
+        )
+        return true
+    }
 }

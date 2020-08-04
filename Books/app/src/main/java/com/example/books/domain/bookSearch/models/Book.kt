@@ -5,17 +5,21 @@ import android.os.Parcelable
 
 data class Book(
     val id: String?,
-    val volumeInfo: VolumeInfo?
+    val volumeInfo: VolumeInfo?,
+    val salesInfo: SalesInfo?
+
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
-        parcel.readParcelable(VolumeInfo::class.java.classLoader)
+        parcel.readParcelable(VolumeInfo::class.java.classLoader),
+        parcel.readParcelable(SalesInfo::class.java.classLoader)
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
         parcel.writeParcelable(volumeInfo, flags)
+        parcel.writeParcelable(salesInfo, flags)
     }
 
     override fun describeContents(): Int {

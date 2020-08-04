@@ -8,13 +8,15 @@ data class VolumeInfo(
     val authors: List<String>?,
     val description: String?,
     val imageLinks: ImageLink?,
-    val subtitle: String?
+    val subtitle: String?,
+    val language: String?
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.createStringArrayList(),
         parcel.readString(),
         parcel.readParcelable(ImageLink::class.java.classLoader),
+        parcel.readString(),
         parcel.readString()
     ) {
     }
@@ -25,6 +27,7 @@ data class VolumeInfo(
         parcel.writeString(description)
         parcel.writeParcelable(imageLinks, flags)
         parcel.writeString(subtitle)
+        parcel.writeString(language)
     }
 
     override fun describeContents(): Int {

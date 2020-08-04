@@ -13,6 +13,10 @@ import retrofit2.http.Query
 
 private const val BASE_URL = "https://www.googleapis.com/books/v1/"
 
+enum class BookApiFilter(val value: String) {
+    SHOW_E_BOOKS("ebooks"), SHOW_FREE_EBOOKS("free-ebooks"), SHOW_ALL("partial")
+}
+
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
@@ -26,7 +30,9 @@ private val retrofit = Retrofit.Builder()
 
 interface BooksApiService {
     @GET("volumes")
-    fun getBooksOnName(@Query("q") query: String
+    fun getBooksOnName(
+        @Query("q") query: String
+        ,@Query("filter") filter: String
     ): Deferred<SearchBooksResponse> //kind of coroutine job. provides canceling
 
 
