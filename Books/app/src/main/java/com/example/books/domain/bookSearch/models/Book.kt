@@ -2,24 +2,24 @@ package com.example.books.domain.bookSearch.models
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.example.books.data.DatabaseBook
 
 data class Book(
     val id: String?,
-    val volumeInfo: VolumeInfo?,
-    val salesInfo: SalesInfo?
+    val volumeInfo: VolumeInfo?
 
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
-        parcel.readParcelable(VolumeInfo::class.java.classLoader),
-        parcel.readParcelable(SalesInfo::class.java.classLoader)
+        parcel.readParcelable(VolumeInfo::class.java.classLoader)
     ) {
+
     }
+
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
         parcel.writeParcelable(volumeInfo, flags)
-        parcel.writeParcelable(salesInfo, flags)
     }
 
     override fun describeContents(): Int {
@@ -36,3 +36,12 @@ data class Book(
         }
     }
 }
+
+fun Book.asDatabaseModel(): DatabaseBook {
+    return DatabaseBook(
+        id!!,
+        volumeInfo
+    )
+}
+
+
