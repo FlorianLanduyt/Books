@@ -9,8 +9,11 @@ import androidx.room.Query
 @Dao
 interface BookDao {
     @Query("SELECT * FROM book_table")
-    fun getBook(): LiveData<List<DatabaseBook>>
+    fun getBooks(): LiveData<List<DatabaseBook>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg book: DatabaseBook)
+
+    @Query("DELETE FROM book_table")
+    fun clear()
 }

@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.books.R
+import com.example.books.data.BookDatabase
 
 import com.example.books.databinding.FragmentSearchBooksBinding
 import com.example.books.network.BookApiFilter
@@ -35,7 +36,9 @@ class SearchBooksFragment : Fragment() {
         binding = FragmentSearchBooksBinding.inflate(inflater)
         binding.setLifecycleOwner(this)
 
-        val viewModelFactory = SearchBookViewModelFactory()
+        val application = requireNotNull(this.activity).application
+
+        val viewModelFactory = SearchBookViewModelFactory(application)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SearchBooksViewModel::class.java)
 
@@ -58,7 +61,6 @@ class SearchBooksFragment : Fragment() {
     private fun searchBookOnClick(viewModel: SearchBooksViewModel, binding: FragmentSearchBooksBinding){
         binding.searchBtn.setOnClickListener{
             val searchText: String = binding.searchText.text.toString().trim().replace("\\s".toRegex(),"+")
-
 
             viewModel.getBooks(searchText
                     ,BookApiFilter.SHOW_ALL
