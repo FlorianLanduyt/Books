@@ -1,5 +1,6 @@
 package com.example.books.network
 
+import com.example.books.domain.bookSearch.models.Book
 import com.example.books.domain.bookSearch.models.SearchBooksResponse
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi

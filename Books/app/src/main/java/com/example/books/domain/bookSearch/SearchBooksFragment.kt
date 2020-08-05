@@ -18,13 +18,14 @@ import com.example.books.network.BookApiFilter
 class SearchBooksFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBooksBinding
+    private lateinit var viewModel: SearchBooksViewModel
 
     /**
      * Lazily initialize our [OverviewViewModel].
      */
-    private val viewModel: SearchBooksViewModel by lazy {
-        ViewModelProviders.of(this).get(SearchBooksViewModel::class.java)
-    }
+//    private val viewModel: SearchBooksViewModel by lazy {
+//        ViewModelProviders.of(this).get(SearchBooksViewModel::class.java)
+//    }
 
 
     override fun onCreateView(
@@ -32,17 +33,21 @@ class SearchBooksFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSearchBooksBinding.inflate(inflater)
-
-        searchBookOnClick(viewModel, binding)
-
         binding.setLifecycleOwner(this)
 
+        val viewModelFactory = SearchBookViewModelFactory()
+
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(SearchBooksViewModel::class.java)
+
         binding.viewModel = viewModel
+
+
 
         binding.booksPhotosGrid.adapter = BooksAdapter(BooksAdapter.OnClickListener{
             viewModel.displayBookDetails(it)
         })
 
+        searchBookOnClick(viewModel, binding)
         navigateToSelectedBook(viewModel, binding)
 
         setHasOptionsMenu(true)
@@ -53,6 +58,7 @@ class SearchBooksFragment : Fragment() {
     private fun searchBookOnClick(viewModel: SearchBooksViewModel, binding: FragmentSearchBooksBinding){
         binding.searchBtn.setOnClickListener{
             val searchText: String = binding.searchText.text.toString().trim().replace("\\s".toRegex(),"+")
+
 
             viewModel.getBooks(searchText
                     ,BookApiFilter.SHOW_ALL

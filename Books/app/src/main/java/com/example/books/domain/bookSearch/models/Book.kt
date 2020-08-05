@@ -2,7 +2,7 @@ package com.example.books.domain.bookSearch.models
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.example.books.data.DatabaseBook
+import com.example.books.data.books.DatabaseBook
 
 data class Book(
     val id: String?,
@@ -37,11 +37,13 @@ data class Book(
     }
 }
 
+
 fun Book.asDatabaseModel(): DatabaseBook {
     return DatabaseBook(
         id!!,
         volumeInfo
     )
 }
+
 
 

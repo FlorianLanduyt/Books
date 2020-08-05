@@ -7,7 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Update
 import androidx.room.Delete
 import androidx.room.Query
-import com.example.books.data.DatabaseBook
+import com.example.books.data.books.DatabaseBook
 
 /**
  * FavoritesDAO is an interface that provides all the methods that are necessary to manipulate the favorites
