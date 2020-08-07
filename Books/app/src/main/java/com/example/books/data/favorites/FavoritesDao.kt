@@ -1,6 +1,7 @@
 package com.example.books.data.favorites
 
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -17,19 +18,23 @@ import com.example.books.data.books.DatabaseBook
  * They can include a variety of query methods.
  */
 @Dao
-interface FavoritesDAO {
+interface FavoritesDao {
+
+    @Query("SELECT * FROM book_favorite")
+    fun getAll(): LiveData<List<BookFavorite>>
+
+    @Query("SELECT * FROM book_favorite WHERE book_id=:bookId")
+    fun get(bookId: String): BookFavorite
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(book: DatabaseBook)
-
-    @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun update(book: DatabaseBook)
-
-    @Delete
-    fun delete(book: DatabaseBook)
+    fun insert(favorite: BookFavorite)
 
 
-    @Query("DELETE FROM book_table")
+    @Query("DELETE FROM book_favorite WHERE book_id = :id")
+    fun delete(id: String)
+
+
+    @Query("DELETE FROM book_favorite")
     fun clear()
 
 }

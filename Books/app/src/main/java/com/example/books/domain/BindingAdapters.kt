@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.books.R
+import com.example.books.data.favorites.BookFavorite
 import com.example.books.domain.bookSearch.BooksAdapter
 import com.example.books.domain.bookSearch.MyBooksApiStatus
 import com.example.books.domain.bookSearch.models.Book
+import com.example.books.domain.favorites.FavoritesAdapter
 
 
 /**
@@ -40,6 +42,13 @@ class BindingAdapters {
         @JvmStatic
         fun bindingRecycleView(recyclerView: RecyclerView, data: List<Book>?) {
             val adapter = recyclerView.adapter as BooksAdapter
+            adapter.submitList(data)
+        }
+
+        @BindingAdapter("favoritesListData")
+        @JvmStatic
+        fun bindingRecycleViewFavorites(recyclerView: RecyclerView, data: List<BookFavorite>?){
+            val adapter = recyclerView.adapter as FavoritesAdapter
             adapter.submitList(data)
         }
 

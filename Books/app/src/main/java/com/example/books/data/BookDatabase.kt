@@ -8,12 +8,17 @@ import androidx.room.TypeConverters
 import com.example.books.data.books.BookDao
 import com.example.books.data.books.DatabaseBook
 import com.example.books.data.converters.VolumeInfoConverter
+import com.example.books.data.favorites.BookFavorite
+import com.example.books.data.favorites.FavoritesDao
 
-@Database(entities = [DatabaseBook::class], version = 1,  exportSchema = false)
+@Database(entities = [BookFavorite::class, DatabaseBook::class],
+    version = 2,
+    exportSchema = false)
 @TypeConverters(VolumeInfoConverter::class)
 abstract class BookDatabase : RoomDatabase(){
 
     abstract val bookDao: BookDao
+    abstract val favoritesDao: FavoritesDao
 
     companion object {
         @Volatile

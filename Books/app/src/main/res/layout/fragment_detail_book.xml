@@ -7,6 +7,15 @@
         <variable
             name="viewModel"
             type="com.example.books.domain.bookDetails.BookDetailsViewModel" />
+
+        <variable
+            name="viewModelFavorites"
+            type="com.example.books.domain.favorites.FavoritesViewModel" />
+
+        <variable
+            name="book"
+            type="com.example.books.domain.bookSearch.models.Book" />
+
     </data>
 
 
@@ -20,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/normalPadding"
-            tools:context=".BookDetailFragment">
+            tools:context="Book details">
 
             <ImageView
                 android:id="@+id/bookDetailPhoto"
@@ -33,14 +42,28 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:imageUrl="@{viewModel.selectedBook.volumeInfo.imageLinks.thumbnail}"/>
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/button_add_to_favorites"
+                android:layout_width="53dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/favorite"
+                android:onClick="@{()-> viewModelFavorites.insertBookFavorite(book)}"
+                app:backgroundTint="@android:color/white"
+                app:fabSize="mini"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bookDetailPhoto" />
+
             <TextView
                 android:id="@+id/titelText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textSize="@dimen/titleSize"
+                android:layout_marginEnd="16dp"
                 android:text="@{viewModel.selectedBook.volumeInfo.title}"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:textSize="@dimen/titleSize"
+                app:layout_constraintEnd_toStartOf="@+id/button_add_to_favorites"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bookDetailPhoto" />
 
@@ -49,6 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/descriptionLabel"
+                android:textSize="@dimen/textSize"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/titelText" />
 
@@ -70,6 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="@string/authorsLabel"
+                android:textSize="@dimen/textSize"
                 app:layout_constraintBottom_toTopOf="@+id/authorsText"
                 app:layout_constraintStart_toStartOf="parent" />
 

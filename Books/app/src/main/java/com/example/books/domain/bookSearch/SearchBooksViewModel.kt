@@ -56,6 +56,7 @@ class SearchBooksViewModel(
                 bookRepo.refreshBeers(title, filter)
                 _status.value = MyBooksApiStatus.DONE
             } catch (e: Exception) {
+                bookRepo.clearBooks()
                 _status.value = MyBooksApiStatus.ERROR
 
             }

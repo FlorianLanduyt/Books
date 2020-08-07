@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_homeFragment_to_searchBooksFragment"
             app:destination="@id/searchBooksFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
     </fragment>
 
     <fragment
@@ -47,6 +50,14 @@
         android:name="com.example.books.domain.about.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.books.domain.favorites.FavoritesFragment"
+        android:label="FavoritesFragment" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_bookDetailFragment"
+            app:destination="@id/bookDetailFragment" />
+    </fragment>
 
 
 </navigation>

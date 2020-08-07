@@ -28,5 +28,11 @@ class BookRepository(private val database: BookDatabase) {
                 database.bookDao.insertAll(*searchResponse.asDatabaseModel())
             }
         }
+
+    suspend fun clearBooks() {
+        withContext(Dispatchers.IO) {
+            database.bookDao.clear()
+        }
     }
+}
 

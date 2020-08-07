@@ -17,4 +17,5 @@
     <string name="aboutMenuItem">About</string>
     <string name="aboutText">The Books app is an app where you can add your favorite books to all kind of lists. The app uses the data from the Google API.</string>
     <string name="searchBookTitle">Zoek een boek</string>
+    <string name="emptyFavoritesList">Je hebt nog geen boeken in deze lijst</string>
 </resources>

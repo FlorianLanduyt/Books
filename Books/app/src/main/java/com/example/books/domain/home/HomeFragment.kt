@@ -12,6 +12,8 @@ import androidx.navigation.ui.NavigationUI
 import com.example.books.R
 import com.example.books.databinding.FragmentHomeBinding
 import com.example.books.databinding.FragmentTitleBinding
+import com.example.books.domain.favorites.FavoritesViewModel
+import kotlinx.android.synthetic.main.activity_main.view.*
 
 /**
  * A simple [Fragment] subclass.
@@ -29,6 +31,13 @@ class HomeFragment : Fragment() {
         binding.searchBtn.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_searchBooksFragment)
         }
+
+        binding.favoritesBtn.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_favoritesFragment)
+        }
+
+        binding.lifecycleOwner = this
+
 
         setHasOptionsMenu(true)
         return binding.root
