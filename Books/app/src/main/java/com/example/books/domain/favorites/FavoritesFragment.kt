@@ -42,7 +42,7 @@ class FavoritesFragment : Fragment() {
 
         binding.favoritesList.adapter = FavoritesAdapter(
             FavoritesAdapter.FavoriteListener {
-                viewModel.getFavorites()
+                viewModel.onBookFavoriteRemovedClicked(it.bookId)
             }
         )
 
@@ -50,7 +50,9 @@ class FavoritesFragment : Fragment() {
         binding.viewModel = viewModel
 
         binding.favoritesList.layoutManager = LinearLayoutManager(this.context)
+
         observeFavorites(binding)
+        observeRemovedFavorites(binding)
 
         return binding.root
     }
@@ -65,6 +67,16 @@ class FavoritesFragment : Fragment() {
                 } else {
                     binding.statusOfList.visibility = View.GONE
                 }
+            }
+        })
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    private fun observeRemovedFavorites(binding: FragmentFavoritesBinding) {
+        viewModel.removeFavoriteBook.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                viewModel.removeBookFavorite(it)
+                viewModel.onBookFavoriteRemoved()
             }
         })
     }

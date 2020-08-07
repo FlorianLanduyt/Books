@@ -37,6 +37,10 @@ class FavoritesViewModel(application: Application): ViewModel()
     val favoriteRemoved: LiveData<Boolean>
         get() = _favoriteRemoved
 
+    private val _removeFavoriteBook = MutableLiveData<String>()
+    val removeFavoriteBook: LiveData<String>
+        get() = _removeFavoriteBook
+
     init {
         _status.value = MyBooksApiStatus.EMPTY
 
@@ -71,6 +75,20 @@ class FavoritesViewModel(application: Application): ViewModel()
                 }
             }
         }
+    }
+
+    fun removeBookFavorite(bookId: String) {
+        coroutineScope.launch {
+            favoritesRepo.removeBookFavorite(bookId)
+        }
+    }
+
+    fun onBookFavoriteRemovedClicked(favoriteBookId: String){
+        _removeFavoriteBook.value = favoriteBookId
+    }
+
+    fun onBookFavoriteRemoved() {
+        _removeFavoriteBook.value = null
     }
 
     fun onFavoriteAdded() {

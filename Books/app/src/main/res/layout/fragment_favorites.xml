@@ -21,14 +21,13 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="@dimen/normalMargin"
             android:layout_marginBottom="@dimen/normalMargin"
+            app:favoritesListData="@{viewModel.favoriteBooks}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:favoritesListData="@{viewModel.favoriteBooks}"
-            tools:listitem="@layout/book_favorites_list_item"
-            />
+            tools:listitem="@layout/book_favorites_list_item" />
 
         <TextView
             android:id="@+id/statusOfList"

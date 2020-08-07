@@ -6,4 +6,5 @@
     <dimen name="bigBtn">300dp</dimen>
     <dimen name="titleSize">30sp</dimen>
     <dimen name="textSize">18sp</dimen>
+    <dimen name="smallMargin">8dp</dimen>
 </resources>
