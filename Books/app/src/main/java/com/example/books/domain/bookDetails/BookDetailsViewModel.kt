@@ -8,6 +8,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.books.data.BookDatabase
 import com.example.books.domain.bookSearch.MyBooksApiStatus
 import com.example.books.domain.bookSearch.models.Book
 import com.example.books.domain.bookSearch.models.SearchBooksResponse
@@ -20,8 +21,12 @@ import java.lang.Exception
 import kotlin.coroutines.coroutineContext
 
 class BookDetailsViewModel(val book: Book, app: Application) : AndroidViewModel(app) {
-//    private var viewModelJob = Job()
-//    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+    private var viewModelJob = Job()
+    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+    private val database = BookDatabase.getInstance(app)
+
+    private val favoritsRepo = database.favoritesDao
+
 
 
     private val _selectedBook = MutableLiveData<Book>()
@@ -32,9 +37,12 @@ class BookDetailsViewModel(val book: Book, app: Application) : AndroidViewModel(
     val authors: LiveData<String>
         get() = _authors
 
+    private val _inFavorites = MutableLiveData<Boolean>()
+    val inFavorites: LiveData<Boolean>
+        get() = _inFavorites
+
     init {
         _selectedBook.value = book
-
         parseAuthors(book.volumeInfo?.authors)
     }
 
@@ -55,37 +63,9 @@ class BookDetailsViewModel(val book: Book, app: Application) : AndroidViewModel(
         }
 
         _authors.value = sb.toString();
-
     }
 
-//    fun getBook() {
-//        Log.i("DEBUG", "Test")
-//        coroutineScope.launch {
-//            var getBookDeffered = BooksApi.retrofitService.getBook(book)
-//
-//
-//            try {
-//                //_status.value = MyBooksApiStatus.LOADING
-//                var result = getBookDeffered.await()
-//
-//                //Log.i("DEBUG", result.books[0].toString())
-//
-//                if(result.books.isNotEmpty()) {
-//                    _selectedBook.value = result.books[0]
-//
-//                }
-//
-//                //status.value = MyBooksApiStatus.DONE
-//            } catch (e: Exception){
-//                //_status.value = MyBooksApiStatus.ERROR
-//                _selectedBook.value = null
-//            }
-//        }
-//    }
 
-//    override fun onCleared() {
-//        super.onCleared()
-//        viewModelJob.cancel()
-//    }
+
 
 }

@@ -43,8 +43,6 @@ class BookDetailFragment : Fragment() {
         val args = BookDetailFragmentArgs.fromBundle(arguments!!).book
 
 
-
-
         val application = requireNotNull(activity).application
         val binding = FragmentDetailBookBinding.inflate(inflater)
         val bookDetailsViewModelFactory = BookDetailsViewModelFactory(args, application)
@@ -55,6 +53,7 @@ class BookDetailFragment : Fragment() {
 
         observeBook(binding)
         observeFavoriteAdded(binding)
+        observerFavoriteRemoved(binding)
 
 
         binding.lifecycleOwner = this
@@ -70,20 +69,36 @@ class BookDetailFragment : Fragment() {
         detailViewModel.selectedBook.observe(viewLifecycleOwner, Observer {
             it?.let {
                 binding.book = it
+
             }
         })
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeFavoriteAdded(binding: FragmentDetailBookBinding?) {
         favoritesViewModel.favoriteAdded.observe(viewLifecycleOwner, Observer {
             it?.let {
                 if (it) {
-
+                    binding?.buttonAddToFavorites?.setImageResource(R.drawable.favorite_in_list)
                     favoritesViewModel.onFavoriteAdded()
                 }
             }
         })
     }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    private fun observerFavoriteRemoved(binding: FragmentDetailBookBinding?) {
+        favoritesViewModel.favoriteRemoved.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                if (it) {
+                    binding?.buttonAddToFavorites?.setImageResource(R.drawable.favorite)
+                    favoritesViewModel.onFavoriteRemoved()
+                }
+            }
+        })
+    }
+
+
 
 
 }

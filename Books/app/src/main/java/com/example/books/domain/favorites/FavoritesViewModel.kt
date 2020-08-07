@@ -33,10 +33,13 @@ class FavoritesViewModel(application: Application): ViewModel()
     val favoriteAdded: LiveData<Boolean>
         get() = _favoriteAdded
 
+    private val _favoriteRemoved = MutableLiveData<Boolean>()
+    val favoriteRemoved: LiveData<Boolean>
+        get() = _favoriteRemoved
+
     init {
         _status.value = MyBooksApiStatus.EMPTY
 
-        Log.d("Debuggg", "Debugggg")
     }
 
     fun getFavorites(){
@@ -60,22 +63,28 @@ class FavoritesViewModel(application: Application): ViewModel()
                     val bookFavorite =
                         BookFavorite(book.id, book.volumeInfo!!.title!!)
 
-                    onFavoriteAddClicked()
                     favoritesRepo.insertBookFavorite(bookFavorite)
-
-                    Log.i("DEBUGDEBUG", "TESTTEST")
+                    onFavoriteAddClicked()
                 } else {
                     favoritesRepo.removeBookFavorite(book.id)
+                    onFavoriteRemoveClicked()
                 }
             }
         }
     }
 
+    fun onFavoriteAdded() {
+        _favoriteAdded.postValue(false)
+    }
     fun onFavoriteAddClicked() {
         _favoriteAdded.postValue(true)
     }
 
-    fun onFavoriteAdded() {
-        _favoriteAdded.postValue(false)
+    fun onFavoriteRemoveClicked() {
+        _favoriteRemoved.postValue(true)
+    }
+
+    fun onFavoriteRemoved() {
+        _favoriteRemoved.postValue(false)
     }
 }
