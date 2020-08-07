@@ -29,8 +29,14 @@ class FavoritesViewModel(application: Application): ViewModel()
     val status: LiveData<MyBooksApiStatus>
         get() = _status
 
+    private val _favoriteAdded = MutableLiveData<Boolean>()
+    val favoriteAdded: LiveData<Boolean>
+        get() = _favoriteAdded
+
     init {
         _status.value = MyBooksApiStatus.EMPTY
+
+        Log.d("Debuggg", "Debugggg")
     }
 
     fun getFavorites(){
@@ -45,6 +51,8 @@ class FavoritesViewModel(application: Application): ViewModel()
         }
     }
 
+
+
     fun insertBookFavorite(book: Book?) {
         coroutineScope.launch {
             if (book != null) {
@@ -52,7 +60,7 @@ class FavoritesViewModel(application: Application): ViewModel()
                     val bookFavorite =
                         BookFavorite(book.id, book.volumeInfo!!.title!!)
 
-
+                    onFavoriteAddClicked()
                     favoritesRepo.insertBookFavorite(bookFavorite)
 
                     Log.i("DEBUGDEBUG", "TESTTEST")
@@ -61,5 +69,13 @@ class FavoritesViewModel(application: Application): ViewModel()
                 }
             }
         }
+    }
+
+    fun onFavoriteAddClicked() {
+        _favoriteAdded.postValue(true)
+    }
+
+    fun onFavoriteAdded() {
+        _favoriteAdded.postValue(false)
     }
 }

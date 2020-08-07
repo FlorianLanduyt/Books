@@ -12,6 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.books.R
 import com.example.books.databinding.FragmentFavoritesBinding
@@ -28,19 +29,27 @@ class FavoritesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding  = DataBindingUtil.inflate(inflater, R.layout.fragment_favorites, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorites, container, false)
 
 
         val application = requireNotNull(this.activity).application
         val viewModelFactory = FavoritesViewModelFactory(application)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(FavoritesViewModel::class.java)
+        viewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(FavoritesViewModel::class.java)
 
+
+
+
+        binding.favoritesList.adapter = FavoritesAdapter(
+            FavoritesAdapter.FavoriteListener {
+                viewModel.getFavorites()
+            }
+        )
+
+        binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        binding.favoritesList.adapter = FavoritesAdapter(FavoritesAdapter.FavoriteListener{
-            viewModel.getFavorites()
-        })
-
+        binding.favoritesList.layoutManager = LinearLayoutManager(this.context)
         observeFavorites(binding)
 
         return binding.root
