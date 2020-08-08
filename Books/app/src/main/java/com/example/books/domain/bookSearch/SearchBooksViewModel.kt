@@ -43,6 +43,10 @@ class SearchBooksViewModel(
     val navigateToSelectedBook: LiveData<Book>
         get() = _navigateToSelectedBook
 
+    private val _bookToAddInToRead = MutableLiveData<Book>()
+    val bookToAddInToRead: LiveData<Book>
+        get() = _bookToAddInToRead
+
 
     init {
         _status.value = MyBooksApiStatus.EMPTY
@@ -53,7 +57,7 @@ class SearchBooksViewModel(
 
             try {
                 _status.value = MyBooksApiStatus.LOADING
-                bookRepo.refreshBeers(title, filter)
+                bookRepo.refreshBooks(title, filter)
                 _status.value = MyBooksApiStatus.DONE
             } catch (e: Exception) {
                 bookRepo.clearBooks()

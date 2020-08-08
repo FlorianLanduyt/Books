@@ -20,7 +20,7 @@ class BookRepository(private val database: BookDatabase) {
     }
 
 
-    suspend fun refreshBeers(title: String,filter: BookApiFilter?) {
+    suspend fun refreshBooks(title: String,filter: BookApiFilter?) {
         withContext(Dispatchers.IO) {
                 val searchResponse = BooksApi.retrofitService.getBooksOnName(title, filter?.value?: BookApiFilter.SHOW_ALL.value ).await()
                 database.bookDao.clear()

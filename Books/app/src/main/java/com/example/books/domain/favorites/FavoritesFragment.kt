@@ -37,6 +37,7 @@ class FavoritesFragment : Fragment() {
         viewModel =
             ViewModelProviders.of(this, viewModelFactory).get(FavoritesViewModel::class.java)
 
+        viewModel.getFavorites()
 
 
 

@@ -8,13 +8,15 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.books.databinding.GridViewItemBinding
 import com.example.books.domain.bookSearch.models.Book
+import com.example.books.domain.toRead.ToReadViewModel
 
 class BooksAdapter(private val onClickListener: OnClickListener) : ListAdapter<Book, BooksAdapter.SearchBooksViewHolder>(DiffCallBack) {
-    class SearchBooksViewHolder(private var binding: GridViewItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    class SearchBooksViewHolder(private var binding: GridViewItemBinding) : RecyclerView.ViewHolder(binding.root) {
+
         fun bind(book: Book) {
             binding.book = book
             binding.executePendingBindings()
+
         }
     }
 

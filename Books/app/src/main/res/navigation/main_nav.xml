@@ -17,15 +17,11 @@
         <action
             android:id="@+id/action_homeFragment_to_favoritesFragment"
             app:destination="@id/favoritesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_toReadFragment"
+            app:destination="@id/toReadFragment" />
     </fragment>
 
-    <fragment
-        android:id="@+id/titleFragment"
-        android:name="com.example.books.domain.home.TitleFragment"
-        android:label="fragment_title"
-        tools:layout="@layout/fragment_title">
-
-    </fragment>
     <fragment
         android:id="@+id/searchBooksFragment"
         android:name="com.example.books.domain.bookSearch.SearchBooksFragment"
@@ -56,6 +52,14 @@
         android:label="FavoritesFragment" >
         <action
             android:id="@+id/action_favoritesFragment_to_bookDetailFragment"
+            app:destination="@id/bookDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/toReadFragment"
+        android:name="com.example.books.domain.toRead.ToReadFragment"
+        android:label="ToReadFragment" >
+        <action
+            android:id="@+id/action_toReadFragment_to_bookDetailFragment"
             app:destination="@id/bookDetailFragment" />
     </fragment>
 

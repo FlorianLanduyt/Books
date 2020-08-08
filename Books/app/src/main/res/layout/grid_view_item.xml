@@ -7,16 +7,44 @@ xmlns:tools="http://schemas.android.com/tools">
         <variable
             name="book"
             type="com.example.books.domain.bookSearch.models.Book" />
+
+        <variable
+            name="toReadViewModel"
+            type="com.example.books.domain.toRead.ToReadViewModel" />
+
+<!--        <variable-->
+<!--            name="removeClickListener"-->
+<!--            type="com.example.books.domain.toRead.ToReadAdapter.ToReadListener" />-->
     </data>
 
-    <ImageView
-        android:id="@+id/thumbnail"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:padding="2dp"
-        app:imageUrl="@{book.volumeInfo.imageLinks.thumbnail}"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:layout_marginBottom="@dimen/normalMargin"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:padding="2dp"
+            android:scaleType="fitCenter"
+            app:imageUrl="@{book.volumeInfo.imageLinks.thumbnail}"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <Button
+            android:id="@+id/toReadButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/normalMargin"
+            android:layout_weight="1"
+            android:height="30dp"
+            android:text="@string/toReadButtonText"
+            android:onClick="@{() -> toReadViewModel.insertBookToRead(book)}"
+            />
+
+    </LinearLayout>
 </layout>
 

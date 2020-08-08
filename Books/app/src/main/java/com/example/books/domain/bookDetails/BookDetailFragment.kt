@@ -45,6 +45,7 @@ class BookDetailFragment : Fragment() {
 
         val application = requireNotNull(activity).application
         val binding = FragmentDetailBookBinding.inflate(inflater)
+
         val bookDetailsViewModelFactory = BookDetailsViewModelFactory(args, application)
         val favoritesViewModelFactory = FavoritesViewModelFactory(application)
 

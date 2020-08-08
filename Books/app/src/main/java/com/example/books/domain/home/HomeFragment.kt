@@ -36,8 +36,11 @@ class HomeFragment : Fragment() {
             Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_favoritesFragment)
         }
 
-        binding.lifecycleOwner = this
+        binding.waitListBtn .setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_toReadFragment)
+        }
 
+        binding.lifecycleOwner = this
 
         setHasOptionsMenu(true)
         return binding.root

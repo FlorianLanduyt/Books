@@ -49,11 +49,11 @@ class FavoritesViewModel(application: Application): ViewModel()
     fun getFavorites(){
         coroutineScope.launch {
             try {
-                _status.value = MyBooksApiStatus.LOADING
+               // _status.value = MyBooksApiStatus.LOADING
                 favoritesRepo.refreshFavoriteBooks()
-                _status.value = MyBooksApiStatus.DONE
+                //_status.value = MyBooksApiStatus.DONE
             }catch (e: Exception){
-                _status.value = MyBooksApiStatus.ERROR
+                //_status.value = MyBooksApiStatus.ERROR
             }
         }
     }

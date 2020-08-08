@@ -4,13 +4,14 @@ package com.example.books.domain.bookSearch
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.*
 import androidx.navigation.fragment.findNavController
 import com.example.books.R
 import com.example.books.data.BookDatabase
 
 import com.example.books.databinding.FragmentSearchBooksBinding
+import com.example.books.domain.toRead.ToReadViewModel
+import com.example.books.domain.toRead.ToReadViewModelFactory
 import com.example.books.network.BookApiFilter
 
 /**
@@ -20,6 +21,7 @@ class SearchBooksFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBooksBinding
     private lateinit var viewModel: SearchBooksViewModel
+    private lateinit var toReadViewModel: ToReadViewModel
 
     /**
      * Lazily initialize our [OverviewViewModel].
@@ -37,18 +39,19 @@ class SearchBooksFragment : Fragment() {
         binding.setLifecycleOwner(this)
 
         val application = requireNotNull(this.activity).application
-
         val viewModelFactory = SearchBookViewModelFactory(application)
+        val toReadViewModelFactory = ToReadViewModelFactory(application)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SearchBooksViewModel::class.java)
-
-        binding.viewModel = viewModel
-
+        toReadViewModel = ViewModelProviders.of(this, toReadViewModelFactory).get(ToReadViewModel::class.java)
 
 
         binding.booksPhotosGrid.adapter = BooksAdapter(BooksAdapter.OnClickListener{
             viewModel.displayBookDetails(it)
         })
+
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
 
         searchBookOnClick(viewModel, binding)
         navigateToSelectedBook(viewModel, binding)
@@ -58,6 +61,9 @@ class SearchBooksFragment : Fragment() {
     }
 
 
+
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun searchBookOnClick(viewModel: SearchBooksViewModel, binding: FragmentSearchBooksBinding){
         binding.searchBtn.setOnClickListener{
             val searchText: String = binding.searchText.text.toString().trim().replace("\\s".toRegex(),"+")
@@ -68,7 +74,18 @@ class SearchBooksFragment : Fragment() {
         }
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun navigateToSelectedBook(viewModel: SearchBooksViewModel, binding: FragmentSearchBooksBinding) {
+        viewModel.navigateToSelectedBook.observe(this, Observer {
+            if (it != null) {
+                this.findNavController().navigate(SearchBooksFragmentDirections.actionShowDetails(it))
+                viewModel.displayBookDetailsComplete()
+            }
+        })
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    private fun observeBookToRead(viewModel: SearchBooksViewModel, binding: FragmentSearchBooksBinding) {
         viewModel.navigateToSelectedBook.observe(this, Observer {
             if (it != null) {
                 this.findNavController().navigate(SearchBooksFragmentDirections.actionShowDetails(it))

@@ -10,15 +10,18 @@ import com.example.books.data.books.DatabaseBook
 import com.example.books.data.converters.VolumeInfoConverter
 import com.example.books.data.favorites.BookFavorite
 import com.example.books.data.favorites.FavoritesDao
+import com.example.books.data.toread.BookToRead
+import com.example.books.data.toread.ToReadDao
 
-@Database(entities = [BookFavorite::class, DatabaseBook::class],
-    version = 2,
+@Database(entities = [BookFavorite::class, DatabaseBook::class, BookToRead::class],
+    version = 3,
     exportSchema = false)
 @TypeConverters(VolumeInfoConverter::class)
 abstract class BookDatabase : RoomDatabase(){
 
     abstract val bookDao: BookDao
     abstract val favoritesDao: FavoritesDao
+    abstract val toReadDao: ToReadDao
 
     companion object {
         @Volatile
