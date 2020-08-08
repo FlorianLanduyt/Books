@@ -13,10 +13,10 @@ import com.example.books.domain.toRead.ToReadViewModel
 class BooksAdapter(private val onClickListener: OnClickListener) : ListAdapter<Book, BooksAdapter.SearchBooksViewHolder>(DiffCallBack) {
     class SearchBooksViewHolder(private var binding: GridViewItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(book: Book) {
+        fun bind(book: Book, clickListener: OnClickListener) {
             binding.book = book
             binding.executePendingBindings()
-
+            binding.clickListener = clickListener
         }
     }
 
@@ -40,14 +40,10 @@ class BooksAdapter(private val onClickListener: OnClickListener) : ListAdapter<B
 
     override fun onBindViewHolder(holder: SearchBooksViewHolder, position: Int) {
         val book = getItem(position)
-
-        holder.itemView.setOnClickListener {
-            onClickListener.onClick(book)
-        }
-        holder.bind(book)
+        holder.bind(book, onClickListener)
     }
 
-    class  OnClickListener(val clickListener: (book: Book) -> Unit) {
-        fun onClick(book: Book) = clickListener(book)
+    class  OnClickListener(val clickListener: (book: Book, action: String) -> Unit) {
+        fun onClick(book: Book, action: String) = clickListener(book, action)
     }
 }

@@ -46,9 +46,16 @@ class SearchBooksFragment : Fragment() {
         toReadViewModel = ViewModelProviders.of(this, toReadViewModelFactory).get(ToReadViewModel::class.java)
 
 
-        binding.booksPhotosGrid.adapter = BooksAdapter(BooksAdapter.OnClickListener{
-            viewModel.displayBookDetails(it)
-        })
+        binding.booksPhotosGrid.adapter =
+            BooksAdapter(BooksAdapter.OnClickListener { book, action ->
+                when (action) {
+                    "insert" -> {
+                        toReadViewModel.insertBookToRead(book)
+
+                    }
+                    "details" -> viewModel.displayBookDetails(book)
+                }
+            })
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
@@ -85,12 +92,10 @@ class SearchBooksFragment : Fragment() {
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    private fun observeBookToRead(viewModel: SearchBooksViewModel, binding: FragmentSearchBooksBinding) {
-        viewModel.navigateToSelectedBook.observe(this, Observer {
-            if (it != null) {
-                this.findNavController().navigate(SearchBooksFragmentDirections.actionShowDetails(it))
-                viewModel.displayBookDetailsComplete()
-                //binding.searchText.text = null
+    private fun observeBookToRead(binding: FragmentSearchBooksBinding) {
+        toReadViewModel.toReadAdded.observe(this, Observer {
+            if (it) {
+
             }
         })
     }

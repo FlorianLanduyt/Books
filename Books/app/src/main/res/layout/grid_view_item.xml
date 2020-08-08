@@ -9,12 +9,9 @@ xmlns:tools="http://schemas.android.com/tools">
             type="com.example.books.domain.bookSearch.models.Book" />
 
         <variable
-            name="toReadViewModel"
-            type="com.example.books.domain.toRead.ToReadViewModel" />
+            name="clickListener"
+            type="com.example.books.domain.bookSearch.BooksAdapter.OnClickListener" />
 
-<!--        <variable-->
-<!--            name="removeClickListener"-->
-<!--            type="com.example.books.domain.toRead.ToReadAdapter.ToReadListener" />-->
     </data>
 
     <LinearLayout
@@ -32,7 +29,8 @@ xmlns:tools="http://schemas.android.com/tools">
             android:padding="2dp"
             android:scaleType="fitCenter"
             app:imageUrl="@{book.volumeInfo.imageLinks.thumbnail}"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            android:onClick="@{() -> clickListener.onClick(book, `details`)}"/>
 
         <Button
             android:id="@+id/toReadButton"
@@ -42,7 +40,7 @@ xmlns:tools="http://schemas.android.com/tools">
             android:layout_weight="1"
             android:height="30dp"
             android:text="@string/toReadButtonText"
-            android:onClick="@{() -> toReadViewModel.insertBookToRead(book)}"
+            android:onClick="@{() -> clickListener.onClick(book, `insert`)}"
             />
 
     </LinearLayout>
