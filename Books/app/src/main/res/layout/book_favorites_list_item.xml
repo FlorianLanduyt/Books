@@ -17,15 +17,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/smallMargin"
-        android:layout_marginTop="@dimen/smallMargin"
-        android:layout_marginRight="@dimen/smallMargin"
-        android:layout_marginBottom="@dimen/smallMargin"
-        android:paddingLeft="@dimen/smallPadding"
-        android:paddingTop="@dimen/smallPadding"
-        android:paddingRight="@dimen/smallPadding"
-        android:paddingBottom="@dimen/smallPadding">
+        android:layout_height="wrap_content">
 
 
         <TextView
@@ -50,6 +42,7 @@
             android:layout_width="42dp"
             android:layout_height="43dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:onClick="@{() -> removeClickListener.onClick(favoriteBook)}"
             android:paddingRight="@dimen/smallPadding"

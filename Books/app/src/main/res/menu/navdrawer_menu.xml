@@ -6,6 +6,9 @@
         android:id="@+id/searchBooksFragment"
         android:title="@string/searchBookTitle" />
     <item
+        android:id="@+id/favoritesFragment"
+        android:title="@string/favoritesTitle" />
+    <item
         android:id="@+id/aboutFragment"
         android:title="@string/aboutMenuItem" />
 </menu>
