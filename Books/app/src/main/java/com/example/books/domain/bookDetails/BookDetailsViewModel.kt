@@ -43,6 +43,7 @@ class BookDetailsViewModel(val book: Book, app: Application) : AndroidViewModel(
 
     init {
         _selectedBook.value = book
+        //_inFavorites.value = favoritsRepo.get(book.id!!) != null
         parseAuthors(book.volumeInfo?.authors)
     }
 

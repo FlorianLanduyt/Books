@@ -75,6 +75,19 @@ class BookDetailFragment : Fragment() {
         })
     }
 
+//    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+//    private fun observeFavoriteAddedTwo(binding: FragmentDetailBookBinding?) {
+//        detailViewModel.inFavorites.observe(viewLifecycleOwner, Observer {
+//            it?.let {
+//                if (it) {
+//                    binding!!.buttonAddToFavorites!!.setImageResource(R.drawable.favorite_in_list)
+//                    //favoritesViewModel.onFavoriteAdded()
+//                }
+//            }
+//        })
+//    }
+
+
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeFavoriteAdded(binding: FragmentDetailBookBinding?) {
         favoritesViewModel.favoriteAdded.observe(viewLifecycleOwner, Observer {
