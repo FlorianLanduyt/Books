@@ -9,11 +9,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.books.R
 import com.example.books.data.favorites.BookFavorite
+import com.example.books.data.finishedBooks.FinishedBook
 import com.example.books.data.toread.BookToRead
 import com.example.books.domain.bookSearch.BooksAdapter
 import com.example.books.domain.bookSearch.MyBooksApiStatus
 import com.example.books.domain.bookSearch.models.Book
 import com.example.books.domain.favorites.FavoritesAdapter
+import com.example.books.domain.finishedbooks.FinishedBookAdapter
 import com.example.books.domain.toRead.ToReadAdapter
 
 
@@ -58,6 +60,13 @@ class BindingAdapters {
         @JvmStatic
         fun bindingRecycleViewToRead(recyclerView: RecyclerView, data: List<BookToRead>?){
             val adapter = recyclerView.adapter as ToReadAdapter
+            adapter.submitList(data)
+        }
+
+        @BindingAdapter("finishedBooksListData")
+        @JvmStatic
+        fun bindingRecycleViewFinishedBooks(recyclerView: RecyclerView, data: List<FinishedBook>?){
+            val adapter = recyclerView.adapter as FinishedBookAdapter
             adapter.submitList(data)
         }
 

@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_homeFragment_to_toReadFragment"
             app:destination="@id/toReadFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_finishedBookFragment"
+            app:destination="@id/finishedBookFragment" />
     </fragment>
 
     <fragment
@@ -62,6 +65,10 @@
             android:id="@+id/action_toReadFragment_to_bookDetailFragment"
             app:destination="@id/bookDetailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/finishedBookFragment"
+        android:name="com.example.books.domain.finishedbooks.FinishedBookFragment"
+        android:label="FinishedBookFragment" />
 
 
 </navigation>

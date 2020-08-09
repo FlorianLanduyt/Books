@@ -49,9 +49,8 @@ class SearchBooksFragment : Fragment() {
         binding.booksPhotosGrid.adapter =
             BooksAdapter(BooksAdapter.OnClickListener { book, action ->
                 when (action) {
-                    "insert" -> {
+                    "insertFavorites" -> {
                         toReadViewModel.insertBookToRead(book)
-
                     }
                     "details" -> viewModel.displayBookDetails(book)
                 }

@@ -40,7 +40,7 @@ xmlns:tools="http://schemas.android.com/tools">
             android:layout_weight="1"
             android:height="30dp"
             android:text="@string/toReadButtonText"
-            android:onClick="@{() -> clickListener.onClick(book, `insert`)}"
+            android:onClick="@{() -> clickListener.onClick(book, `insertFavorites`)}"
             />
 
     </LinearLayout>

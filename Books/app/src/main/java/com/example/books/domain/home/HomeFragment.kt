@@ -40,6 +40,10 @@ class HomeFragment : Fragment() {
             Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_toReadFragment)
         }
 
+        binding.readBtn.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_finishedBookFragment)
+        }
+
         binding.lifecycleOwner = this
 
         setHasOptionsMenu(true)
