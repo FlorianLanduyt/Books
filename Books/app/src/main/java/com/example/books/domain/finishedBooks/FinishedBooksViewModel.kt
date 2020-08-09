@@ -68,6 +68,12 @@ class FinishedBooksViewModel (application: Application) : ViewModel() {
         }
     }
 
+    fun removeFinishedBook(bookId: String){
+        coroutineScope.launch {
+            finishedBooksRepo.removeFinishedBook(bookId)
+        }
+    }
+
 
     private fun onFinishedBookRemoveClicked() {
         _finishedBookRemoved.postValue(true)

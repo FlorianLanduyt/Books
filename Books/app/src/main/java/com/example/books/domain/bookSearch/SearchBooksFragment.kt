@@ -10,6 +10,8 @@ import com.example.books.R
 import com.example.books.data.BookDatabase
 
 import com.example.books.databinding.FragmentSearchBooksBinding
+import com.example.books.domain.finishedbooks.FinishedBooksViewModel
+import com.example.books.domain.finishedbooks.FinishedBooksViewModelFactory
 import com.example.books.domain.toRead.ToReadViewModel
 import com.example.books.domain.toRead.ToReadViewModelFactory
 import com.example.books.network.BookApiFilter
@@ -22,6 +24,7 @@ class SearchBooksFragment : Fragment() {
     private lateinit var binding: FragmentSearchBooksBinding
     private lateinit var viewModel: SearchBooksViewModel
     private lateinit var toReadViewModel: ToReadViewModel
+    private lateinit var finishedViewModel: FinishedBooksViewModel
 
     /**
      * Lazily initialize our [OverviewViewModel].
@@ -41,9 +44,11 @@ class SearchBooksFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val viewModelFactory = SearchBookViewModelFactory(application)
         val toReadViewModelFactory = ToReadViewModelFactory(application)
+        val finishedBookViewModelFactory = FinishedBooksViewModelFactory(application)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SearchBooksViewModel::class.java)
         toReadViewModel = ViewModelProviders.of(this, toReadViewModelFactory).get(ToReadViewModel::class.java)
+        finishedViewModel = ViewModelProviders.of(this, finishedBookViewModelFactory).get(FinishedBooksViewModel::class.java)
 
 
         binding.booksPhotosGrid.adapter =
@@ -53,6 +58,7 @@ class SearchBooksFragment : Fragment() {
                         toReadViewModel.insertBookToRead(book)
                     }
                     "details" -> viewModel.displayBookDetails(book)
+                    "insertFinished" -> finishedViewModel.insertFinishedBook(book)
                 }
             })
 

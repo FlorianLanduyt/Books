@@ -55,6 +55,7 @@ class FinishedBookFragment : Fragment() {
         binding.finishedBooksList.layoutManager = LinearLayoutManager(this.context)
 
         observeFinishedBooks(binding)
+        observeRemovedToRead(binding)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -74,6 +75,16 @@ class FinishedBookFragment : Fragment() {
                 } else {
                     binding.statusOfFinishedBooksList.visibility = View.GONE
                 }
+            }
+        })
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    private fun observeRemovedToRead(binding: FragmentFinishedBooksBinding?) {
+        viewModel.bookToRemove.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                viewModel.removeFinishedBook(it)
+                viewModel.onBookFinishedBookRemoved()
             }
         })
     }

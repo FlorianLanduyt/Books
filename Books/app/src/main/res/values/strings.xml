@@ -21,5 +21,8 @@
     <string name="favoritesTitle">Favorieten</string>
     <string name="emptyToReadList">Nog geen boeken in deze lijst</string>
     <string name="toReadButtonText">Niet in wachtrij</string>
+    <string name="finishedButtonText">Niet in \"Gelezen\" lijst</string>
+    <string name="finishedBooksTitle">Gelezen boeken</string>
+    <string name="toReadTitle">wachtrij</string>
 
 </resources>
