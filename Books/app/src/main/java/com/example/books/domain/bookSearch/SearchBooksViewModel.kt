@@ -5,13 +5,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.books.data.BookDatabase
 import com.example.books.data.BookDatabase.Companion.getInstance
-import com.example.books.data.books.DatabaseBook
-import com.example.books.network.BooksApi
 import com.example.books.domain.bookSearch.models.Book
 import com.example.books.network.BookApiFilter
-import com.example.books.repositories.BookRepository
+import com.example.books.data.repositories.BookRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -83,8 +80,6 @@ class SearchBooksViewModel(
     }
 
     fun updateFilter(title: String, filter: BookApiFilter) {
-        Log.d("DEBUGDEBUG", filter.value)
-        //_books.value = null
         getBooks(title, filter)
     }
 }

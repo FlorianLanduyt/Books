@@ -1,11 +1,9 @@
-package com.example.books.repositories
+package com.example.books.data.repositories
 
 import androidx.lifecycle.LiveData
 import com.example.books.data.BookDatabase
-import com.example.books.data.favorites.BookFavorite
 import com.example.books.data.toread.BookToRead
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.DisposableHandle
 import kotlinx.coroutines.withContext
 
 class ToReadRepository(private val database: BookDatabase) {

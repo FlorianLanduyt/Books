@@ -11,6 +11,10 @@ buildscript {
         version_retrofit_coroutines_adapter = "0.9.2"
         version_glide = "4.8.0"
         version_room = "2.2.1"
+        version_mockk="1.9.2"
+        version_junit_androidx="1.1.0"
+        version_kotlin_coroutines = "1.1.0"
+        version_lifecycle_extensions= "2.1.0"
     }
 
     repositories {

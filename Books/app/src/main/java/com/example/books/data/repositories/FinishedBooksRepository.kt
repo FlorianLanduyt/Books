@@ -1,7 +1,6 @@
-package com.example.books.repositories
+package com.example.books.data.repositories
 
 import com.example.books.data.BookDatabase
-import com.example.books.data.books.DatabaseBook
 import com.example.books.data.finishedBooks.FinishedBook
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

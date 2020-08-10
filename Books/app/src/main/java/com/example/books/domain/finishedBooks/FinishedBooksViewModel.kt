@@ -8,7 +8,7 @@ import com.example.books.data.BookDatabase
 import com.example.books.data.finishedBooks.FinishedBook
 import com.example.books.domain.bookSearch.MyBooksApiStatus
 import com.example.books.domain.bookSearch.models.Book
-import com.example.books.repositories.FinishedBooksRepository
+import com.example.books.data.repositories.FinishedBooksRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -79,15 +79,15 @@ class FinishedBooksViewModel (application: Application) : ViewModel() {
         _finishedBookRemoved.postValue(true)
     }
 
-    private fun onFinishedBookAddClicked() {
+    fun onFinishedBookAddClicked() {
         _finishedBookAdded.postValue(true)
     }
 
-    private fun onFinishedBookAdded(){
+    fun onFinishedBookAdded(){
         _finishedBookAdded.postValue(false)
     }
 
-    private fun onFinishedBookRemoved(){
+    fun onFinishedBookRemoved(){
         _finishedBookRemoved.postValue(false)
     }
 

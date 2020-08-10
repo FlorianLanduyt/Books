@@ -6,12 +6,12 @@ import android.widget.ExpandableListView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.books.databinding.GridViewItemBinding
+import com.example.books.databinding.SearchBooksItemBinding
 import com.example.books.domain.bookSearch.models.Book
 import com.example.books.domain.toRead.ToReadViewModel
 
 class BooksAdapter(private val onClickListener: OnClickListener) : ListAdapter<Book, BooksAdapter.SearchBooksViewHolder>(DiffCallBack) {
-    class SearchBooksViewHolder(private var binding: GridViewItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class SearchBooksViewHolder(private var binding: SearchBooksItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(book: Book, clickListener: OnClickListener) {
             binding.book = book
@@ -35,7 +35,7 @@ class BooksAdapter(private val onClickListener: OnClickListener) : ListAdapter<B
         parent: ViewGroup,
         viewType: Int
     ): SearchBooksViewHolder {
-        return SearchBooksViewHolder(GridViewItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return SearchBooksViewHolder(SearchBooksItemBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
     override fun onBindViewHolder(holder: SearchBooksViewHolder, position: Int) {

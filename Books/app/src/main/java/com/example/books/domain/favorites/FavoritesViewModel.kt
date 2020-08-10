@@ -1,7 +1,6 @@
 package com.example.books.domain.favorites
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +8,7 @@ import com.example.books.data.BookDatabase.Companion.getInstance
 import com.example.books.data.favorites.BookFavorite
 import com.example.books.domain.bookSearch.MyBooksApiStatus
 import com.example.books.domain.bookSearch.models.Book
-import com.example.books.repositories.FavoritesRepository
+import com.example.books.data.repositories.FavoritesRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

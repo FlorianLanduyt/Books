@@ -2,6 +2,7 @@ package com.example.books.domain
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -91,6 +92,27 @@ class BindingAdapters {
                 }
 
             }
+        }
+
+        @BindingAdapter("authors")
+        @JvmStatic
+        fun bindAuthors(textView: TextView, authors: List<String>?) {
+
+            val sb: StringBuilder = StringBuilder()
+
+            authors?.let {
+                it.forEach {
+                    sb.append(it)
+                    sb.append(", ")
+                }
+            }
+
+            if(sb.isNotEmpty()){
+                sb.delete(sb.lastIndex-1, sb.lastIndex)
+            }
+
+
+            textView.text = sb.toString()
         }
 
     }

@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.books.data.BookDatabase.Companion.getInstance
 import com.example.books.data.toread.BookToRead
 import com.example.books.domain.bookSearch.models.Book
-import com.example.books.repositories.ToReadRepository
+import com.example.books.data.repositories.ToReadRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -69,19 +69,19 @@ class ToReadViewModel (application: Application): ViewModel(){
         _removeToReadBook.value = null
     }
 
-    private fun onToReadBookAddClicked() {
+    fun onToReadBookAddClicked() {
         _toReadAdded.postValue(true)
     }
 
-    private fun onToReadBookAdded(){
+    fun onToReadBookAdded(){
         _toReadAdded.postValue(false)
     }
 
-    private fun onToReadBookRemoveClicked() {
+    fun onToReadBookRemoveClicked() {
         _toReadRemoved.postValue(true)
     }
 
-    private fun onToReadRemoved() {
+    fun onToReadRemoved() {
         _toReadRemoved.postValue(false)
     }
 }

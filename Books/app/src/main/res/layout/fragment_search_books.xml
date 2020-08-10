@@ -16,30 +16,50 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/searchText"
-            style="@style/Widget.AppCompat.EditText"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
             android:layout_marginStart="16dp"
 
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:autofillHints=""
+            android:cursorVisible="true"
+            android:drawableLeft="@android:drawable/ic_search_category_default"
             android:ems="10"
+            android:fadingEdge="horizontal"
             android:hint="@string/searchHint"
             android:inputType="textNoSuggestions"
             android:paddingLeft="@dimen/normalPadding"
             android:paddingRight="@dimen/normalPadding"
             android:textAlignment="textStart"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <!--        <com.google.android.material.textfield.TextInputLayout-->
+        <!--            android:id="@+id/searchText"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:hint="Naam van boek"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent">-->
+
+        <!--            <com.google.android.material.textfield.TextInputEditText-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content" />-->
+
+        <!--        </com.google.android.material.textfield.TextInputLayout>-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/booksPhotosGrid"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/normalMargin"
-            android:layout_marginTop="@dimen/normalMargin"
             android:layout_marginEnd="@dimen/normalMargin"
             android:layout_marginBottom="@dimen/normalMargin"
             android:padding="6dp"
@@ -49,33 +69,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchText"
             app:listData="@{viewModel.books}"
-            app:spanCount="2"
+            app:spanCount="1"
             tools:itemCount="30"
-            tools:listitem="@layout/grid_view_item" />
-
-        <Button
-            android:id="@+id/searchBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="14dp"
-            android:text="@string/searchButton"
-            app:layout_constraintBottom_toTopOf="@+id/booksPhotosGrid"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.508"
-            app:layout_constraintStart_toEndOf="@+id/searchText"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.9" />
+            tools:listitem="@layout/search_books_item" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:bookApiStatus="@{viewModel.status}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:bookApiStatus="@{viewModel.status}"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
-    <!--    //android:text="@{viewModel.response.}"-->
