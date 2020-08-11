@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.books.domain.home.HomeFragment"
-        android:label="fragment_home"
+        android:label="Thuis"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_searchBooksFragment"
@@ -28,8 +28,8 @@
     <fragment
         android:id="@+id/searchBooksFragment"
         android:name="com.example.books.domain.bookSearch.SearchBooksFragment"
-        android:label="fragment_search_books"
-        tools:layout="@layout/fragment_search_books" >
+        android:label="Zoeken"
+        tools:layout="@layout/fragment_search_books">
         <action
             android:id="@+id/action_showDetails"
             app:destination="@id/bookDetailFragment" />
@@ -37,11 +37,11 @@
     <fragment
         android:id="@+id/bookDetailFragment"
         android:name="com.example.books.domain.bookDetails.BookDetailFragment"
-        android:label="BookDetailFragment">
+        android:label="Details">
 
         <argument
             android:name="book"
-            app:argType="com.example.books.domain.bookSearch.models.Book"/>
+            app:argType="com.example.books.domain.bookSearch.models.Book" />
 
     </fragment>
     <fragment
@@ -52,7 +52,7 @@
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="com.example.books.domain.favorites.FavoritesFragment"
-        android:label="FavoritesFragment" >
+        android:label="Favorieten">
         <action
             android:id="@+id/action_favoritesFragment_to_bookDetailFragment"
             app:destination="@id/bookDetailFragment" />
@@ -60,7 +60,7 @@
     <fragment
         android:id="@+id/toReadFragment"
         android:name="com.example.books.domain.toRead.ToReadFragment"
-        android:label="ToReadFragment" >
+        android:label="Wachtrij">
         <action
             android:id="@+id/action_toReadFragment_to_bookDetailFragment"
             app:destination="@id/bookDetailFragment" />
@@ -68,7 +68,7 @@
     <fragment
         android:id="@+id/finishedBookFragment"
         android:name="com.example.books.domain.finishedbooks.FinishedBookFragment"
-        android:label="FinishedBookFragment" />
+        android:label="Gelezen " />
 
 
 </navigation>

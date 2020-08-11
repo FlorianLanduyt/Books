@@ -1,21 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/searchBooksFragment"
-        android:title="@string/searchBookTitle" />
-    <item
-        android:id="@+id/favoritesFragment"
-        android:title="@string/favoritesTitle" />
-    <item
-        android:id="@+id/aboutFragment"
-        android:title="@string/aboutMenuItem" />
-    <item
-        android:id="@+id/finishedBookFragment"
-        android:title="@string/finishedBooksTitle" />
+    <item android:title="Algemeen">
+        <menu>
+            <group>
+                <item
+                    android:id="@+id/searchBooksFragment"
+                    android:title="@string/searchBookTitle" />
+            </group>
+        </menu>
+    </item>
 
-    <item
-        android:id="@+id/toReadFragment"
-        android:title="@string/toReadTitle" />
+    <item android:title="Lijsten">
+        <menu>
+            <group>
+                <item
+                    android:id="@+id/finishedBookFragment"
+                    android:title="@string/finishedBooksTitle" />
+
+                <item
+                    android:id="@+id/toReadFragment"
+                    android:title="@string/toReadTitle" />
+                <item
+                    android:id="@+id/favoritesFragment"
+                    android:title="@string/favoritesTitle" />
+            </group>
+        </menu>
+
+    </item>
+
+    <group>
+        <item
+            android:id="@+id/aboutFragment"
+            android:icon="@android:drawable/ic_dialog_info"
+            android:title="@string/aboutMenuItem" />
+    </group>
+
 </menu>
