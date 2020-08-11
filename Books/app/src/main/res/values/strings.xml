@@ -31,5 +31,7 @@
     <string name="removed_from_finished_books">Verwijderd uit gelezen boeken</string>
     <string name="added_to_read_books">Toegevoegd aan te lezen boeken</string>
     <string name="removed_to_read_books">Verwijderd uit te lezen boeken</string>
+    <string name="moreText">Lees meer</string>
+    <string name="lessText">Minder weergeven</string>
 
 </resources>

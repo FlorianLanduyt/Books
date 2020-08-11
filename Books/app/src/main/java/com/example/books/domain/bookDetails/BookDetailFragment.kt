@@ -55,6 +55,8 @@ class BookDetailFragment : Fragment() {
         observeBook(binding)
         observeFavoriteAdded(binding)
         observerFavoriteRemoved(binding)
+        observeMoreText(binding)
+
 
 
         binding.lifecycleOwner = this
@@ -65,27 +67,41 @@ class BookDetailFragment : Fragment() {
         return binding.root
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+
+
+     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeBook(binding: FragmentDetailBookBinding) {
         detailViewModel.selectedBook.observe(viewLifecycleOwner, Observer {
             it?.let {
                 binding.book = it
-
+                binding.descriptionText.text = detailViewModel.book.volumeInfo!!.description!!.subSequence(
+                    0,
+                    100
+                ).toString().plus(" ...")
             }
         })
     }
 
-//    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-//    private fun observeFavoriteAddedTwo(binding: FragmentDetailBookBinding?) {
-//        detailViewModel.inFavorites.observe(viewLifecycleOwner, Observer {
-//            it?.let {
-//                if (it) {
-//                    binding!!.buttonAddToFavorites!!.setImageResource(R.drawable.favorite_in_list)
-//                    //favoritesViewModel.onFavoriteAdded()
-//                }
-//            }
-//        })
-//    }
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    private fun observeMoreText(binding: FragmentDetailBookBinding) {
+        detailViewModel.moreText.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                if(it){
+                    binding.descriptionText.text = detailViewModel.book.volumeInfo!!.description!!.toString()
+                    binding.moreText.visibility = View.GONE
+                    binding.lessText.visibility = View.VISIBLE
+                } else {
+                    binding.descriptionText.text = detailViewModel.book.volumeInfo!!.description!!.subSequence(
+                        0,
+                        100
+                    ).toString().plus(" ...")
+                    binding.moreText.visibility = View.VISIBLE
+                    binding.lessText.visibility = View.GONE
+                }
+
+            }
+        })
+    }
 
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)

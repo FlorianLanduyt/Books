@@ -41,6 +41,10 @@ class BookDetailsViewModel(val book: Book, app: Application) : AndroidViewModel(
     val inFavorites: LiveData<Boolean>
         get() = _inFavorites
 
+    private val _moreText = MutableLiveData<Boolean>()
+    val moreText: LiveData<Boolean>
+        get() = _moreText
+
     init {
         _selectedBook.value = book
         //_inFavorites.value = favoritsRepo.get(book.id!!) != null
@@ -57,13 +61,20 @@ class BookDetailsViewModel(val book: Book, app: Application) : AndroidViewModel(
                 sb.append(", ")
             }
 
+            if(sb.isNotEmpty())
+                sb.delete(sb.lastIndex-1, sb.lastIndex)
 
-            //TODO
-            if (sb.endsWith(','))
-                sb.deleteCharAt(sb.lastIndex-1)
         }
 
         _authors.value = sb.toString();
+    }
+
+    fun moreText(){
+        _moreText.postValue(true)
+    }
+
+    fun lessText(){
+        _moreText.postValue(false)
     }
 
 

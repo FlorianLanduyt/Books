@@ -16,6 +16,8 @@
             name="book"
             type="com.example.books.domain.bookSearch.models.Book" />
 
+
+
     </data>
 
 
@@ -35,19 +37,21 @@
                 android:id="@+id/bookDetailPhoto"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:scaleType="fitCenter"
+                app:imageUrl="@{viewModel.selectedBook.volumeInfo.imageLinks.thumbnail}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:imageUrl="@{viewModel.selectedBook.volumeInfo.imageLinks.thumbnail}"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/button_add_to_favorites"
                 android:layout_width="53dp"
                 android:layout_height="38dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 android:onClick="@{()-> viewModelFavorites.insertBookFavorite(book)}"
                 app:backgroundTint="@android:color/white"
                 app:fabSize="mini"
@@ -56,10 +60,12 @@
 
             <TextView
                 android:id="@+id/titelText"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:gravity="center|center_horizontal"
                 android:text="@{viewModel.selectedBook.volumeInfo.title}"
                 android:textSize="@dimen/titleSize"
                 app:layout_constraintEnd_toStartOf="@+id/button_add_to_favorites"
@@ -70,6 +76,8 @@
                 android:id="@+id/descriptionLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
                 android:text="@string/descriptionLabel"
                 android:textSize="@dimen/textSize"
                 app:layout_constraintStart_toStartOf="parent"
@@ -77,12 +85,11 @@
 
             <TextView
                 android:id="@+id/descriptionText"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                android:text="@{viewModel.selectedBook.volumeInfo.description}"
-                app:layout_constraintBottom_toTopOf="@+id/authorsLabel"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/descriptionLabel" />
@@ -91,20 +98,51 @@
                 android:id="@+id/authorsLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/authorsLabel"
                 android:textSize="@dimen/textSize"
-                app:layout_constraintBottom_toTopOf="@+id/authorsText"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/moreText" />
 
             <TextView
                 android:id="@+id/authorsText"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
+                android:text="@{viewModel.authors}"
                 app:layout_constraintBottom_toBottomOf="parent"
-                tools:layout_editor_absoluteX="16dp"
-                android:text="@{viewModel.authors}"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/authorsLabel" />
+
+            <TextView
+                android:id="@+id/moreText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/moreText"
+                android:onClick="@{()-> viewModel.moreText()}"
+                android:textColor="@android:color/holo_blue_dark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+
+            <TextView
+                android:id="@+id/lessText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/lessText"
+                android:textColor="@android:color/holo_blue_dark"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone"
+                android:onClick="@{()-> viewModel.lessText()}"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
