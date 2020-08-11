@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.books.data.books.BookDao
 import com.example.books.data.books.DatabaseBook
+import com.example.books.data.converters.ListConverter
 import com.example.books.data.converters.VolumeInfoConverter
 import com.example.books.data.favorites.BookFavorite
 import com.example.books.data.favorites.FavoritesDao
@@ -16,9 +17,9 @@ import com.example.books.data.toread.BookToRead
 import com.example.books.data.toread.ToReadDao
 
 @Database(entities = [BookFavorite::class, DatabaseBook::class, BookToRead::class, FinishedBook::class],
-    version = 4,
+    version = 5,
     exportSchema = false)
-@TypeConverters(VolumeInfoConverter::class)
+@TypeConverters(VolumeInfoConverter::class, ListConverter::class)
 abstract class BookDatabase : RoomDatabase(){
 
     abstract val bookDao: BookDao

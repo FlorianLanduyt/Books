@@ -74,10 +74,25 @@ class BookDetailFragment : Fragment() {
         detailViewModel.selectedBook.observe(viewLifecycleOwner, Observer {
             it?.let {
                 binding.book = it
-                binding.descriptionText.text = detailViewModel.book.volumeInfo!!.description!!.subSequence(
-                    0,
-                    100
-                ).toString().plus(" ...")
+
+                if(detailViewModel.book.volumeInfo?.description != null) {
+                    if(detailViewModel.book.volumeInfo!!.description!!.length > 100 ){
+                        binding.descriptionText.text = detailViewModel.book.volumeInfo!!.description!!.subSequence(
+                            0,
+                            100
+                        ).toString().plus(" ...")
+                    } else {
+                        binding.descriptionText.text = detailViewModel.book.volumeInfo!!.description!!.toString()
+                        binding.moreText.visibility = View.GONE
+                    }
+                } else {
+                    binding.descriptionText.text = "Geen beschrijving van dit boek gevonden"
+                    binding.moreText.visibility = View.GONE
+                }
+
+
+
+
             }
         })
     }

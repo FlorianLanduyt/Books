@@ -64,7 +64,7 @@ class FavoritesViewModel(application: Application): ViewModel()
             if (book != null) {
                 if (favoritesRepo.getBookFavorite(book.id!!) == null) {
                     val bookFavorite =
-                        BookFavorite(book.id, book.volumeInfo!!.title!!)
+                        BookFavorite(book.id, book.volumeInfo!!.title!!, book.volumeInfo!!.authors!!)
 
                     favoritesRepo.insertBookFavorite(bookFavorite)
                     onFavoriteAddClicked()
