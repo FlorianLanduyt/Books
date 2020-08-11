@@ -14,8 +14,9 @@ class FavoritesAdapter
 
     class FavoritesBookViewHolder(private var binding: BookFavoritesListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(favoriteBook: BookFavorite) {
+        fun bind(favoriteBook: BookFavorite, clickListener: FavoriteListener) {
             binding.favoriteBook = favoriteBook
+            binding.clickListener = clickListener
         }
     }
 
@@ -39,14 +40,14 @@ class FavoritesAdapter
     override fun onBindViewHolder(holder: FavoritesBookViewHolder, position: Int) {
         val favoriteBook = getItem(position)
 
-        holder.itemView.setOnClickListener {
-            onClickListener.onClick(favoriteBook)
-        }
+//        holder.itemView.setOnClickListener {
+//            onClickListener.onClick(favoriteBook)
+//        }
 
-        holder.bind(favoriteBook)
+        holder.bind(favoriteBook, onClickListener)
     }
 
-    class FavoriteListener(val clickListener: (favoriteBook: BookFavorite) -> Unit) {
-        fun onClick(favoriteBook: BookFavorite) = clickListener(favoriteBook)
+    class FavoriteListener(val clickListener: (favoriteBook: BookFavorite, action: String) -> Unit) {
+        fun onClick(favoriteBook: BookFavorite, action: String) = clickListener(favoriteBook, action)
     }
 }

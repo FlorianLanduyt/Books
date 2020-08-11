@@ -83,7 +83,6 @@ class SearchBooksFragment : Fragment()
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-//        searchBookOnClick(viewModel, binding)
         navigateToSelectedBook(viewModel, binding)
         observeBookAddedToToReadList(toReadViewModel)
         observeBookRemovedToToReadList(toReadViewModel)
@@ -196,21 +195,6 @@ class SearchBooksFragment : Fragment()
     }
 
 
-//    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-//    private fun searchBookOnClick(
-//        viewModel: SearchBooksViewModel,
-//        binding: FragmentSearchBooksBinding
-//    ) {
-//        binding.searchBtn.setOnClickListener {
-//            val searchText: String =
-//                binding.searchText.text.toString().trim().replace("\\s".toRegex(), "+")
-//
-//            viewModel.getBooks(
-//                searchText
-//                , BookApiFilter.SHOW_ALL
-//            )
-//        }
-//    }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun navigateToSelectedBook(
@@ -220,20 +204,12 @@ class SearchBooksFragment : Fragment()
         viewModel.navigateToSelectedBook.observe(this, Observer {
             if (it != null) {
                 this.findNavController()
-                    .navigate(SearchBooksFragmentDirections.actionShowDetails(it))
+                    .navigate(SearchBooksFragmentDirections.actionShowDetails(it.id!!))
                 viewModel.displayBookDetailsComplete()
             }
         })
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    private fun observeBookToRead(binding: FragmentSearchBooksBinding) {
-        toReadViewModel.toReadAdded.observe(this, Observer {
-            if (it) {
-
-            }
-        })
-    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)

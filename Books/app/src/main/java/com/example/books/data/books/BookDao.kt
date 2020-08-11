@@ -14,6 +14,7 @@ interface BookDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg book: DatabaseBook)
 
+
     @Query("DELETE FROM book_table")
     fun clear()
 }

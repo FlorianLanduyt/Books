@@ -40,8 +40,9 @@
         android:label="Details">
 
         <argument
-            android:name="book"
-            app:argType="com.example.books.domain.bookSearch.models.Book" />
+            android:name="bookId"
+            app:argType="string" />
+
 
     </fragment>
     <fragment
@@ -56,6 +57,8 @@
         <action
             android:id="@+id/action_favoritesFragment_to_bookDetailFragment"
             app:destination="@id/bookDetailFragment" />
+
+
     </fragment>
     <fragment
         android:id="@+id/toReadFragment"

@@ -40,6 +40,14 @@ class FavoritesViewModel(application: Application): ViewModel()
     val removeFavoriteBook: LiveData<String>
         get() = _removeFavoriteBook
 
+
+    private val _bookToNavigateTo = MutableLiveData<String>()
+    val bookToNavigateTo: LiveData<String>
+        get() = _bookToNavigateTo
+
+
+
+
     init {
         _status.value = MyBooksApiStatus.EMPTY
 
@@ -76,6 +84,16 @@ class FavoritesViewModel(application: Application): ViewModel()
         }
     }
 
+    fun bookInFavorites(id: String){
+        coroutineScope.launch {
+            if(favoritesRepo.getBookFavorite(id) != null){
+                onFavoriteAddClicked()
+            } else {
+                onFavoriteRemoveClicked()
+            }
+        }
+    }
+
     fun removeBookFavorite(bookId: String) {
         coroutineScope.launch {
             favoritesRepo.removeBookFavorite(bookId)
@@ -103,5 +121,13 @@ class FavoritesViewModel(application: Application): ViewModel()
 
     fun onFavoriteRemoved() {
         _favoriteRemoved.postValue(false)
+    }
+
+    fun navigateToBook(id: String){
+        _bookToNavigateTo.postValue(id)
+    }
+
+    fun navigateToBookFinished(){
+        _bookToNavigateTo.postValue(null)
     }
 }

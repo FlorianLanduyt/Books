@@ -11,13 +11,14 @@
             type="com.example.books.data.favorites.BookFavorite" />
 
         <variable
-            name="removeClickListener"
+            name="clickListener"
             type="com.example.books.domain.favorites.FavoritesAdapter.FavoriteListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(favoriteBook, `details`)}">
 
 
         <TextView
@@ -39,7 +40,7 @@
             android:layout_height="43dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:onClick="@{() -> removeClickListener.onClick(favoriteBook)}"
+            android:onClick="@{() -> clickListener.onClick(favoriteBook, `remove`)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@android:drawable/ic_menu_delete" />

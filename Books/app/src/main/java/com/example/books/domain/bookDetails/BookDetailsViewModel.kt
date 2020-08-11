@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.books.data.BookDatabase
+import com.example.books.data.repositories.BookRepository
 import com.example.books.domain.bookSearch.MyBooksApiStatus
 import com.example.books.domain.bookSearch.models.Book
 import com.example.books.domain.bookSearch.models.SearchBooksResponse
@@ -20,14 +21,20 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 import kotlin.coroutines.coroutineContext
 
-class BookDetailsViewModel(val book: Book, app: Application) : AndroidViewModel(app) {
+enum class BookApiStatus { LOADING, ERROR, DONE }
+
+class BookDetailsViewModel(
+//    val book: Book,
+    app: Application) : AndroidViewModel(app) {
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+
     private val database = BookDatabase.getInstance(app)
+    private val bookRepo = BookRepository(database)
 
-    private val favoritsRepo = database.favoritesDao
-
-
+    private val _status = MutableLiveData<BookApiStatus>()
+    val status: LiveData<BookApiStatus>
+        get() = _status
 
     private val _selectedBook = MutableLiveData<Book>()
     val selectedBook: LiveData<Book>
@@ -45,28 +52,18 @@ class BookDetailsViewModel(val book: Book, app: Application) : AndroidViewModel(
     val moreText: LiveData<Boolean>
         get() = _moreText
 
-    init {
-        _selectedBook.value = book
-        //_inFavorites.value = favoritsRepo.get(book.id!!) != null
-        parseAuthors(book.volumeInfo?.authors)
-    }
-
-    private fun parseAuthors(authors: List<String>?) {
-        val sb: StringBuilder = StringBuilder()
 
 
-        authors?.let {
-            it.forEach {
-                sb.append(it)
-                sb.append(", ")
+    fun getBookProperties(bookId: String) {
+        coroutineScope.launch {
+            try {
+                _status.value = BookApiStatus.LOADING
+                _selectedBook.value = bookRepo.getBook(bookId)
+                _status.value = BookApiStatus.DONE
+            } catch (e: Exception){
+                _status.value = BookApiStatus.ERROR
             }
-
-            if(sb.isNotEmpty())
-                sb.delete(sb.lastIndex-1, sb.lastIndex)
-
         }
-
-        _authors.value = sb.toString();
     }
 
     fun moreText(){

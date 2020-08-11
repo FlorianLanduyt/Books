@@ -20,18 +20,19 @@
     <string name="emptyFavoritesList">Je hebt nog geen boeken in deze lijst</string>
     <string name="favoritesTitle">Favorieten</string>
     <string name="emptyToReadList">Nog geen boeken in deze lijst</string>
-    <string name="toReadButtonText">Niet in wachtrij</string>
+    <string name="toReadButtonText">Boek in wachtrij</string>
     <string name="finishedButtonText">Niet in \"Gelezen\" lijst</string>
     <string name="finishedBooksTitle">Gelezen boeken</string>
     <string name="toReadTitle">wachtrij</string>
     <string name="addInFavroites">Voeg toe aan favorieten</string>
     <string name="authorLabel">Geschreven door:</string>
-    <string name="addInFinished">Voeg toe aan gelezen</string>
+    <string name="addInFinished">Boek gelezen</string>
     <string name="added_to_finished_books">Toegevoegd aan gelezen boeken</string>
     <string name="removed_from_finished_books">Verwijderd uit gelezen boeken</string>
-    <string name="added_to_read_books">Toegevoegd aan te lezen boeken</string>
-    <string name="removed_to_read_books">Verwijderd uit te lezen boeken</string>
-    <string name="moreText">Lees meer</string>
+    <string name="added_to_read_books">Toegevoegd aan wachtrij</string>
+    <string name="removed_to_read_books">Verwijderd uit wachtrij</string>
+    <string name="moreText">Meer weergeven</string>
     <string name="lessText">Minder weergeven</string>
+    <string name="no_description_found">Geen beschrijving van dit boek gevonden</string>
 
 </resources>

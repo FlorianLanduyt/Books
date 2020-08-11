@@ -12,11 +12,14 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.books.R
 import com.example.books.databinding.FragmentFavoritesBinding
 import com.example.books.databinding.FragmentSearchBooksBinding
+import com.example.books.domain.bookDetails.BookDetailsViewModel
+import com.example.books.domain.bookDetails.BookDetailsViewModelFactory
 
 /**
  * A simple [Fragment] subclass.
@@ -34,16 +37,21 @@ class FavoritesFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
         val viewModelFactory = FavoritesViewModelFactory(application)
-        viewModel =
-            ViewModelProviders.of(this, viewModelFactory).get(FavoritesViewModel::class.java)
+
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(FavoritesViewModel::class.java)
 
         viewModel.getFavorites()
 
 
 
         binding.favoritesList.adapter = FavoritesAdapter(
-            FavoritesAdapter.FavoriteListener {
-                viewModel.onBookFavoriteRemovedClicked(it.bookId)
+            FavoritesAdapter.FavoriteListener { book, action ->
+                when(action) {
+                    "remove" -> viewModel.onBookFavoriteRemovedClicked(book.bookId)
+                    "details" -> {
+                        viewModel.navigateToBook(book.bookId)
+                    }
+                }
             }
         )
 
@@ -54,8 +62,22 @@ class FavoritesFragment : Fragment() {
 
         observeFavorites(binding)
         observeRemovedFavorites(binding)
+        observeNavigateToBook(viewModel)
 
         return binding.root
+    }
+
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    private fun observeNavigateToBook(viewModel: FavoritesViewModel) {
+        viewModel.bookToNavigateTo.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                this.findNavController().navigate(
+                    FavoritesFragmentDirections.actionFavoritesFragmentToBookDetailFragment(it)
+                )
+                viewModel.navigateToBookFinished()
+            }
+        })
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)

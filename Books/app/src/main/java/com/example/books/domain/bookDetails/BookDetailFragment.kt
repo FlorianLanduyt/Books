@@ -21,6 +21,7 @@ import com.example.books.R
 import com.example.books.databinding.FragmentDetailBookBinding
 import com.example.books.databinding.FragmentSearchBooksBinding
 import com.example.books.domain.bookSearch.SearchBooksViewModel
+import com.example.books.domain.bookSearch.models.Book
 import com.example.books.domain.favorites.FavoritesViewModel
 import com.example.books.domain.favorites.FavoritesViewModelFactory
 import com.example.books.network.BookApiFilter
@@ -30,6 +31,8 @@ import kotlinx.coroutines.supervisorScope
  * A simple [Fragment] subclass.
  */
 class BookDetailFragment : Fragment() {
+//    private lateinit var book: Book
+
     private lateinit var detailViewModel: BookDetailsViewModel
     private lateinit var favoritesViewModel: FavoritesViewModel
     private lateinit var binding: FragmentDetailBookBinding
@@ -40,22 +43,28 @@ class BookDetailFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail_book, container, false)
 
-        val args = BookDetailFragmentArgs.fromBundle(arguments!!).book
-
 
         val application = requireNotNull(activity).application
         val binding = FragmentDetailBookBinding.inflate(inflater)
 
-        val bookDetailsViewModelFactory = BookDetailsViewModelFactory(args, application)
+        val bookDetailsViewModelFactory = BookDetailsViewModelFactory(application)
         val favoritesViewModelFactory = FavoritesViewModelFactory(application)
 
-        detailViewModel = ViewModelProviders.of(this, bookDetailsViewModelFactory).get(BookDetailsViewModel::class.java)
-        favoritesViewModel = ViewModelProviders.of(this, favoritesViewModelFactory).get(FavoritesViewModel::class.java)
+        detailViewModel = ViewModelProviders.of(this, bookDetailsViewModelFactory)
+            .get(BookDetailsViewModel::class.java)
+        favoritesViewModel = ViewModelProviders.of(this, favoritesViewModelFactory)
+            .get(FavoritesViewModel::class.java)
+
+        val args = BookDetailFragmentArgs.fromBundle(arguments!!).bookId
+        detailViewModel.getBookProperties(args)
+        favoritesViewModel.bookInFavorites(args)
+
 
         observeBook(binding)
         observeFavoriteAdded(binding)
         observerFavoriteRemoved(binding)
         observeMoreText(binding)
+        observeStatus(binding)
 
 
 
@@ -68,30 +77,30 @@ class BookDetailFragment : Fragment() {
     }
 
 
-
-     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeBook(binding: FragmentDetailBookBinding) {
         detailViewModel.selectedBook.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                binding.book = it
+            it?.let { book ->
 
-                if(detailViewModel.book.volumeInfo?.description != null) {
-                    if(detailViewModel.book.volumeInfo!!.description!!.length > 100 ){
-                        binding.descriptionText.text = detailViewModel.book.volumeInfo!!.description!!.subSequence(
-                            0,
-                            100
-                        ).toString().plus(" ...")
+                    binding.book = book
+
+                    if (book.volumeInfo?.description != null) {
+                        if (book.volumeInfo!!.description!!.length > 100) {
+                            binding.descriptionText.text =
+                                book.volumeInfo!!.description!!.subSequence(
+                                    0,
+                                    100
+                                ).toString().plus(" ...")
+                        } else {
+                            binding.descriptionText.text =
+                                book.volumeInfo!!.description!!.toString()
+                            binding.moreText.visibility = View.GONE
+                        }
                     } else {
-                        binding.descriptionText.text = detailViewModel.book.volumeInfo!!.description!!.toString()
+                        binding.descriptionText.text =
+                            resources.getText(R.string.no_description_found)
                         binding.moreText.visibility = View.GONE
                     }
-                } else {
-                    binding.descriptionText.text = "Geen beschrijving van dit boek gevonden"
-                    binding.moreText.visibility = View.GONE
-                }
-
-
-
 
             }
         })
@@ -101,12 +110,12 @@ class BookDetailFragment : Fragment() {
     private fun observeMoreText(binding: FragmentDetailBookBinding) {
         detailViewModel.moreText.observe(viewLifecycleOwner, Observer {
             it?.let {
-                if(it){
-                    binding.descriptionText.text = detailViewModel.book.volumeInfo!!.description!!.toString()
+                if (it) {
+                    binding.descriptionText.text = binding.book?.volumeInfo?.description!!.toString()
                     binding.moreText.visibility = View.GONE
                     binding.lessText.visibility = View.VISIBLE
                 } else {
-                    binding.descriptionText.text = detailViewModel.book.volumeInfo!!.description!!.subSequence(
+                    binding.descriptionText.text = binding.book?.volumeInfo?.description!!.subSequence(
                         0,
                         100
                     ).toString().plus(" ...")
@@ -143,7 +152,32 @@ class BookDetailFragment : Fragment() {
         })
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    private fun observeStatus(binding: FragmentDetailBookBinding){
+        detailViewModel.status.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                when(it) {
+                    BookApiStatus.LOADING -> {
+                        binding.authorsLabel.visibility = View.GONE
+                        binding.descriptionLabel.visibility = View.GONE
+                        binding.loadingImg.visibility = View.VISIBLE
+                        binding.moreText.visibility = View.GONE
+                        binding.buttonAddToFavorites.visibility = View.GONE
+                    }
+                    BookApiStatus.DONE -> {
 
+                        binding.authorsLabel.visibility = View.VISIBLE
+                        binding.descriptionLabel.visibility = View.VISIBLE
+                        binding.bookDetailLayout.visibility = View.VISIBLE
+                        binding.moreText.visibility = View.VISIBLE
+                        binding.buttonAddToFavorites.visibility = View.VISIBLE
+                        binding.loadingImg.visibility = View.GONE
+                    }
+                }
+
+            }
+        })
+    }
 
 
 }

@@ -4,10 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.books.data.BookDatabase
 import com.example.books.data.books.asDomainModel
+import com.example.books.data.favorites.BookFavorite
 import com.example.books.domain.bookSearch.models.Book
 import com.example.books.domain.bookSearch.models.asDatabaseModel
 import com.example.books.network.BookApiFilter
 import com.example.books.network.BooksApi
+import com.example.books.network.BooksApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -28,6 +30,12 @@ class BookRepository(private val database: BookDatabase) {
                 database.bookDao.insertAll(*searchResponse.asDatabaseModel())
             }
         }
+
+    suspend fun getBook(bookId: String): Book {
+        return withContext(Dispatchers.IO) {
+            BooksApi.retrofitService.getBookById(bookId).await().books[0]
+        }
+    }
 
     suspend fun clearBooks() {
         withContext(Dispatchers.IO) {

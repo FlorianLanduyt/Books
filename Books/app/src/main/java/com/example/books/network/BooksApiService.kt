@@ -38,7 +38,7 @@ interface BooksApiService {
 
 
     @GET("volumes")
-    fun getBook(
+    fun getBookById(
         @Query("q") id: String
     ): Deferred<SearchBooksResponse>
 }
