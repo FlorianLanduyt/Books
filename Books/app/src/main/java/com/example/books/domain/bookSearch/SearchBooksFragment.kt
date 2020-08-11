@@ -119,14 +119,12 @@ class SearchBooksFragment : Fragment()
 
                     viewModel.getBooks(s.toString(), BookApiFilter.SHOW_ALL)
                 }
-
-
-
             }
         })
     }
 
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeBookAddedToFinishedList(
         viewModel: FinishedBooksViewModel
     ) {
@@ -143,6 +141,7 @@ class SearchBooksFragment : Fragment()
         })
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeBookRemovedFinishedList(
         viewModel: FinishedBooksViewModel
     ) {
@@ -178,6 +177,7 @@ class SearchBooksFragment : Fragment()
         })
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeBookRemovedToToReadList(
         viewModel: ToReadViewModel
     ) {
