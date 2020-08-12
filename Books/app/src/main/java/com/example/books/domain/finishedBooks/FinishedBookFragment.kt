@@ -26,6 +26,13 @@ class FinishedBookFragment : Fragment() {
     private lateinit var viewModel: FinishedBooksViewModel
     private lateinit var binding: FragmentFinishedBooksBinding
 
+    /**
+     * Gets called by Android when the fragmnent is inflated
+     *
+     * @param inflater the layout inflater
+     * @param container the container
+     * @param savedInstanceState the bundle created in onSaveInstanceState
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -63,6 +70,11 @@ class FinishedBookFragment : Fragment() {
 
     }
 
+    /**
+     * Observes book to be navigated to
+     *
+     * @param viewModel the FinishedBooksViewModel
+     */
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeNavigateToBook(viewModel: FinishedBooksViewModel) {
         viewModel.navigateToBookDetail.observe(viewLifecycleOwner, Observer {
@@ -75,7 +87,11 @@ class FinishedBookFragment : Fragment() {
         })
     }
 
-
+    /**
+     * Observes finished books to check if the list is empty
+     *
+     * @param binding the FragmentFinishedBooksBinding
+     */
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeFinishedBooks(binding: FragmentFinishedBooksBinding) {
         viewModel.finishedBooks.observe(viewLifecycleOwner, Observer {
@@ -90,6 +106,11 @@ class FinishedBookFragment : Fragment() {
         })
     }
 
+    /**
+     * Observes removed books
+     *
+     * @param viewModel the FinishedBooksViewModel
+     */
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeRemovedToRead() {
         viewModel.bookToRemove.observe(viewLifecycleOwner, Observer {

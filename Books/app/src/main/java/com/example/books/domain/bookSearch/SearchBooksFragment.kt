@@ -28,8 +28,7 @@ import kotlin.coroutines.CoroutineContext
 /**
  * A simple [Fragment] subclass.
  */
-class SearchBooksFragment : Fragment()
-    , CoroutineScope
+class SearchBooksFragment : Fragment(), CoroutineScope
 {
     override val coroutineContext: CoroutineContext = Dispatchers.Main
 
@@ -39,14 +38,14 @@ class SearchBooksFragment : Fragment()
     private lateinit var toReadViewModel: ToReadViewModel
     private lateinit var finishedViewModel: FinishedBooksViewModel
 
+
     /**
-     * Lazily initialize our [OverviewViewModel].
+     * Gets called by Android when the fragment gets inflated
+     *
+     * @param inflater the layout inflater
+     * @param container the container
+     * @param savedInstanceState the bundle created in onSaveInstanceState
      */
-//    private val viewModel: SearchBooksViewModel by lazy {
-//        ViewModelProviders.of(this).get(SearchBooksViewModel::class.java)
-//    }
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -91,26 +90,38 @@ class SearchBooksFragment : Fragment()
         observeBookAddedToFinishedList(finishedViewModel)
         observeBookRemovedFinishedList(finishedViewModel)
         observeSearchTextChanged(viewModel, binding)
-        observeSearchFieldClicked(viewModel)
+//        observeSearchFieldClicked(viewModel)
 
 
         setHasOptionsMenu(true)
         return binding.root
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    private fun observeSearchFieldClicked(viewModel: SearchBooksViewModel) {
-        viewModel.editFieldClicked.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                if (it){
-                    binding.booksPhotosGrid.visibility = View.INVISIBLE
-                } else {
-                    binding.booksPhotosGrid.visibility = View.VISIBLE
-                }
-            }
-        })
-    }
 
+//    /**
+//     *  Observes the searchfield and makes the list invisible if clicked
+//     *
+//     *  @param viewModel the SearchBooksViewModel
+//     */
+//    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+//    private fun observeSearchFieldClicked(viewModel: SearchBooksViewModel) {
+//        viewModel.editFieldClicked.observe(viewLifecycleOwner, Observer {
+//            it?.let {
+//                if (it){
+//                    binding.booksPhotosGrid.visibility = View.INVISIBLE
+//                } else {
+//                    binding.booksPhotosGrid.visibility = View.VISIBLE
+//                }
+//            }
+//        })
+//    }
+
+
+    /**
+     *  Observes the text in the input field
+     *
+     *  @param viewModel the SearchBookModel
+     */
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeSearchTextChanged(
         viewModel: SearchBooksViewModel,
@@ -121,14 +132,20 @@ class SearchBooksFragment : Fragment()
 
             private var searchFor = ""
 
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            /**
+             * After text changed -> send new request to fetch the books with new query
+             */
             override fun afterTextChanged(s: Editable?) {
                 val search = s.toString().trim()
                 if(search == searchFor)
                     return
 
                 searchFor = search
+
 
                 launch {
                     delay(400)
@@ -142,6 +159,11 @@ class SearchBooksFragment : Fragment()
     }
 
 
+    /**
+     * Observes the book added in finished books list to show a snackbar
+     *
+     * @param viewModel the FinishedBooksViewModel
+     */
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeBookAddedToFinishedList(
         viewModel: FinishedBooksViewModel
@@ -159,6 +181,12 @@ class SearchBooksFragment : Fragment()
         })
     }
 
+
+    /**
+     * Observes the book removed in finished books list to show a snackbar
+     *
+     * @param viewModel the FinishedBooksViewModel
+     */
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeBookRemovedFinishedList(
         viewModel: FinishedBooksViewModel
@@ -177,6 +205,11 @@ class SearchBooksFragment : Fragment()
     }
 
 
+    /**
+     * Observes the book added in ToRead list to show a snackbar
+     *
+     * @param viewModel the ToReadViewModel
+     */
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeBookAddedToToReadList(
         viewModel: ToReadViewModel
@@ -195,6 +228,11 @@ class SearchBooksFragment : Fragment()
         })
     }
 
+    /**
+     * Observes the book removed in to read books list to show a snackbar
+     *
+     * @param viewModel the ToReadViewModel
+     */
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeBookRemovedToToReadList(
         viewModel: ToReadViewModel
@@ -214,7 +252,11 @@ class SearchBooksFragment : Fragment()
     }
 
 
-
+    /**
+     * Observes the book to be navigated to
+     *
+     * @param viewModel the ToReadViewModel
+     */
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun navigateToSelectedBook(
         viewModel: SearchBooksViewModel
@@ -229,6 +271,9 @@ class SearchBooksFragment : Fragment()
     }
 
 
+    /**
+     * Shows the overflow menu
+     */
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.about_overflow_menu, menu)
@@ -247,6 +292,9 @@ class SearchBooksFragment : Fragment()
 //        return true
 //    }
 
+    /**
+     * When selecting an option of the overflow menu
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return NavigationUI.onNavDestinationSelected(
             item,

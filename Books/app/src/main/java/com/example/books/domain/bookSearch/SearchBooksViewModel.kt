@@ -15,9 +15,7 @@ import kotlinx.coroutines.launch
 
 enum class MyBooksApiStatus { LOADING, ERROR, DONE, EMPTY }
 
-class SearchBooksViewModel(
-    private val application: Application
-) : ViewModel() {
+class SearchBooksViewModel(private val application: Application) : ViewModel() {
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
@@ -39,9 +37,9 @@ class SearchBooksViewModel(
     val navigateToSelectedBook: LiveData<Book>
         get() = _navigateToSelectedBook
 
-    private val _editFieldClicked = MutableLiveData<Boolean>()
-    val editFieldClicked: LiveData<Boolean>
-        get() = _editFieldClicked
+//    private val _editFieldClicked = MutableLiveData<Boolean>()
+//    val editFieldClicked: LiveData<Boolean>
+//        get() = _editFieldClicked
 
 
     init {
@@ -51,6 +49,12 @@ class SearchBooksViewModel(
     }
 
 
+    /**
+     * Gets the books
+     *
+     * @param title The title of the book
+     * @param filter The filter of the booklist
+     */
     fun getBooks(title: String, filter: BookApiFilter) {
         coroutineScope.launch {
 
@@ -67,6 +71,10 @@ class SearchBooksViewModel(
 
     }
 
+
+    /**
+     * Clears the books in the database
+     */
     private fun clearBooks() {
         coroutineScope.launch {
             bookRepo.clearBooks()
@@ -74,31 +82,44 @@ class SearchBooksViewModel(
     }
 
 
-
+    /**
+     * Will be called when the viewmodel is no longer used and will be destroyed
+     */
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
     }
 
+
+    /**
+     * Assigns a value to navigateToSelectedBook
+     *
+     * @param book the value to assign
+     */
     fun displayBookDetails(book: Book) {
         _navigateToSelectedBook.value = book
     }
 
+    /**
+     * Clears the value of navigateToSelectedBook
+     *
+     * @param beerId the value to assign
+     */
     fun displayBookDetailsComplete() {
         _navigateToSelectedBook.value = null
     }
 
-    fun updateFilter(title: String, filter: BookApiFilter) {
-        getBooks(title, filter)
-    }
-
-    fun searchFieldSelect(){
-        _editFieldClicked.postValue(true)
-    }
-
-    fun searchFieldUnselect(){
-        _editFieldClicked.postValue(false)
-    }
+//    fun updateFilter(title: String, filter: BookApiFilter) {
+//        getBooks(title, filter)
+//    }
+//
+//    fun searchFieldSelect(){
+//        _editFieldClicked.postValue(true)
+//    }
+//
+//    fun searchFieldUnselect(){
+//        _editFieldClicked.postValue(false)
+//    }
 }
 
 

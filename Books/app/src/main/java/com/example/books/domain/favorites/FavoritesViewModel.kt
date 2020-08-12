@@ -53,20 +53,26 @@ class FavoritesViewModel(application: Application): ViewModel()
 
     }
 
+    /**
+     * Gets the list of favorite books
+     */
     fun getFavorites(){
         coroutineScope.launch {
             try {
-               // _status.value = MyBooksApiStatus.LOADING
+                _status.value = MyBooksApiStatus.LOADING
                 favoritesRepo.refreshFavoriteBooks()
-                //_status.value = MyBooksApiStatus.DONE
+                _status.value = MyBooksApiStatus.DONE
             }catch (e: Exception){
-                //_status.value = MyBooksApiStatus.ERROR
+                _status.value = MyBooksApiStatus.ERROR
             }
         }
     }
 
 
-
+    /**
+     * Inserts a book in the list of favorite books
+     * @param book The book to be inserted
+     */
     fun insertBookFavorite(book: Book?) {
         coroutineScope.launch {
             if (book != null) {
@@ -84,6 +90,9 @@ class FavoritesViewModel(application: Application): ViewModel()
         }
     }
 
+    /**
+     * Checks if the book is in favorites in the detailsfragment
+     */
     fun bookInFavorites(id: String){
         coroutineScope.launch {
             if(favoritesRepo.getBookFavorite(id) != null){
@@ -94,39 +103,75 @@ class FavoritesViewModel(application: Application): ViewModel()
         }
     }
 
+
+    /**
+     *  Removes the book from the favorite list
+     *
+     *  @param bookId The id of the book to be removed
+     */
     fun removeBookFavorite(bookId: String) {
         coroutineScope.launch {
             favoritesRepo.removeBookFavorite(bookId)
         }
     }
 
+
+    /**
+     * Assigns a value for the book to be removed out of the favorites list
+     *
+     * @param favoriteBookId the id of the book to be removed
+     */
     fun onBookFavoriteRemovedClicked(favoriteBookId: String){
         _removeFavoriteBook.value = favoriteBookId
     }
 
+    /**
+     * Sets the value of the book to be deleted to null
+     */
     fun onBookFavoriteRemoved() {
         _removeFavoriteBook.value = null
     }
 
-    fun onFavoriteAdded() {
-        _favoriteAdded.postValue(false)
-    }
+    /**
+     * Sets favoriteAdded to true
+     */
     fun onFavoriteAddClicked() {
         _favoriteAdded.postValue(true)
     }
 
+    /**
+     * Sets favoriteAdded to false
+     */
+    fun onFavoriteAdded() {
+        _favoriteAdded.postValue(false)
+    }
+
+    /**
+     * Sets favoriteRemoved to true
+     */
     fun onFavoriteRemoveClicked() {
         _favoriteRemoved.postValue(true)
     }
 
+    /**
+     * Sets favoriteRemoved to false
+     */
     fun onFavoriteRemoved() {
         _favoriteRemoved.postValue(false)
     }
 
+    /**
+     * Assigns value to bookToNavigateTo
+     *
+     * @param id The id of the book to navigate to
+     */
     fun navigateToBook(id: String){
         _bookToNavigateTo.postValue(id)
     }
 
+    /**
+     * Sets the value of bookToNavigateTo to null
+     */
     fun navigateToBookFinished(){
         _bookToNavigateTo.postValue(null)
     }

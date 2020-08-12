@@ -17,16 +17,32 @@ data class Book(
     }
 
 
+    /**
+     * Writes the book object to a parcel
+     *
+     * @param parcel the Parcel
+     * @param flags the Flags
+     */
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
         parcel.writeParcelable(volumeInfo, flags)
     }
 
+
+    /**
+     * Describes the content
+     *
+     * @return an integer
+     */
     override fun describeContents(): Int {
         return 0
     }
 
     companion object CREATOR : Parcelable.Creator<Book> {
+
+        /**
+         * Converts the parcel to a Book object
+         */
         override fun createFromParcel(parcel: Parcel): Book {
             return Book(parcel)
         }
@@ -38,12 +54,12 @@ data class Book(
 }
 
 
-fun Book.asDatabaseModel(): DatabaseBook {
-    return DatabaseBook(
-        id!!,
-        volumeInfo
-    )
-}
+//fun Book.asDatabaseModel(): DatabaseBook {
+//    return DatabaseBook(
+//        id!!,
+//        volumeInfo
+//    )
+//}
 
 
 

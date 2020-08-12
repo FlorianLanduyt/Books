@@ -27,7 +27,7 @@ class BookDetailFragment : Fragment() {
 
 
     /**
-     * Gets called by Android when the fragmnent is first created
+     * Gets called by Android when the fragment should be inflated
      *
      * @param inflater the layout inflater
      * @param container the container

@@ -28,6 +28,13 @@ class FavoritesFragment : Fragment() {
     private lateinit var binding: FragmentFavoritesBinding
     private lateinit var viewModel: FavoritesViewModel
 
+    /**
+     * Gets called by Android when the fragment gets inflated
+     *
+     * @param inflater the layout inflater
+     * @param container the container
+     * @param savedInstanceState the bundle created in onSaveInstanceState
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -66,6 +73,11 @@ class FavoritesFragment : Fragment() {
     }
 
 
+    /**
+     * Observes book to be navigated to
+     *
+     * @param viewModel the FavoritesViewModel
+     */
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeNavigateToBook(viewModel: FavoritesViewModel) {
         viewModel.bookToNavigateTo.observe(viewLifecycleOwner, Observer {
@@ -78,6 +90,11 @@ class FavoritesFragment : Fragment() {
         })
     }
 
+    /**
+     * Observes favorites to check if the list is empty
+     *
+     * @param binding the FragmentFavoritesBinding
+     */
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeFavorites(binding: FragmentFavoritesBinding) {
         viewModel.favoriteBooks.observe(viewLifecycleOwner, Observer {
@@ -92,6 +109,9 @@ class FavoritesFragment : Fragment() {
         })
     }
 
+    /**
+     * Observes the removed favorites to check that the book gets deleted
+     */
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeRemovedFavorites() {
         viewModel.removeFavoriteBook.observe(viewLifecycleOwner, Observer {

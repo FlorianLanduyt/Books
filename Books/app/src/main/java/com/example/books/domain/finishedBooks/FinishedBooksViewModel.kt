@@ -44,6 +44,9 @@ class FinishedBooksViewModel (application: Application) : ViewModel() {
         get() = _navigateToBookDetail
 
 
+    /**
+     * Get the list of finished books
+     */
     fun getFinishedBooks(){
         coroutineScope.launch {
             finishedBooksRepo.getAll()
@@ -51,6 +54,11 @@ class FinishedBooksViewModel (application: Application) : ViewModel() {
     }
 
 
+    /**
+     * Inserts a book in the finished books list
+     *
+     * @param book the book you want to add
+     */
     fun insertFinishedBook(book: Book?) {
         coroutineScope.launch {
             book?.let {
@@ -68,6 +76,9 @@ class FinishedBooksViewModel (application: Application) : ViewModel() {
         }
     }
 
+    /**
+     * Removes the book out of the finished books list
+     */
     fun removeFinishedBook(bookId: String){
         coroutineScope.launch {
             finishedBooksRepo.removeFinishedBook(bookId)
@@ -75,34 +86,65 @@ class FinishedBooksViewModel (application: Application) : ViewModel() {
     }
 
 
+    /**
+     * Sets finishedBooksRemoved to true
+     */
     private fun onFinishedBookRemoveClicked() {
         _finishedBookRemoved.postValue(true)
     }
 
-    fun onFinishedBookAddClicked() {
-        _finishedBookAdded.postValue(true)
-    }
-
-    fun onFinishedBookAdded(){
-        _finishedBookAdded.postValue(false)
-    }
-
+    /**
+     * Sets finishedBooksRemoved to false
+     */
     fun onFinishedBookRemoved(){
         _finishedBookRemoved.postValue(false)
     }
 
+    /**
+     * Sets finishedBookAdded to true
+     */
+    fun onFinishedBookAddClicked() {
+        _finishedBookAdded.postValue(true)
+    }
+
+    /**
+     * Sets finishedBookAdded to false
+     */
+    fun onFinishedBookAdded(){
+        _finishedBookAdded.postValue(false)
+    }
+
+
+    /**
+     * Assings value to removeFinishedBook
+     *
+     * @param finishedBook the id of the finished book
+     */
     fun onFinishedBookRemovedClicked(finishedBook: String){
         _removeFinishedBook.value = finishedBook
     }
 
+
+    /**
+     * Sets value of removeFinishedBook to null
+     */
     fun onBookFinishedBookRemoved() {
         _removeFinishedBook.value = null
     }
 
+
+    /**
+     * Assings value to navigateToBookDetail
+     *
+     * @param finishedBook the id of the finished book
+     */
     fun onBookFinishedClicked(bookId: String){
         _navigateToBookDetail.postValue(bookId)
     }
 
+    /**
+     * Sets value of navigateToBookDetail to null
+     */
     fun onBookFinishedNavigated(){
         _navigateToBookDetail.postValue(null)
     }

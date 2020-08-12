@@ -26,8 +26,16 @@ import com.example.books.domain.toRead.ToReadAdapter
 class BindingAdapters {
     companion object {
 
+
         @BindingAdapter("imageUrl")
         @JvmStatic
+                /**
+                 * Downloads imageUri with [Glide]
+                 * Glide will set the imageUri in the imageView
+                 *
+                 * @param imgView The imagview to be bound to the URI
+                 * @param thumbnail the URI
+                 */
         fun bindImage(imgView: ImageView, thumbnail: String?) {
             thumbnail?.let {
                 val imgUri = it.toUri().buildUpon().scheme("https").build()
@@ -45,6 +53,12 @@ class BindingAdapters {
 
         @BindingAdapter("listData")
         @JvmStatic
+                /**
+                 * Maniulating the data to
+                 *
+                 * @param recyclerView The ui-element where the adapter can be bound to
+                 * @param data The list of data that will be passed in the bindingadapter method
+                 */
         fun bindingRecycleView(recyclerView: RecyclerView, data: List<Book>?) {
             val adapter = recyclerView.adapter as BooksAdapter
             adapter.submitList(data)
@@ -52,21 +66,40 @@ class BindingAdapters {
 
         @BindingAdapter("favoritesListData")
         @JvmStatic
-        fun bindingRecycleViewFavorites(recyclerView: RecyclerView, data: List<BookFavorite>?){
+                /**
+                 * Maniulating the data to
+                 *
+                 * @param recyclerView The ui-element where the adapter can be bound to
+                 * @param data The list of data that will be passed in the bindingadapter method
+                 */
+        fun bindingRecycleViewFavorites(recyclerView: RecyclerView, data: List<BookFavorite>?) {
             val adapter = recyclerView.adapter as FavoritesAdapter
             adapter.submitList(data)
         }
 
+
         @BindingAdapter("toReadListData")
         @JvmStatic
-        fun bindingRecycleViewToRead(recyclerView: RecyclerView, data: List<BookToRead>?){
+                /**
+                 * Maniulating the data to
+                 *
+                 * @param recyclerView The ui-element where the adapter can be bound to
+                 * @param data The list of data that will be passed in the bindingadapter method
+                 */
+        fun bindingRecycleViewToRead(recyclerView: RecyclerView, data: List<BookToRead>?) {
             val adapter = recyclerView.adapter as ToReadAdapter
             adapter.submitList(data)
         }
 
         @BindingAdapter("finishedBooksListData")
         @JvmStatic
-        fun bindingRecycleViewFinishedBooks(recyclerView: RecyclerView, data: List<FinishedBook>?){
+                /**
+                 * Maniulating the data to
+                 *
+                 * @param recyclerView The ui-element where the adapter can be bound to
+                 * @param data The list of data that will be passed in the bindingadapter method
+                 */
+        fun bindingRecycleViewFinishedBooks(recyclerView: RecyclerView, data: List<FinishedBook>?) {
             val adapter = recyclerView.adapter as FinishedBookAdapter
             adapter.submitList(data)
         }
@@ -74,6 +107,12 @@ class BindingAdapters {
 
         @BindingAdapter("bookApiStatus")
         @JvmStatic
+                /**
+                 * Binding the status of the book to image of the status
+                 *
+                 * @param statusImageView the imageview
+                 * @param status the status of the list
+                 */
         fun bindStatus(statusImageView: ImageView, status: MyBooksApiStatus) {
             when (status) {
                 MyBooksApiStatus.LOADING -> {
@@ -96,8 +135,15 @@ class BindingAdapters {
             }
         }
 
+
         @BindingAdapter("bookApiStatusText")
         @JvmStatic
+                /**
+                 * Binding the status of the book to text of the status
+                 *
+                 * @param textView the textview
+                 * @param status the status of the list
+                 */
         fun bindStatusText(textView: TextView, status: MyBooksApiStatus) {
             when (status) {
                 MyBooksApiStatus.ERROR -> {
@@ -118,6 +164,12 @@ class BindingAdapters {
             }
         }
 
+        /**
+         * Binding the authors to a string
+         *
+         * @param textView the textview
+         * @param authors The authors
+         */
         @BindingAdapter("authors")
         @JvmStatic
         fun bindAuthors(textView: TextView, authors: List<String>?) {
@@ -131,8 +183,8 @@ class BindingAdapters {
                 }
             }
 
-            if(sb.isNotEmpty()){
-                sb.delete(sb.lastIndex-1, sb.lastIndex)
+            if (sb.isNotEmpty()) {
+                sb.delete(sb.lastIndex - 1, sb.lastIndex)
             }
 
 

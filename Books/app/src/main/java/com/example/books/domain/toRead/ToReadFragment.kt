@@ -25,6 +25,13 @@ class ToReadFragment : Fragment() {
     private lateinit var detailsViewModel: BookDetailsViewModel
     private lateinit var binding: FragmentToReadBinding
 
+    /**
+     * Gets called by Android when the fragment gets inflated
+     *
+     * @param inflater the layout inflater
+     * @param container the container
+     * @param savedInstanceState the bundle created in onSaveInstanceState
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,7 +53,6 @@ class ToReadFragment : Fragment() {
                 when(action) {
                     "details" -> viewModel.navigateToBook(book.bookId)
                     "remove" -> viewModel.onBookToReadRemovedClicked(book.bookId)
-
                 }
 
             }
@@ -63,6 +69,8 @@ class ToReadFragment : Fragment() {
         return binding.root
 
     }
+
+
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeNavigateToBook(viewModel: ToReadViewModel) {

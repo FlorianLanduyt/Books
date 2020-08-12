@@ -9,6 +9,12 @@ class FavoritesViewModelFactory (
     private val application: Application
 ) : ViewModelProvider.Factory {
 
+    /**
+     * Creates a BookDetailsViewModel
+     *
+     * @param modelClass the class to make a viewmodel from
+     * @return The viewmodel
+     */
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(FavoritesViewModel::class.java)){
