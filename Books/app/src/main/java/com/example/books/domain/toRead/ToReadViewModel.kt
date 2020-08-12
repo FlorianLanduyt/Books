@@ -45,14 +45,14 @@ class ToReadViewModel (application: Application): ViewModel(){
 
     fun insertBookToRead(book: Book?){
         coroutineScope.launch {
-            if(book != null){
+            book?.let{
                 if(toReadRepository.getBookToRead(book.id!!) == null){
                     val bookToRead =
-                        BookToRead(book.id!!, book.volumeInfo!!.title!!)
+                        BookToRead(book.id, book.volumeInfo!!.title!!, book.volumeInfo.authors!!)
                     toReadRepository.insertBookToRead(bookToRead)
                     onToReadBookAddClicked()
                 } else {
-                    toReadRepository.removeBookToRead(book.id!!)
+                    toReadRepository.removeBookToRead(book.id)
                     onToReadBookRemoveClicked()
                 }
             }

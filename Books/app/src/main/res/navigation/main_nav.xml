@@ -71,7 +71,11 @@
     <fragment
         android:id="@+id/finishedBookFragment"
         android:name="com.example.books.domain.finishedbooks.FinishedBookFragment"
-        android:label="Gelezen " />
+        android:label="Gelezen " >
+        <action
+            android:id="@+id/action_finishedBookFragment_to_bookDetailFragment"
+            app:destination="@id/bookDetailFragment" />
+    </fragment>
 
 
 </navigation>

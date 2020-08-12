@@ -40,7 +40,7 @@ class FinishedBooksViewModel (application: Application) : ViewModel() {
         get() = _removeFinishedBook
 
     private val _navigateToBookDetail = MutableLiveData<String>()
-    val navigateToBookDetail
+    val navigateToBookDetail: LiveData<String>
         get() = _navigateToBookDetail
 
 
@@ -53,10 +53,10 @@ class FinishedBooksViewModel (application: Application) : ViewModel() {
 
     fun insertFinishedBook(book: Book?) {
         coroutineScope.launch {
-            if (book != null) {
+            book?.let {
                 if (finishedBooksRepo.getFinishedBook(book.id!!) == null) {
                     val finishedBook =
-                        FinishedBook(book.id, book.volumeInfo!!.title!!)
+                        FinishedBook(book.id, book.volumeInfo!!.title!!, book.volumeInfo.authors!! )
 
                     finishedBooksRepo.insertFinishedBook(finishedBook)
                     onFinishedBookAddClicked()
@@ -100,10 +100,10 @@ class FinishedBooksViewModel (application: Application) : ViewModel() {
     }
 
     fun onBookFinishedClicked(bookId: String){
-        _navigateToBookDetail.value = bookId
+        _navigateToBookDetail.postValue(bookId)
     }
 
     fun onBookFinishedNavigated(){
-        _navigateToBookDetail.value = null
+        _navigateToBookDetail.postValue(null)
     }
 }

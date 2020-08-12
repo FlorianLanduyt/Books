@@ -11,15 +11,10 @@ import com.example.books.databinding.FinishedBooksListItemBinding
 class FinishedBookAdapter (private val onClickListener: FinishedBookAdapter.FinishedBookListener) : ListAdapter<FinishedBook, FinishedBookAdapter.FinishedBookViewHolder>(FinishedBookDiffCallBack) {
     class FinishedBookViewHolder(private var binding: FinishedBooksListItemBinding): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(finishedBook: FinishedBook){
+        fun bind(finishedBook: FinishedBook, clickListener: FinishedBookListener){
             binding.finishedBook = finishedBook
-//            binding.clickListener = clickListener
+            binding.clickListener = clickListener
         }
-    }
-
-    class FinishedBookListener(val clickListener: (finishedBook: FinishedBook) -> Unit) {
-        fun onClick(finishedBook: FinishedBook) = clickListener(finishedBook)
-
     }
 
     companion object FinishedBookDiffCallBack: DiffUtil.ItemCallback<FinishedBook>() {
@@ -35,24 +30,21 @@ class FinishedBookAdapter (private val onClickListener: FinishedBookAdapter.Fini
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FinishedBookViewHolder {
         return FinishedBookViewHolder(
-            FinishedBooksListItemBinding.inflate(
-                LayoutInflater.from(
-                    parent.context
-                )
-            )
-        )
+            FinishedBooksListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: FinishedBookViewHolder, position: Int) {
         val finishedBook = getItem(position)
 
-        holder.itemView.setOnClickListener {
-            onClickListener.onClick(finishedBook)
-        }
-
-
-        holder.bind(finishedBook)
+        holder.bind(finishedBook, onClickListener)
     }
+
+
+    class FinishedBookListener(val clickListener: (finishedBook: FinishedBook, action: String) -> Unit) {
+        fun onClick(finishedBook: FinishedBook, action: String) = clickListener(finishedBook, action)
+
+    }
+
 }
 
 

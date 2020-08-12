@@ -10,5 +10,9 @@ data class FinishedBook(
     val bookId: String,
 
     @ColumnInfo(name = "title")
-    val title: String
+    val title: String,
+
+    @ColumnInfo(name = "authors")
+    val authors: List<String>
+
 )

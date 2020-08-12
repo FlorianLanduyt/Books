@@ -11,11 +11,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.books.R
 import com.example.books.databinding.FragmentFavoritesBinding
 
 import com.example.books.databinding.FragmentFinishedBooksBinding
+import com.example.books.domain.toRead.ToReadFragmentDirections
 
 /**
  * A simple [Fragment] subclass.
@@ -37,31 +39,40 @@ class FinishedBookFragment : Fragment() {
 
         viewModel.getFinishedBooks()
 
-//        val adapter = FinishedBookAdapter(
-//            FinishedBookAdapter.FinishedBookListener { book, action ->
-//
-//                    when (action) {
-//                        "details" -> viewModel.onBookFinishedClicked(book.bookId)
-//                        "removeBook" -> viewModel.onFinishedBookRemovedClicked(book.bookId)
-//                    }
-//            })
 
         val adapter =
-            FinishedBookAdapter(FinishedBookAdapter.FinishedBookListener{
-                viewModel.onFinishedBookRemovedClicked(it.bookId)
+            FinishedBookAdapter(FinishedBookAdapter.FinishedBookListener{ book, action ->
+                when(action){
+                    "remove" -> viewModel.onFinishedBookRemovedClicked(book.bookId)
+                    "details" -> viewModel.onBookFinishedClicked(book.bookId)
+                }
+
             })
 
         binding.finishedBooksList.adapter = adapter
         binding.finishedBooksList.layoutManager = LinearLayoutManager(this.context)
 
         observeFinishedBooks(binding)
-        observeRemovedToRead(binding)
+        observeRemovedToRead()
+        observeNavigateToBook(viewModel)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
         return binding.root
 
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    private fun observeNavigateToBook(viewModel: FinishedBooksViewModel) {
+        viewModel.navigateToBookDetail.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                this.findNavController().navigate(
+                    FinishedBookFragmentDirections.actionFinishedBookFragmentToBookDetailFragment(it)
+                )
+                viewModel.onBookFinishedNavigated()
+            }
+        })
     }
 
 
@@ -80,7 +91,7 @@ class FinishedBookFragment : Fragment() {
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    private fun observeRemovedToRead(binding: FragmentFinishedBooksBinding?) {
+    private fun observeRemovedToRead() {
         viewModel.bookToRemove.observe(viewLifecycleOwner, Observer {
             it?.let {
                 viewModel.removeFinishedBook(it)

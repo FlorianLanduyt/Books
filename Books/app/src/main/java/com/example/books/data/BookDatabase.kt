@@ -17,7 +17,7 @@ import com.example.books.data.toread.BookToRead
 import com.example.books.data.toread.ToReadDao
 
 @Database(entities = [BookFavorite::class, DatabaseBook::class, BookToRead::class, FinishedBook::class],
-    version = 5,
+    version = 6,
     exportSchema = false)
 @TypeConverters(VolumeInfoConverter::class, ListConverter::class)
 abstract class BookDatabase : RoomDatabase(){
