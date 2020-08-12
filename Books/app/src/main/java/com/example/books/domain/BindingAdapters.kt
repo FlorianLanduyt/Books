@@ -14,7 +14,7 @@ import com.example.books.data.finishedBooks.FinishedBook
 import com.example.books.data.toread.BookToRead
 import com.example.books.domain.bookSearch.BooksAdapter
 import com.example.books.domain.bookSearch.MyBooksApiStatus
-import com.example.books.domain.bookSearch.models.Book
+import com.example.books.domain.models.Book
 import com.example.books.domain.favorites.FavoritesAdapter
 import com.example.books.domain.finishedbooks.FinishedBookAdapter
 import com.example.books.domain.toRead.ToReadAdapter

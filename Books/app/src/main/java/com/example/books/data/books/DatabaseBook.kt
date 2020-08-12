@@ -2,9 +2,8 @@ package com.example.books.data.books
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.books.domain.bookSearch.models.Book
-import com.example.books.domain.bookSearch.models.SearchBooksResponse
-import com.example.books.domain.bookSearch.models.VolumeInfo
+import com.example.books.domain.models.Book
+import com.example.books.domain.models.VolumeInfo
 
 @Entity(tableName = "book_table")
 data class DatabaseBook (

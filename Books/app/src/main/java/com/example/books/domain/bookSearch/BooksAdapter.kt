@@ -2,13 +2,11 @@ package com.example.books.domain.bookSearch
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ExpandableListView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.books.databinding.SearchBooksItemBinding
-import com.example.books.domain.bookSearch.models.Book
-import com.example.books.domain.toRead.ToReadViewModel
+import com.example.books.domain.models.Book
 
 class BooksAdapter(private val onClickListener: OnClickListener) : ListAdapter<Book, BooksAdapter.SearchBooksViewHolder>(DiffCallBack) {
     class SearchBooksViewHolder(private var binding: SearchBooksItemBinding) : RecyclerView.ViewHolder(binding.root) {

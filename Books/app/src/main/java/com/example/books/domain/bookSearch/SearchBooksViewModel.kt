@@ -1,12 +1,11 @@
 package com.example.books.domain.bookSearch
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.books.data.BookDatabase.Companion.getInstance
-import com.example.books.domain.bookSearch.models.Book
+import com.example.books.domain.models.Book
 import com.example.books.network.BookApiFilter
 import com.example.books.data.repositories.BookRepository
 import kotlinx.coroutines.CoroutineScope

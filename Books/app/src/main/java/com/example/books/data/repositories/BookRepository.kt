@@ -4,12 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.books.data.BookDatabase
 import com.example.books.data.books.asDomainModel
-import com.example.books.data.favorites.BookFavorite
-import com.example.books.domain.bookSearch.models.Book
-import com.example.books.domain.bookSearch.models.asDatabaseModel
+import com.example.books.domain.models.Book
+import com.example.books.domain.models.asDatabaseModel
 import com.example.books.network.BookApiFilter
 import com.example.books.network.BooksApi
-import com.example.books.network.BooksApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

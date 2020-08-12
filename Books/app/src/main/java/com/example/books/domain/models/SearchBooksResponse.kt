@@ -1,4 +1,4 @@
-package com.example.books.domain.bookSearch.models
+package com.example.books.domain.models
 
 import com.example.books.data.books.DatabaseBook
 import com.squareup.moshi.Json

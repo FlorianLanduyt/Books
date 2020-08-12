@@ -15,7 +15,7 @@
 
         <variable
             name="book"
-            type="com.example.books.domain.bookSearch.models.Book" />
+            type="com.example.books.domain.models.Book" />
 
 
     </data>

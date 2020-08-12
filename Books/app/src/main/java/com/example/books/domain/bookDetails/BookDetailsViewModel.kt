@@ -1,25 +1,17 @@
 package com.example.books.domain.bookDetails
 
 import android.app.Application
-import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.books.data.BookDatabase
 import com.example.books.data.repositories.BookRepository
-import com.example.books.domain.bookSearch.MyBooksApiStatus
-import com.example.books.domain.bookSearch.models.Book
-import com.example.books.domain.bookSearch.models.SearchBooksResponse
-import com.example.books.network.BooksApi
+import com.example.books.domain.models.Book
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.lang.Exception
-import kotlin.coroutines.coroutineContext
 
 enum class BookApiStatus { LOADING, ERROR, DONE }
 

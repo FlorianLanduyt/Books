@@ -1,7 +1,7 @@
 package com.example.books.data.converters
 
 import androidx.room.TypeConverter
-import com.example.books.domain.bookSearch.models.VolumeInfo
+import com.example.books.domain.models.VolumeInfo
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

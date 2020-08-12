@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.books.data.BookDatabase.Companion.getInstance
 import com.example.books.data.toread.BookToRead
-import com.example.books.domain.bookSearch.models.Book
+import com.example.books.domain.models.Book
 import com.example.books.data.repositories.ToReadRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

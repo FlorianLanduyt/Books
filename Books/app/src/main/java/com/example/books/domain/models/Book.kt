@@ -1,4 +1,4 @@
-package com.example.books.domain.bookSearch.models
+package com.example.books.domain.models
 
 import android.os.Parcel
 import android.os.Parcelable

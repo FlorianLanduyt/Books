@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.books.data.BookDatabase
 import com.example.books.data.finishedBooks.FinishedBook
 import com.example.books.domain.bookSearch.MyBooksApiStatus
-import com.example.books.domain.bookSearch.models.Book
+import com.example.books.domain.models.Book
 import com.example.books.data.repositories.FinishedBooksRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
