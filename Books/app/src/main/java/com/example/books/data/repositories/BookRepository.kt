@@ -22,6 +22,12 @@ class BookRepository(private val database: BookDatabase) {
     }
 
 
+    /**
+     * Refreshes the books after a search query has entered by sending a request to the back-end or by retrieving them from the database
+     *
+     * @param title the title of the book
+     * @param filter the filter of the books (all, e-books or free e-books)
+     */
     suspend fun refreshBooks(title: String,filter: BookApiFilter?) {
         withContext(Dispatchers.IO) {
                 val searchResponse = BooksApi.retrofitService.getBooksOnName(title, filter?.value?: BookApiFilter.SHOW_ALL.value ).await()
@@ -31,12 +37,18 @@ class BookRepository(private val database: BookDatabase) {
             }
         }
 
+    /**
+     * Gets the book with the given id from the backend
+     */
     suspend fun getBook(bookId: String): Book {
         return withContext(Dispatchers.IO) {
             BooksApi.retrofitService.getBookById(bookId).await().books[0]
         }
     }
 
+    /**
+     * Clears the book database
+     */
     suspend fun clearBooks() {
         withContext(Dispatchers.IO) {
             database.bookDao.clear()

@@ -31,11 +31,10 @@ abstract class BookDatabase : RoomDatabase(){
         @Volatile
         private var INSTANCE: BookDatabase? = null
 
-        fun
-                getInstance(context: Context): BookDatabase {
+        // Makes you database a singleton
+        fun getInstance(context: Context): BookDatabase {
             synchronized(this) {
-                var instance =
-                    INSTANCE
+                var instance = INSTANCE
 
                 if (instance == null) {
                     instance = Room.databaseBuilder(

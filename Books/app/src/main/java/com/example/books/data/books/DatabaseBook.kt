@@ -14,6 +14,11 @@ data class DatabaseBook (
 
 )
 
+/**
+ * Maps a DatabaseBook to a book
+ *
+ * @return a book
+ */
 fun List<DatabaseBook>.asDomainModel(): List<Book>{
     return map {
         Book(

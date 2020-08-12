@@ -31,12 +31,19 @@ import kotlinx.coroutines.supervisorScope
  * A simple [Fragment] subclass.
  */
 class BookDetailFragment : Fragment() {
-//    private lateinit var book: Book
 
     private lateinit var detailViewModel: BookDetailsViewModel
     private lateinit var favoritesViewModel: FavoritesViewModel
     private lateinit var binding: FragmentDetailBookBinding
 
+
+    /**
+     * Gets called by Android when the fragmnent is first created
+     *
+     * @param inflater the layout inflater
+     * @param container the container
+     * @param savedInstanceState the bundle created in onSaveInstanceState
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -67,7 +74,6 @@ class BookDetailFragment : Fragment() {
         observeStatus(binding)
 
 
-
         binding.lifecycleOwner = this
         binding.viewModel = detailViewModel
         binding.viewModelFavorites = favoritesViewModel
@@ -77,6 +83,11 @@ class BookDetailFragment : Fragment() {
     }
 
 
+    /**
+     *  Observes the book and sets the description
+     *
+     *  @param binding the FragmentDetailBookBinding
+     */
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeBook(binding: FragmentDetailBookBinding) {
         detailViewModel.selectedBook.observe(viewLifecycleOwner, Observer {
@@ -106,6 +117,11 @@ class BookDetailFragment : Fragment() {
         })
     }
 
+    /**
+     *  Observes the need of showing the full description or just a sequence of it
+     *
+     *  @param binding the FragmentDetailBookBinding
+     */
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeMoreText(binding: FragmentDetailBookBinding) {
         detailViewModel.moreText.observe(viewLifecycleOwner, Observer {
@@ -128,6 +144,11 @@ class BookDetailFragment : Fragment() {
     }
 
 
+    /**
+     *  Observes if the book is added into favorites and shows the appropriate image
+     *
+     *  @param binding the FragmentDetailBookBinding
+     */
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeFavoriteAdded(binding: FragmentDetailBookBinding?) {
         favoritesViewModel.favoriteAdded.observe(viewLifecycleOwner, Observer {
@@ -140,6 +161,11 @@ class BookDetailFragment : Fragment() {
         })
     }
 
+    /**
+     *  Observes if the book should be removed out of the favorites
+     *
+     *  @param binding the FragmentDetailBookBinding
+     */
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observerFavoriteRemoved(binding: FragmentDetailBookBinding?) {
         favoritesViewModel.favoriteRemoved.observe(viewLifecycleOwner, Observer {
@@ -152,6 +178,11 @@ class BookDetailFragment : Fragment() {
         })
     }
 
+    /**
+     *  Observes the status of the list and shows the appropriate views
+     *
+     *  @param binding the FragmentDetailBookBinding
+     */
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeStatus(binding: FragmentDetailBookBinding){
         detailViewModel.status.observe(viewLifecycleOwner, Observer {

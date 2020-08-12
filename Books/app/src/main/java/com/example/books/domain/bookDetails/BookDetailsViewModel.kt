@@ -23,9 +23,7 @@ import kotlin.coroutines.coroutineContext
 
 enum class BookApiStatus { LOADING, ERROR, DONE }
 
-class BookDetailsViewModel(
-//    val book: Book,
-    app: Application) : AndroidViewModel(app) {
+class BookDetailsViewModel(app: Application) : AndroidViewModel(app) {
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
@@ -44,16 +42,17 @@ class BookDetailsViewModel(
     val authors: LiveData<String>
         get() = _authors
 
-    private val _inFavorites = MutableLiveData<Boolean>()
-    val inFavorites: LiveData<Boolean>
-        get() = _inFavorites
 
     private val _moreText = MutableLiveData<Boolean>()
     val moreText: LiveData<Boolean>
         get() = _moreText
 
 
-
+    /**
+     * Gets the bookdetails of a book with given id
+     *
+     * @param bookId the id of the book
+     */
     fun getBookProperties(bookId: String) {
         coroutineScope.launch {
             try {
@@ -66,15 +65,27 @@ class BookDetailsViewModel(
         }
     }
 
+    /**
+     * Sets the value of more text to true
+     */
     fun moreText(){
         _moreText.postValue(true)
     }
 
+    /**
+     * Sets the value of more text to false
+     */
     fun lessText(){
         _moreText.postValue(false)
     }
 
-
+    /**
+     * Will be called when the viewmodel is no longer used and will be destroyed
+     */
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
 
 
 }
