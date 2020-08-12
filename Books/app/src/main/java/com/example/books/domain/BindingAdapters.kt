@@ -87,10 +87,34 @@ class BindingAdapters {
                 MyBooksApiStatus.DONE -> {
                     statusImageView.visibility = View.GONE
                 }
-                else -> {
-                    statusImageView.visibility = View.GONE
+
+                MyBooksApiStatus.EMPTY -> {
+                    statusImageView.visibility = View.VISIBLE
+
+                    statusImageView.setImageResource(R.drawable.book)
+                }
+            }
+        }
+
+        @BindingAdapter("bookApiStatusText")
+        @JvmStatic
+        fun bindStatusText(textView: TextView, status: MyBooksApiStatus) {
+            when (status) {
+                MyBooksApiStatus.ERROR -> {
+                    textView.visibility = View.VISIBLE
+                    textView.text = "Sorry er is iets mis gelopen"
+                }
+                MyBooksApiStatus.DONE -> {
+                    textView.visibility = View.GONE
                 }
 
+                MyBooksApiStatus.EMPTY -> {
+                    textView.visibility = View.VISIBLE
+                    textView.text = "Welkom bij Books!"
+                }
+                else -> {
+                    textView.visibility = View.GONE
+                }
             }
         }
 

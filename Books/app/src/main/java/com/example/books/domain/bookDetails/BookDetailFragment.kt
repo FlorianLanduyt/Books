@@ -85,15 +85,15 @@ class BookDetailFragment : Fragment() {
                     binding.book = book
 
                     if (book.volumeInfo?.description != null) {
-                        if (book.volumeInfo!!.description!!.length > 100) {
+                        if (book.volumeInfo.description.length > 100) {
                             binding.descriptionText.text =
-                                book.volumeInfo!!.description!!.subSequence(
+                                book.volumeInfo.description.subSequence(
                                     0,
                                     100
                                 ).toString().plus(" ...")
                         } else {
                             binding.descriptionText.text =
-                                book.volumeInfo!!.description!!.toString()
+                                book.volumeInfo.description.toString()
                             binding.moreText.visibility = View.GONE
                         }
                     } else {
@@ -166,6 +166,14 @@ class BookDetailFragment : Fragment() {
                     }
                     BookApiStatus.DONE -> {
 
+                        binding.authorsLabel.visibility = View.VISIBLE
+                        binding.descriptionLabel.visibility = View.VISIBLE
+                        binding.bookDetailLayout.visibility = View.VISIBLE
+                        binding.moreText.visibility = View.VISIBLE
+                        binding.buttonAddToFavorites.visibility = View.VISIBLE
+                        binding.loadingImg.visibility = View.GONE
+                    }
+                    else -> {
                         binding.authorsLabel.visibility = View.VISIBLE
                         binding.descriptionLabel.visibility = View.VISIBLE
                         binding.bookDetailLayout.visibility = View.VISIBLE

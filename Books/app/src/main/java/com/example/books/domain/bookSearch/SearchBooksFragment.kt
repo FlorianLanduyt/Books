@@ -7,7 +7,9 @@ import android.text.TextWatcher
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.books.R
 
 import com.example.books.databinding.FragmentSearchBooksBinding
@@ -83,7 +85,7 @@ class SearchBooksFragment : Fragment()
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        navigateToSelectedBook(viewModel, binding)
+        navigateToSelectedBook(viewModel)
         observeBookAddedToToReadList(toReadViewModel)
         observeBookRemovedToToReadList(toReadViewModel)
         observeBookAddedToFinishedList(finishedViewModel)
@@ -115,7 +117,7 @@ class SearchBooksFragment : Fragment()
         binding: FragmentSearchBooksBinding?
     ) {
         binding!!.booksPhotosGrid.visibility = View.VISIBLE
-        binding!!.searchText.addTextChangedListener(object: TextWatcher{
+        binding.searchText.addTextChangedListener(object: TextWatcher{
 
             private var searchFor = ""
 
@@ -215,8 +217,7 @@ class SearchBooksFragment : Fragment()
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun navigateToSelectedBook(
-        viewModel: SearchBooksViewModel,
-        binding: FragmentSearchBooksBinding
+        viewModel: SearchBooksViewModel
     ) {
         viewModel.navigateToSelectedBook.observe(this, Observer {
             if (it != null) {
@@ -230,19 +231,26 @@ class SearchBooksFragment : Fragment()
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.overflow_menu, menu)
+        inflater.inflate(R.menu.about_overflow_menu, menu)
     }
 
 
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        viewModel.updateFilter(
+//            binding.searchText.text.toString(),
+//            when (item.itemId) {
+//                R.id.show_ebooks_menu -> BookApiFilter.SHOW_E_BOOKS
+//                R.id.show_free_ebooks -> BookApiFilter.SHOW_FREE_EBOOKS
+//                else -> BookApiFilter.SHOW_ALL
+//            }
+//        )
+//        return true
+//    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        viewModel.updateFilter(
-            binding.searchText.text.toString(),
-            when (item.itemId) {
-                R.id.show_ebooks_menu -> BookApiFilter.SHOW_E_BOOKS
-                R.id.aboutFragment -> BookApiFilter.SHOW_FREE_EBOOKS
-                else -> BookApiFilter.SHOW_ALL
-            }
-        )
-        return true
+        return NavigationUI.onNavDestinationSelected(
+            item,
+            view!!.findNavController()
+        ) || super.onOptionsItemSelected(item)
     }
 }

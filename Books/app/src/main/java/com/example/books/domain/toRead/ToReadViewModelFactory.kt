@@ -8,6 +8,8 @@ import java.lang.IllegalArgumentException
 class ToReadViewModelFactory(
     private val application: Application
 ) : ViewModelProvider.Factory {
+
+    @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(ToReadViewModel::class.java)){
             return ToReadViewModel(application) as T

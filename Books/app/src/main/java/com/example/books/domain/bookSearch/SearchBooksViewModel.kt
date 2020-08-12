@@ -47,8 +47,10 @@ class SearchBooksViewModel(
 
     init {
         _status.value = MyBooksApiStatus.EMPTY
-        _editFieldClicked.postValue(false)
+        clearBooks()
+//        _editFieldClicked.postValue(false)
     }
+
 
     fun getBooks(title: String, filter: BookApiFilter) {
         coroutineScope.launch {
@@ -65,6 +67,13 @@ class SearchBooksViewModel(
         }
 
     }
+
+    private fun clearBooks() {
+        coroutineScope.launch {
+            bookRepo.clearBooks()
+        }
+    }
+
 
 
     override fun onCleared() {

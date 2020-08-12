@@ -8,14 +8,14 @@
     <string name="readBtn">Gelezen boeken</string>
     <string name="waitList">Wachtrij</string>
     <string name="searchButton">Zoek</string>
-    <string name="searchHint">Naam van een boek</string>
+    <string name="searchHint">Zoek een titel of auteur</string>
     <string name="descriptionLabel">Beschrijving</string>
     <string name="authorsLabel">Authors</string>
     <string name="show_all">Alles</string>
     <string name="show_ebooks">E-boeken</string>
     <string name="show_free_ebooks">Gratis e-boeken</string>
     <string name="aboutMenuItem">About</string>
-    <string name="aboutText">The Books app is an app where you can add your favorite books to all kind of lists. The app uses the data from the Google API.</string>
+    <string name="aboutText">Books is een applicatie waarbij je je favoriete boeken kan toevoegen aan verschillende lijsten.\nJe kan in elke lijst je boek ook raadplegen waarbij je details van je boek kan bekijken.</string>
     <string name="searchBookTitle">Zoek een boek</string>
     <string name="emptyFavoritesList">Je hebt nog geen boeken in deze lijst</string>
     <string name="favoritesTitle">Favorieten</string>

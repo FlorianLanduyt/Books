@@ -56,7 +56,7 @@ class ToReadFragment : Fragment() {
         binding.viewModel = viewModel
 
         observeToRead(binding)
-        observeRemovedToRead(binding)
+        observeRemovedToRead()
         observeNavigateToBook(viewModel)
 
 
@@ -93,7 +93,7 @@ class ToReadFragment : Fragment() {
 
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    private fun observeRemovedToRead(binding: FragmentToReadBinding?) {
+    private fun observeRemovedToRead() {
         viewModel.removeToReadBook.observe(viewLifecycleOwner, Observer {
             it?.let {
                 viewModel.removeBookToRead(it)

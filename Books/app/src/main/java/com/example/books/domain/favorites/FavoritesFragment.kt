@@ -59,7 +59,7 @@ class FavoritesFragment : Fragment() {
         binding.favoritesList.layoutManager = LinearLayoutManager(this.context)
 
         observeFavorites(binding)
-        observeRemovedFavorites(binding)
+        observeRemovedFavorites()
         observeNavigateToBook(viewModel)
 
         return binding.root
@@ -93,7 +93,7 @@ class FavoritesFragment : Fragment() {
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    private fun observeRemovedFavorites(binding: FragmentFavoritesBinding) {
+    private fun observeRemovedFavorites() {
         viewModel.removeFavoriteBook.observe(viewLifecycleOwner, Observer {
             it?.let {
                 viewModel.removeBookFavorite(it)

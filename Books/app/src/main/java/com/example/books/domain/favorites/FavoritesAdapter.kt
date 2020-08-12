@@ -33,16 +33,10 @@ class FavoritesAdapter
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesBookViewHolder {
         return FavoritesBookViewHolder(BookFavoritesListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
-        //return SearchBooksViewHolder(SearchBooksItemBinding.inflate(LayoutInflater.from(parent.context)))
-
     }
 
     override fun onBindViewHolder(holder: FavoritesBookViewHolder, position: Int) {
         val favoriteBook = getItem(position)
-
-//        holder.itemView.setOnClickListener {
-//            onClickListener.onClick(favoriteBook)
-//        }
 
         holder.bind(favoriteBook, onClickListener)
     }
