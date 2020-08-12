@@ -40,13 +40,14 @@ class SearchBooksViewModel(
     val navigateToSelectedBook: LiveData<Book>
         get() = _navigateToSelectedBook
 
-    private val _bookToAddInToRead = MutableLiveData<Book>()
-    val bookToAddInToRead: LiveData<Book>
-        get() = _bookToAddInToRead
+    private val _editFieldClicked = MutableLiveData<Boolean>()
+    val editFieldClicked: LiveData<Boolean>
+        get() = _editFieldClicked
 
 
     init {
         _status.value = MyBooksApiStatus.EMPTY
+        _editFieldClicked.postValue(false)
     }
 
     fun getBooks(title: String, filter: BookApiFilter) {
@@ -81,6 +82,14 @@ class SearchBooksViewModel(
 
     fun updateFilter(title: String, filter: BookApiFilter) {
         getBooks(title, filter)
+    }
+
+    fun searchFieldSelect(){
+        _editFieldClicked.postValue(true)
+    }
+
+    fun searchFieldUnselect(){
+        _editFieldClicked.postValue(false)
     }
 }
 

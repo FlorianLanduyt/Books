@@ -10,15 +10,19 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 
 import com.example.books.R
 import com.example.books.databinding.FragmentToReadBinding
+import com.example.books.domain.bookDetails.BookDetailsViewModel
+import com.example.books.domain.bookDetails.BookDetailsViewModelFactory
 
 /**
  * A simple [Fragment] subclass.
  */
 class ToReadFragment : Fragment() {
     private lateinit var viewModel: ToReadViewModel
+    private lateinit var detailsViewModel: BookDetailsViewModel
     private lateinit var binding: FragmentToReadBinding
 
     override fun onCreateView(
@@ -30,15 +34,21 @@ class ToReadFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
         val viewModelFactory =ToReadViewModelFactory(application)
+        val detailsViewModelFactory = BookDetailsViewModelFactory(application)
 
-        viewModel =
-            ViewModelProviders.of(this, viewModelFactory).get(ToReadViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(ToReadViewModel::class.java)
+        detailsViewModel = ViewModelProviders.of(this, detailsViewModelFactory).get(BookDetailsViewModel::class.java)
 
         viewModel.getToReads()
 
         binding.toReadList.adapter = ToReadAdapter(
-            ToReadAdapter.ToReadListener {
-                viewModel.onBookToReadRemovedClicked(it.bookId)
+            ToReadAdapter.ToReadListener { book, action ->
+                when(action) {
+                    "details" -> viewModel.navigateToBook(book.bookId)
+                    "remove" -> viewModel.onBookToReadRemovedClicked(book.bookId)
+
+                }
+
             }
         )
 
@@ -47,11 +57,23 @@ class ToReadFragment : Fragment() {
 
         observeToRead(binding)
         observeRemovedToRead(binding)
-
+        observeNavigateToBook(viewModel)
 
 
         return binding.root
 
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    private fun observeNavigateToBook(viewModel: ToReadViewModel) {
+        viewModel.bookToNavigateTo.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                this.findNavController().navigate(
+                    ToReadFragmentDirections.actionToReadFragmentToBookDetailFragment(it)
+                )
+                viewModel.navigateToBookFinished()
+            }
+        })
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)

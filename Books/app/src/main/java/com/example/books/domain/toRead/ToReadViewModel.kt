@@ -33,6 +33,10 @@ class ToReadViewModel (application: Application): ViewModel(){
     val removeToReadBook: LiveData<String>
         get() = _removeToReadBook
 
+    private val _bookToNavigateTo = MutableLiveData<String>()
+    val bookToNavigateTo: LiveData<String>
+        get() = _bookToNavigateTo
+
     fun getToReads(){
         coroutineScope.launch {
             toReadRepository.refreshBooksToRead()
@@ -83,5 +87,13 @@ class ToReadViewModel (application: Application): ViewModel(){
 
     fun onToReadRemoved() {
         _toReadRemoved.postValue(false)
+    }
+
+    fun navigateToBook(id: String){
+        _bookToNavigateTo.postValue(id)
+    }
+
+    fun navigateToBookFinished(){
+        _bookToNavigateTo.postValue(null)
     }
 }

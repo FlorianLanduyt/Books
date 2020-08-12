@@ -89,17 +89,34 @@ class SearchBooksFragment : Fragment()
         observeBookAddedToFinishedList(finishedViewModel)
         observeBookRemovedFinishedList(finishedViewModel)
         observeSearchTextChanged(viewModel, binding)
+        observeSearchFieldClicked(viewModel)
 
 
         setHasOptionsMenu(true)
         return binding.root
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    private fun observeSearchFieldClicked(viewModel: SearchBooksViewModel) {
+        viewModel.editFieldClicked.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                if (it){
+                    binding.booksPhotosGrid.visibility = View.INVISIBLE
+                } else {
+                    binding.booksPhotosGrid.visibility = View.VISIBLE
+                }
+            }
+        })
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeSearchTextChanged(
         viewModel: SearchBooksViewModel,
         binding: FragmentSearchBooksBinding?
     ) {
+        binding!!.booksPhotosGrid.visibility = View.VISIBLE
         binding!!.searchText.addTextChangedListener(object: TextWatcher{
+
             private var searchFor = ""
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}

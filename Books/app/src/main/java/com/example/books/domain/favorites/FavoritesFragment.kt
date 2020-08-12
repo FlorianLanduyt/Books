@@ -48,9 +48,7 @@ class FavoritesFragment : Fragment() {
             FavoritesAdapter.FavoriteListener { book, action ->
                 when(action) {
                     "remove" -> viewModel.onBookFavoriteRemovedClicked(book.bookId)
-                    "details" -> {
-                        viewModel.navigateToBook(book.bookId)
-                    }
+                    "details" -> viewModel.navigateToBook(book.bookId)
                 }
             }
         )

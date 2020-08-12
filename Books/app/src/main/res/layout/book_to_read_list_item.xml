@@ -9,14 +9,15 @@
             name="toReadBook"
             type="com.example.books.data.toread.BookToRead" />
 
-<!--        <variable-->
-<!--            name="removeClickListener"-->
-<!--            type="com.example.books.domain.toReads.FavoritesAdapter.FavoriteListener" />-->
+        <variable
+            name="clickListener"
+            type="com.example.books.domain.toRead.ToReadAdapter.ToReadListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(toReadBook, `details`)}">
 
 
         <TextView
@@ -47,7 +48,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:drawable/ic_delete" />
+            app:srcCompat="@android:drawable/ic_delete"
+            android:onClick="@{() -> clickListener.onClick(toReadBook, `remove`)}"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

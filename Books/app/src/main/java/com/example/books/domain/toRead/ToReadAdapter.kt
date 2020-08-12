@@ -17,8 +17,9 @@ class ToReadAdapter
 
     class ToReadBookViewHolder(private var binding: BookToReadListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(toReadBook: BookToRead) {
+        fun bind(toReadBook: BookToRead, clickListener: ToReadListener) {
             binding.toReadBook = toReadBook
+            binding.clickListener = clickListener
         }
     }
 
@@ -45,15 +46,15 @@ class ToReadAdapter
     override fun onBindViewHolder(holder: ToReadBookViewHolder, position: Int) {
         val bookToRead = getItem(position)
 
-        holder.itemView.setOnClickListener{
-            onClickListener.onClick(bookToRead)
-        }
+//        holder.itemView.setOnClickListener{
+//            onClickListener.onClick(bookToRead)
+//        }
 
-        holder.bind(bookToRead)
+        holder.bind(bookToRead, onClickListener)
     }
 
-    class ToReadListener(val clickListener: (bookToRead: BookToRead) -> Unit) {
-        fun onClick(bookToRead: BookToRead) = clickListener(bookToRead)
+    class ToReadListener(val clickListener: (bookToRead: BookToRead, action: String) -> Unit) {
+        fun onClick(bookToRead: BookToRead, action: String) = clickListener(bookToRead, action)
     }
 
 
