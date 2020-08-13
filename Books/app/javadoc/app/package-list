@@ -1,0 +1,20 @@
+$dokka.format:gfm
+$dokka.linkExtension:md
+$dokka.location:com.example.books.data.books$asDomainModel(kotlin.collections.List((com.example.books.data.books.DatabaseBook)))com.example.books.data.books/kotlin.collections.-list/as-domain-model.md
+com.example.books
+com.example.books.data
+com.example.books.data.books
+com.example.books.data.converters
+com.example.books.data.favorites
+com.example.books.data.finishedBooks
+com.example.books.data.repositories
+com.example.books.data.toread
+com.example.books.domain
+com.example.books.domain.about
+com.example.books.domain.bookDetails
+com.example.books.domain.bookSearch
+com.example.books.domain.favorites
+com.example.books.domain.finishedbooks
+com.example.books.domain.models
+com.example.books.domain.toRead
+com.example.books.network
