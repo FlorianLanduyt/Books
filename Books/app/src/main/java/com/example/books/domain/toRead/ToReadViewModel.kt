@@ -37,6 +37,10 @@ class ToReadViewModel (application: Application): ViewModel(){
     val bookToNavigateTo: LiveData<String>
         get() = _bookToNavigateTo
 
+
+    /**
+     * Gets the books from the toread list
+     */
     fun getToReads(){
         coroutineScope.launch {
             toReadRepository.refreshBooksToRead()
