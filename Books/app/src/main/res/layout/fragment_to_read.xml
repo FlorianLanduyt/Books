@@ -13,30 +13,22 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toReadFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        style="@style/list_constraintLayout">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/toReadList"
-            app:toReadListData="@{viewModel.toReadBooks}"
+            style="@style/list_recycleView"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="@dimen/marginNormal"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="@dimen/marginNormal"
-            android:layout_marginBottom="@dimen/marginNormal"
+            app:toReadListData="@{viewModel.toReadBooks}"
             tools:listitem="@layout/book_to_read_list_item" />
 
         <TextView
             android:id="@+id/statusOfToReadList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/textSize"
+            style="@style/statusOfList_text"
             app:layout_constraintBottom_toBottomOf="@+id/toReadList"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -13,29 +13,13 @@
     </data>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/list_constraintLayout">
 
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/searchText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:autofillHints=""
-            android:cursorVisible="true"
-            android:drawableLeft="@android:drawable/ic_search_category_default"
-            android:ems="10"
-            android:fadingEdge="horizontal"
+            style="@style/searchBooks_searchfield"
             android:hint="@string/searchHint"
-            android:inputType="textNoSuggestions"
-            android:paddingLeft="@dimen/normalPadding"
-            android:paddingRight="@dimen/normalPadding"
-            android:textAlignment="center"
-            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -43,12 +27,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/booksPhotosGrid"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="@dimen/marginNormal"
-            android:layout_marginEnd="@dimen/marginNormal"
-            android:layout_marginBottom="@dimen/marginNormal"
-            android:padding="6dp"
+            style="@style/searchBooks_recycleView"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,26 +39,22 @@
             tools:listitem="@layout/search_books_item" />
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:id="@+id/statusImage"
+            android:contentDescription="@string/cd_statusImage"
             app:bookApiStatus="@{viewModel.status}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/statusSearchBooks_image" />
 
         <TextView
             android:id="@+id/statusText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             app:bookApiStatusText="@{viewModel.status}"
-            android:layout_marginTop="24dp"
-            android:textSize="@dimen/titleSize"
             app:layout_constraintEnd_toEndOf="@+id/booksPhotosGrid"
             app:layout_constraintStart_toStartOf="@+id/booksPhotosGrid"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/statusImage"
+            style="@style/statusDetails_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -35,5 +35,8 @@
     <string name="lessText">Minder weergeven</string>
     <string name="no_description_found">Geen beschrijving van dit boek gevonden</string>
     <string name="cd_remove_button">This is the remove button</string>
+    <string name="cd_loading_image">This is the loading image</string>
+    <string name="cd_cover_image">This is the cover of the book</string>
+    <string name="cd_statusImage">This is the status image</string>
 
 </resources>

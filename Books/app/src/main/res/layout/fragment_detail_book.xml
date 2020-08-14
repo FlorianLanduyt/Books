@@ -16,8 +16,6 @@
         <variable
             name="book"
             type="com.example.books.domain.models.Book" />
-
-
     </data>
 
 
@@ -25,20 +23,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bookDetailLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/normalPadding"
+            style="@style/details_constraintLayout"
             tools:context="Book details">
 
             <ImageView
                 android:id="@+id/loadingImg"
-
-
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+                style="@style/loading_image"
+                android:contentDescription="@string/cd_loading_image"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/lessText"
                 app:layout_constraintStart_toStartOf="parent"
@@ -47,12 +40,9 @@
                 tools:ignore="VectorDrawableCompat" />
 
             <ImageView
-                android:id="@+id/bookDetailPhoto"
-                android:layout_width="0dp"
-                android:layout_height="200dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:scaleType="fitCenter"
+                android:id="@+id/bookDetailCover"
+                style="@style/bookConver_image"
+                android:contentDescription="@string/cd_cover_image"
                 app:imageUrl="@{viewModel.selectedBook.volumeInfo.imageLinks.thumbnail}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -61,107 +51,68 @@
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/button_add_to_favorites"
-                android:visibility="gone"
-                android:layout_width="53dp"
-                android:layout_height="38dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                style="@style/addToFavorites_button"
                 android:onClick="@{()-> viewModelFavorites.insertBookFavorite(book)}"
                 app:backgroundTint="@android:color/white"
                 app:fabSize="mini"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bookDetailPhoto" />
+                app:layout_constraintTop_toBottomOf="@+id/bookDetailCover" />
 
             <TextView
                 android:id="@+id/titelText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:gravity="center|center_horizontal"
                 android:text="@{viewModel.selectedBook.volumeInfo.title}"
-                android:textSize="@dimen/titleSize"
                 app:layout_constraintEnd_toStartOf="@+id/button_add_to_favorites"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bookDetailPhoto" />
+                app:layout_constraintTop_toBottomOf="@+id/bookDetailCover"
+                style="@style/titleDetails_text" />
 
             <TextView
                 android:id="@+id/descriptionLabel"
-                android:visibility="invisible"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
                 android:text="@string/descriptionLabel"
-                android:textSize="@dimen/textSize"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titelText" />
+                app:layout_constraintTop_toBottomOf="@+id/titelText"
+                style="@style/descriptionDetails_label" />
 
             <TextView
                 android:id="@+id/descriptionText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionLabel" />
+                app:layout_constraintTop_toBottomOf="@+id/descriptionLabel"
+                style="@style/descriptionDetails_text" />
 
             <TextView
                 android:id="@+id/authorsLabel"
-                android:visibility="invisible"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:text="@string/authorsLabel"
-                android:textSize="@dimen/textSize"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/moreText" />
+                app:layout_constraintTop_toBottomOf="@+id/moreText"
+                style="@style/authorsDetails_label" />
 
             <TextView
                 android:id="@+id/authors_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
                 app:authors="@{book.volumeInfo.authors}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/authorsLabel" />
+                app:layout_constraintTop_toBottomOf="@+id/authorsLabel"
+                style="@style/authorsDetails_text" />
 
             <TextView
                 android:id="@+id/moreText"
 
-                android:visibility="invisible"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
                 android:onClick="@{()-> viewModel.moreText()}"
                 android:text="@string/moreText"
-                android:textColor="@android:color/holo_blue_dark"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                app:layout_constraintTop_toBottomOf="@+id/descriptionText"
+                style="@style/moreTextDetails_button" />
 
             <TextView
                 android:id="@+id/lessText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
                 android:onClick="@{()-> viewModel.lessText()}"
                 android:text="@string/lessText"
-                android:textColor="@android:color/holo_blue_dark"
-                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+                app:layout_constraintTop_toBottomOf="@+id/descriptionText"
+                style="@style/lessTextDetails_button" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

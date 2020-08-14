@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="marginNormal">16dp</dimen>
-    <dimen name="normalPadding">16dp</dimen>
-    <dimen name="smallPadding">8dp</dimen>
+    <dimen name="paddingNormal">16dp</dimen>
+    <dimen name="paddingSmall">8dp</dimen>
     <dimen name="bigBtn">300dp</dimen>
     <dimen name="titleSize">30sp</dimen>
     <dimen name="textSize">18sp</dimen>
-    <dimen name="smallMargin">8dp</dimen>
+    <dimen name="marginSmall">8dp</dimen>
     <dimen name="divider_height">1dp</dimen>
+    <dimen name="cover_height">200dp</dimen>
+    <dimen name="button_add_to_favorites_width">53dp</dimen>
+    <dimen name="button_add_to_favorites_height">38dp</dimen>
+    <dimen name="statusTextMargin">24dp</dimen>
+    <dimen name="button_height">30dp</dimen>
+    <dimen name="coverImage_list">100dp</dimen>
 </resources>

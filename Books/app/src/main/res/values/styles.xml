@@ -15,10 +15,10 @@
         <item name="android:layout_marginTop">@dimen/marginNormal</item>
         <item name="android:layout_marginEnd">@dimen/marginNormal</item>
         <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:paddingLeft">@dimen/normalPadding</item>
-        <item name="android:paddingTop">@dimen/smallPadding</item>
-        <item name="android:paddingRight">@dimen/normalPadding</item>
-        <item name="android:paddingBottom">@dimen/smallPadding</item>
+        <item name="android:paddingLeft">@dimen/paddingNormal</item>
+        <item name="android:paddingTop">@dimen/paddingSmall</item>
+        <item name="android:paddingRight">@dimen/paddingNormal</item>
+        <item name="android:paddingBottom">@dimen/paddingSmall</item>
         <item name="android:width">@dimen/bigBtn</item>
     </style>
 
@@ -58,6 +58,232 @@
         <item name="android:layout_marginEnd">@dimen/marginNormal</item>
         <item name="android:textAlignment">viewStart</item>
         <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="about_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/paddingNormal</item>
+        <item name="android:layout_marginTop">@dimen/paddingNormal</item>
+        <item name="android:layout_marginEnd">@dimen/paddingNormal</item>
+        <item name="android:autoLink">web</item>
+        <item name="android:textSize">@dimen/textSize</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="list_constraintLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="list_recycleView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_marginStart">@dimen/marginNormal</item>
+        <item name="android:layout_marginTop">@dimen/marginNormal</item>
+        <item name="android:layout_marginEnd">@dimen/marginNormal</item>
+        <item name="android:layout_marginBottom">@dimen/marginNormal</item>
+    </style>
+
+    <style name="statusOfList_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/marginNormal</item>
+        <item name="android:layout_marginEnd">@dimen/marginNormal</item>
+        <item name="android:textSize">@dimen/textSize</item>
+    </style>
+
+    <style name="details_constraintLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/paddingNormal</item>
+    </style>
+
+    <style name="loading_image">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+    </style>
+
+    <style name="bookConver_image">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/cover_height</item>
+        <item name="android:layout_marginStart">@dimen/marginNormal</item>
+        <item name="android:layout_marginEnd">@dimen/marginNormal</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="addToFavorites_button">
+        <item name="android:layout_width">@dimen/button_add_to_favorites_width</item>
+        <item name="android:layout_height">@dimen/button_add_to_favorites_height</item>
+        <item name="android:layout_marginTop">@dimen/marginNormal</item>
+        <item name="android:layout_marginEnd">@dimen/marginNormal</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="titleDetails_text">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/marginNormal</item>
+        <item name="android:layout_marginTop">@dimen/marginNormal</item>
+        <item name="android:layout_marginEnd">@dimen/marginNormal</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:gravity">center|center_horizontal</item>
+        <item name="android:textSize">@dimen/titleSize</item>
+    </style>
+
+    <style name="descriptionDetails_label">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/marginNormal</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/textSize</item>
+        <item name="android:visibility">invisible</item>
+    </style>
+
+    <style name="descriptionDetails_text">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/marginNormal</item>
+        <item name="android:layout_marginTop">@dimen/marginSmall</item>
+        <item name="android:layout_marginEnd">@dimen/marginNormal</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="authorsDetails_label">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/marginNormal</item>
+        <item name="android:layout_marginTop">@dimen/marginNormal</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/textSize</item>
+        <item name="android:visibility">invisible</item>
+    </style>
+
+    <style name="authorsDetails_text">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/marginNormal</item>
+        <item name="android:layout_marginTop">@dimen/marginSmall</item>
+        <item name="android:layout_marginEnd">@dimen/marginNormal</item>
+        <item name="android:layout_marginBottom">@dimen/marginNormal</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="moreTextDetails_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/marginSmall</item>
+        <item name="android:layout_marginEnd">@dimen/marginNormal</item>
+        <item name="android:textColor">@android:color/holo_blue_dark</item>
+        <item name="android:visibility">invisible</item>
+    </style>
+
+    <style name="lessTextDetails_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/marginSmall</item>
+        <item name="android:layout_marginEnd">@dimen/marginNormal</item>
+        <item name="android:textColor">@android:color/holo_blue_dark</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="searchBooks_searchfield">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/marginNormal</item>
+        <item name="android:layout_marginTop">@dimen/marginNormal</item>
+        <item name="android:layout_marginEnd">@dimen/marginNormal</item>
+        <item name="android:cursorVisible">true</item>
+        <item name="android:drawableStart">@android:drawable/ic_search_category_default</item>
+        <item name="android:ems">10</item>
+        <item name="android:fadingEdge">horizontal</item>
+        <item name="android:inputType">textNoSuggestions</item>
+        <item name="android:paddingLeft">@dimen/paddingNormal</item>
+        <item name="android:paddingRight">@dimen/paddingNormal</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">@dimen/textSize</item>
+        <item name="android:fontFamily">@font/roboto</item>
+
+    </style>
+
+    <style name="searchBooks_recycleView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_marginStart">@dimen/marginNormal</item>
+        <item name="android:layout_marginEnd">@dimen/marginNormal</item>
+        <item name="android:layout_marginBottom">@dimen/marginNormal</item>
+        <item name="android:padding">@dimen/paddingSmall</item>
+    </style>
+
+    <style name="statusSearchBooks_image">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="statusDetails_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/statusTextMargin</item>
+        <item name="android:textSize">@dimen/titleSize</item>
+    </style>
+
+    <style name="listItem_constrainLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="searchListCover_image">
+        <item name="android:layout_width">@dimen/coverImage_list</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/marginNormal</item>
+        <item name="android:layout_marginTop">@dimen/marginNormal</item>
+        <item name="android:layout_marginRight">@dimen/marginNormal</item>
+        <item name="android:layout_marginBottom">@dimen/marginNormal</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="searchListTitle_text">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/marginNormal</item>
+        <item name="android:layout_marginTop">@dimen/marginNormal</item>
+        <item name="android:layout_marginEnd">@dimen/marginNormal</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:minLines">0</item>
+        <item name="android:scrollHorizontally">false</item>
+        <item name="android:textSize">@dimen/textSize</item>
+    </style>
+
+    <style name="searchListAuthor_label">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/marginNormal</item>
+        <item name="android:layout_marginTop">@dimen/marginNormal</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="searchListAuthor_text">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/marginNormal</item>
+        <item name="android:layout_marginTop">@dimen/marginSmall</item>
+        <item name="android:layout_marginEnd">@dimen/marginNormal</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="searchList_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/marginNormal</item>
+        <item name="android:layout_marginEnd">@dimen/marginNormal</item>
+        <item name="android:layout_marginBottom">@dimen/marginNormal</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:height">@dimen/button_height</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
 </resources>

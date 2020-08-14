@@ -9,14 +9,8 @@
 
     <TextView
         android:id="@+id/aboutText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/normalPadding"
-        android:layout_marginTop="@dimen/normalPadding"
-        android:layout_marginEnd="@dimen/normalPadding"
-        android:autoLink="web"
+        style="@style/about_text"
         android:text="@string/aboutText"
-        android:textSize="@dimen/textSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
