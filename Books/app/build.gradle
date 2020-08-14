@@ -11,7 +11,6 @@ apply plugin: "androidx.navigation.safeargs"
 apply plugin: 'org.jetbrains.dokka-android'
 
 
-
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -71,7 +70,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
 
 
     dependencies {
@@ -143,4 +141,8 @@ android {
         //Gson
         implementation 'com.google.code.gson:gson:2.8.6'
     }
+}
+
+dependencies {
+    implementation 'androidx.legacy:legacy-support-v4:+'
 }

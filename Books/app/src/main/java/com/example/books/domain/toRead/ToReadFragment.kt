@@ -54,7 +54,6 @@ class ToReadFragment : Fragment() {
                     "details" -> viewModel.navigateToBook(book.bookId)
                     "remove" -> viewModel.onBookToReadRemovedClicked(book.bookId)
                 }
-
             }
         )
 

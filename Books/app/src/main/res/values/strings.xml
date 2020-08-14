@@ -38,5 +38,6 @@
     <string name="cd_loading_image">This is the loading image</string>
     <string name="cd_cover_image">This is the cover of the book</string>
     <string name="cd_statusImage">This is the status image</string>
+    <string name="yourBooksMenuItem">Jouw boeken</string>
 
 </resources>

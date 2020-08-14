@@ -8,6 +8,9 @@
                 <item
                     android:id="@+id/searchBooksFragment"
                     android:title="@string/searchBookTitle" />
+                <item
+                    android:id="@+id/yourBooksFragment"
+                    android:title="@string/yourBooksMenuItem" />
             </group>
         </menu>
     </item>

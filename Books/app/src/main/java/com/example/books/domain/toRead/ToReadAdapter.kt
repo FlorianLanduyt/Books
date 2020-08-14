@@ -66,11 +66,7 @@ class ToReadAdapter
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToReadBookViewHolder {
         return ToReadBookViewHolder(
-            BookToReadListItemBinding.inflate(
-                LayoutInflater.from(
-                    parent.context
-                )
-            )
+            BookToReadListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 

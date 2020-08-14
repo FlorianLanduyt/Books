@@ -57,6 +57,23 @@
             android:id="@+id/action_finishedBookFragment_to_bookDetailFragment"
             app:destination="@id/bookDetailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/yourBooksFragment"
+        android:name="com.example.books.domain.yourbooks.YourBooksFragment"
+        android:label="Jouw boeken" >
+        <action
+            android:id="@+id/action_yourBooksFragment_to_bookDetailFragment"
+            app:destination="@id/bookDetailFragment" />
+        <action
+            android:id="@+id/action_yourBooksFragment_to_finishedBookFragment"
+            app:destination="@id/finishedBookFragment" />
+        <action
+            android:id="@+id/action_yourBooksFragment_to_toReadFragment"
+            app:destination="@id/toReadFragment" />
+        <action
+            android:id="@+id/action_yourBooksFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
+    </fragment>
 
 
 </navigation>
