@@ -34,5 +34,6 @@
     <string name="moreText">Meer weergeven</string>
     <string name="lessText">Minder weergeven</string>
     <string name="no_description_found">Geen beschrijving van dit boek gevonden</string>
+    <string name="cd_remove_button">This is the remove button</string>
 
 </resources>

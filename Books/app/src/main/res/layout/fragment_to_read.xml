@@ -26,10 +26,10 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="@dimen/normalMargin"
+            android:layout_marginStart="@dimen/marginNormal"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="@dimen/normalMargin"
-            android:layout_marginBottom="@dimen/normalMargin"
+            android:layout_marginEnd="@dimen/marginNormal"
+            android:layout_marginBottom="@dimen/marginNormal"
             tools:listitem="@layout/book_to_read_list_item" />
 
         <TextView

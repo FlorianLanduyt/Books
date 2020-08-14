@@ -21,25 +21,18 @@
 
 
         <TextView
-            android:id="@+id/bookTitle_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:id="@+id/bookToRead_title"
+            style="@style/listItem_titleText"
             android:text="@{toReadBook.title}"
-            android:textSize="@dimen/titleSize"
-            app:layout_constraintEnd_toStartOf="@+id/deleteFavoriteButton"
+            app:layout_constraintEnd_toStartOf="@+id/button_remove_favorite"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
         <ImageView
-            android:id="@+id/deleteFavoriteButton"
-            android:layout_width="42dp"
-            android:layout_height="43dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:id="@+id/button_remove_favorite"
+            style="@style/listItem_removeIcon"
+            android:contentDescription="@string/cd_remove_button"
             android:onClick="@{() -> clickListener.onClick(toReadBook, `remove`)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -47,34 +40,21 @@
 
 
         <TextView
-            android:id="@+id/authorsText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:textAlignment="viewStart"
-
+            android:id="@+id/authors_text"
+            style="@style/listItem_authorsText"
             app:authors="@{toReadBook.authors}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bookTitle_name" />
+            app:layout_constraintTop_toBottomOf="@+id/bookToRead_title" />
 
 
         <View
-            android:id="@+id/divider"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="@dimen/normalMargin"
-            android:background="?android:attr/listDivider"
+            android:id="@+id/list_divider"
+            style="@style/listDivider"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/authorsText" />
-
+            app:layout_constraintTop_toBottomOf="@+id/authors_text" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
