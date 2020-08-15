@@ -196,6 +196,15 @@ class BookDetailFragment : Fragment() {
                         binding.buttonAddToFavorites.visibility = View.VISIBLE
                         binding.loadingImg.visibility = View.GONE
                     }
+                    BookApiStatus.ERROR -> {
+                        binding.authorsLabel.visibility = View.GONE
+                        binding.descriptionLabel.visibility = View.GONE
+                        binding.loadingImg.visibility = View.VISIBLE
+                        binding.moreText.visibility = View.GONE
+                        binding.buttonAddToFavorites.visibility = View.GONE
+                        binding.loadingImg.setImageResource(R.drawable.ic_connection_erro)
+                    }
+
                     else -> {
                         binding.authorsLabel.visibility = View.VISIBLE
                         binding.descriptionLabel.visibility = View.VISIBLE
@@ -219,9 +228,6 @@ class BookDetailFragment : Fragment() {
      * Creates a shareIntent
      */
     private fun getShareIntent(): Intent {
-        val cover: ImageView =
-            binding.bookDetailCover
-
         val shareIntent = Intent.createChooser(Intent().apply {
             action = Intent.ACTION_SEND
             type = "text/plain"

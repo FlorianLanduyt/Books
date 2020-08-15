@@ -34,6 +34,7 @@
                 android:contentDescription="@string/cd_loading_image"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/lessText"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_loading_animation"
@@ -69,24 +70,27 @@
 
             <TextView
                 android:id="@+id/descriptionLabel"
+                style="@style/yourBooksList_label"
+                android:layout_marginTop="16dp"
                 android:text="@string/descriptionLabel"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titelText"
-                style="@style/descriptionDetails_label" />
+                app:layout_constraintTop_toBottomOf="@+id/titelText" />
 
             <TextView
                 android:id="@+id/descriptionText"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:lineHeight="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/descriptionLabel"
                 style="@style/descriptionDetails_text" />
 
             <TextView
                 android:id="@+id/authorsLabel"
+                style="@style/yourBooksList_label"
+                android:layout_marginTop="16dp"
                 android:text="@string/authorsLabel"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/moreText"
-                style="@style/authorsDetails_label" />
+                app:layout_constraintTop_toBottomOf="@+id/moreText" />
 
             <TextView
                 android:id="@+id/authors_text"

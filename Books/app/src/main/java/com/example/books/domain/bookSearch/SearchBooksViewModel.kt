@@ -1,6 +1,9 @@
 package com.example.books.domain.bookSearch
 
 import android.app.Application
+import android.content.Context
+import android.net.ConnectivityManager
+import android.os.Build
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -58,11 +61,24 @@ class SearchBooksViewModel(private val application: Application) : ViewModel() {
                 _status.value = MyBooksApiStatus.DONE
             } catch (e: Exception) {
                 bookRepo.clearBooks()
-                _status.value = MyBooksApiStatus.ERROR
+
+                if (hasNetwork()){
+                    _status.value = MyBooksApiStatus.EMPTY
+                } else {
+                    _status.value = MyBooksApiStatus.ERROR
+                }
+
 
             }
         }
 
+    }
+
+    fun hasNetwork(): Boolean{
+        val connectivityManager = application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        val networkInfo = connectivityManager.activeNetworkInfo
+        return networkInfo != null && networkInfo.isConnected
     }
 
 

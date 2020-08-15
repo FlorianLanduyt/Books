@@ -23,9 +23,9 @@
         <ImageView
             android:id="@+id/thumbnail"
             style="@style/searchListCover_image"
+            android:layout_marginTop="16dp"
             android:contentDescription="@string/cd_cover_image"
             app:imageUrl="@{book.volumeInfo.imageLinks.thumbnail}"
-            app:layout_constraintBottom_toTopOf="@+id/FinishedButton"
             app:layout_constraintEnd_toStartOf="@+id/FinishedButton"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,6 +35,8 @@
         <TextView
             android:id="@+id/titleText"
             style="@style/searchListTitle_text"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:text="@{book.volumeInfo.title}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/thumbnail"
@@ -42,25 +44,32 @@
 
         <TextView
             android:id="@+id/authorLabel"
-            style="@style/searchListAuthor_label"
+            style="@style/yourBooksList_label"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/authorLabel"
-            app:layout_constraintStart_toEndOf="@+id/thumbnail"
-            app:layout_constraintTop_toBottomOf="@+id/titleText" />
+            app:layout_constraintBottom_toTopOf="@+id/authors_text"
+            app:layout_constraintStart_toEndOf="@+id/thumbnail" />
 
         <TextView
             android:id="@+id/authors_text"
             style="@style/searchListAuthor_text"
+            android:layout_marginStart="16dp"
             app:authors="@{book.volumeInfo.authors}"
+            app:layout_constraintBottom_toBottomOf="@+id/thumbnail"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/thumbnail"
-            app:layout_constraintTop_toBottomOf="@+id/authorLabel" />
+            app:layout_constraintStart_toEndOf="@+id/thumbnail" />
 
         <Button
             android:id="@+id/toReadButton"
             style="@style/searchList_button"
-            android:layout_width="194dp"
+            android:layout_width="0dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/my_button"
             android:onClick="@{() -> clickListener.onClick(book, `insertFavorites`)}"
             android:text="@string/toReadButtonText"
+            android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -70,9 +79,13 @@
         <Button
             android:id="@+id/FinishedButton"
             style="@style/searchList_button"
-            android:layout_width="193dp"
+            android:layout_width="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/my_button"
             android:onClick="@{() -> clickListener.onClick(book, `insertFinished`)}"
             android:text="@string/addInFinished"
+            android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/toReadButton"
             app:layout_constraintHorizontal_bias="0.5"
@@ -83,6 +96,7 @@
         <View
             android:id="@+id/list_divider"
             style="@style/listDivider"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

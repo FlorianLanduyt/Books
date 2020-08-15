@@ -290,6 +290,7 @@ class SearchBooksFragment : Fragment(), CoroutineScope
             when (item.itemId) {
                 R.id.show_ebooks_menu -> BookApiFilter.SHOW_E_BOOKS
                 R.id.show_free_ebooks -> BookApiFilter.SHOW_FREE_EBOOKS
+                R.id.show_all_menu -> BookApiFilter.SHOW_ALL
                 else -> BookApiFilter.SHOW_ALL
             }
         )
@@ -297,3 +298,4 @@ class SearchBooksFragment : Fragment(), CoroutineScope
     }
 
 }
+

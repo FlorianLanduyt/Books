@@ -117,7 +117,7 @@ class BindingAdapters {
             when (status) {
                 MyBooksApiStatus.LOADING -> {
                     statusImageView.visibility = View.VISIBLE
-                    statusImageView.setImageResource(R.drawable.ic_loading_animation)
+                    statusImageView.setImageResource(R.drawable.loading_animation)
                 }
                 MyBooksApiStatus.ERROR -> {
                     statusImageView.visibility = View.VISIBLE
@@ -129,7 +129,6 @@ class BindingAdapters {
 
                 MyBooksApiStatus.EMPTY -> {
                     statusImageView.visibility = View.VISIBLE
-
                     statusImageView.setImageResource(R.drawable.book)
                 }
             }

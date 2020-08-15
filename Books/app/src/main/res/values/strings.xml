@@ -1,11 +1,6 @@
 <resources>
     <string name="app_name">Books</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="Title">Books</string>
-    <string name="favoritesBtn">Favorieten</string>
-    <string name="searchBtn">Boek zoeken</string>
-    <string name="readBtn">Gelezen boeken</string>
     <string name="waitList">Wachtrij</string>
     <string name="searchButton">Zoek</string>
     <string name="searchHint">Zoek een titel of auteur</string>
@@ -23,7 +18,7 @@
     <string name="toReadButtonText">Boek in wachtrij</string>
     <string name="finishedButtonText">Niet in \"Gelezen\" lijst</string>
     <string name="finishedBooksTitle">Gelezen boeken</string>
-    <string name="toReadTitle">wachtrij</string>
+    <string name="toReadTitle">Wachtrij</string>
     <string name="addInFavroites">Voeg toe aan favorieten</string>
     <string name="authorLabel">Geschreven door:</string>
     <string name="addInFinished">Boek gelezen</string>
@@ -39,8 +34,8 @@
     <string name="cd_cover_image">This is the cover of the book</string>
     <string name="cd_statusImage">This is the status image</string>
     <string name="yourBooksMenuItem">Jouw boeken</string>
-    <string name="error_apiStatusText">Er is iets mis gelopen, probeer opnieuw</string>
-    <string name="empty_apiStatusText">Welkom bij Books!</string>
+    <string name="error_apiStatusText">Geen netwerk, probeer straks opnieuw</string>
+    <string name="empty_apiStatusText">Nog geen boeken</string>
     <string name="favoriteBooks_label">Favoriete boeken</string>
     <string name="favoriteBooksList_button">Favorieten</string>
     <string name="toReadBooksList_button">Wachtrij</string>
