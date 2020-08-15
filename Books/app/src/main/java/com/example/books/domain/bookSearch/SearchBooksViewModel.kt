@@ -103,9 +103,9 @@ class SearchBooksViewModel(private val application: Application) : ViewModel() {
         _navigateToSelectedBook.value = null
     }
 
-//    fun updateFilter(title: String, filter: BookApiFilter) {
-//        getBooks(title, filter)
-//    }
+    fun updateFilter(title: String, filter: BookApiFilter) {
+        getBooks(title, filter)
+    }
 //
 //    fun searchFieldSelect(){
 //        _editFieldClicked.postValue(true)

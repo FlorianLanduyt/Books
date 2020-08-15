@@ -2,16 +2,16 @@ package com.example.books.domain.yourbooks
 
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.ViewCompat.canScrollVertically
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.books.R
@@ -92,16 +92,25 @@ class YourBooksFragment : Fragment() {
         navigateToToReadBooksClicked()
         navigateToFavoriteBooksClicked()
         navigateToFinishedBooksClicked()
-        observeEmptyList()
+        navigateToSearchBooksClicked()
 
+
+        setHasOptionsMenu(true)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         return binding.root
     }
 
-    private fun observeEmptyList() {
-        viewModel
+
+
+    private fun navigateToSearchBooksClicked() {
+        binding.searchView.setOnClickListener {
+            this.findNavController()
+                .navigate(YourBooksFragmentDirections.actionYourBooksFragmentToSearchBooksFragment())
+        }
     }
+
+
 
 //    private fun observeEmptyFavoriteList() {
 //        viewModel.statusFavorites.observe(viewLifecycleOwner, Observer {
@@ -194,5 +203,25 @@ class YourBooksFragment : Fragment() {
         })
     }
 
+    /**
+     * Shows the overflow menu
+     */
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.about_overflow_menu, menu)
+    }
+
+
+
+
+    /**
+     * When selecting an option of the overflow menu
+     */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return NavigationUI.onNavDestinationSelected(
+            item,
+            view!!.findNavController()
+        ) || super.onOptionsItemSelected(item)
+    }
 
 }

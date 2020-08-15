@@ -6,5 +6,7 @@
     <color name="colorButton">#3D348B</color>
     <color name="colorButtonPressed">#E3E1F4</color>
 
+    <color name="colorSearchButtonLayout">#2D2768</color>
+
 
 </resources>

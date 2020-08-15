@@ -259,29 +259,37 @@ class SearchBooksFragment : Fragment(), CoroutineScope
      */
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.about_overflow_menu, menu)
+        inflater.inflate(R.menu.overflow_menu, menu)
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        if(binding.searchText.text.isNullOrEmpty()){
+            menu.getItem(0).setEnabled(false)
+            menu.getItem(1).setEnabled(false)
+            menu.getItem(2).setEnabled(false)
+        } else {
+            menu.getItem(0).setEnabled(true)
+            menu.getItem(1).setEnabled(true)
+            menu.getItem(2).setEnabled(true)
+        }
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        viewModel.updateFilter(
-//            binding.searchText.text.toString(),
-//            when (item.itemId) {
-//                R.id.show_ebooks_menu -> BookApiFilter.SHOW_E_BOOKS
-//                R.id.show_free_ebooks -> BookApiFilter.SHOW_FREE_EBOOKS
-//                else -> BookApiFilter.SHOW_ALL
-//            }
-//        )
-//        return true
-//    }
+    }
+
 
     /**
-     * When selecting an option of the overflow menu
-     */
+    //     * When selecting an option of the overflow menu
+    //     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return NavigationUI.onNavDestinationSelected(
-            item,
-            view!!.findNavController()
-        ) || super.onOptionsItemSelected(item)
+        viewModel.updateFilter(
+            binding.searchText.text.toString(),
+            when (item.itemId) {
+                R.id.show_ebooks_menu -> BookApiFilter.SHOW_E_BOOKS
+                R.id.show_free_ebooks -> BookApiFilter.SHOW_FREE_EBOOKS
+                else -> BookApiFilter.SHOW_ALL
+            }
+        )
+        return true
     }
+
 }

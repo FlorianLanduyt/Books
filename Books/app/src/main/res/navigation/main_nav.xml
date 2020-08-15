@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/searchBooksFragment">
+    app:startDestination="@id/yourBooksFragment">
 
 
     <fragment
@@ -73,6 +73,9 @@
         <action
             android:id="@+id/action_yourBooksFragment_to_favoritesFragment"
             app:destination="@id/favoritesFragment" />
+        <action
+            android:id="@+id/action_yourBooksFragment_to_searchBooksFragment"
+            app:destination="@id/searchBooksFragment" />
     </fragment>
 
 
