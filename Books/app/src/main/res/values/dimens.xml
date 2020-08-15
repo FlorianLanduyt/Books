@@ -12,6 +12,16 @@
     <dimen name="button_add_to_favorites_width">53dp</dimen>
     <dimen name="button_add_to_favorites_height">38dp</dimen>
     <dimen name="statusTextMargin">24dp</dimen>
-    <dimen name="button_height">30dp</dimen>
+    <dimen name="button_height">45dp</dimen>
     <dimen name="coverImage_list">100dp</dimen>
+    <dimen name="marginListContainer">32dp</dimen>
+
+    <dimen name="margin_top_button">16dp</dimen>
+    <dimen name="margin_bottom_button">16dp</dimen>
+    <dimen name="margin_label_top">16dp</dimen>
+    <dimen name="margin_recycleView">16dp</dimen>
+    <dimen name="marginLastContainer">16dp</dimen>
+    <dimen name="circleView_width">60dp</dimen>
+    <dimen name="circleView_height">60dp</dimen>
+    <dimen name="marginCircleView">24dp</dimen>
 </resources>

@@ -14,7 +14,7 @@
     <string name="show_all">Alles</string>
     <string name="show_ebooks">E-boeken</string>
     <string name="show_free_ebooks">Gratis e-boeken</string>
-    <string name="aboutMenuItem">About</string>
+    <string name="aboutMenuItem">Over</string>
     <string name="aboutText">Books is een applicatie waarbij je je favoriete boeken kan toevoegen aan verschillende lijsten.\nJe kan in elke lijst je boek ook raadplegen waarbij je details van je boek kan bekijken.</string>
     <string name="searchBookTitle">Zoek een boek</string>
     <string name="emptyFavoritesList">Je hebt nog geen boeken in deze lijst</string>
@@ -41,5 +41,12 @@
     <string name="yourBooksMenuItem">Jouw boeken</string>
     <string name="error_apiStatusText">Er is iets mis gelopen, probeer opnieuw</string>
     <string name="empty_apiStatusText">Welkom bij Books!</string>
+    <string name="favoriteBooks_label">Favoriete boeken</string>
+    <string name="favoriteBooksList_button">Favorieten</string>
+    <string name="toReadBooksList_button">Wachtrij</string>
+    <string name="finishedBooksList_button">Gelezen boeken</string>
+    <string name="toReadBooks_label">Boeken in wachtlijst</string>
+    <string name="search_icon">Dit is de zoek naar een boek icon</string>
+    <string name="finishedBooks_label">Gelezen boeken</string>
 
 </resources>

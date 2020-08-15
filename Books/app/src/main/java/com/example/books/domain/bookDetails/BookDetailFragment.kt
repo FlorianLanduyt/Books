@@ -1,16 +1,18 @@
 package com.example.books.domain.bookDetails
 
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.*
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.books.R
 import com.example.books.databinding.FragmentDetailBookBinding
 import com.example.books.domain.favorites.FavoritesViewModel
@@ -63,6 +65,7 @@ class BookDetailFragment : Fragment() {
         observeStatus(binding)
 
 
+        setHasOptionsMenu(true)
         binding.lifecycleOwner = this
         binding.viewModel = detailViewModel
         binding.viewModelFavorites = favoritesViewModel
@@ -206,6 +209,57 @@ class BookDetailFragment : Fragment() {
             }
         })
     }
+
+    private fun shareBook() {
+        startActivity(getShareIntent())
+    }
+
+
+    /**
+     * Creates a shareIntent
+     */
+    private fun getShareIntent(): Intent {
+        val cover: ImageView =
+            binding.bookDetailCover
+
+        val shareIntent = Intent.createChooser(Intent().apply {
+            action = Intent.ACTION_SEND
+            type = "text/plain"
+
+            putExtra(
+                Intent.EXTRA_TEXT,
+                "Zeker de moeite om " + detailViewModel.selectedBook.value!!.volumeInfo!!.title + " van "+ detailViewModel.selectedBook.value!!.volumeInfo!!.authors!![0] + " uit te checken op Books!"
+            )
+
+        }, "Een topboek")
+        return shareIntent
+    }
+
+
+    /**
+     * Calls method share book
+     */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            R.id.share -> shareBook()
+        }
+        return NavigationUI.onNavDestinationSelected(
+            item,
+            view!!.findNavController()
+        ) || super.onOptionsItemSelected(item)
+    }
+
+
+
+    /**
+     * Sets the layoutfile to the menu
+     */
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.share_menu, menu)
+    }
+
 
 
 }
