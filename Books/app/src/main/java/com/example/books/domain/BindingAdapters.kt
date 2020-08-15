@@ -18,6 +18,7 @@ import com.example.books.domain.models.Book
 import com.example.books.domain.favorites.FavoritesAdapter
 import com.example.books.domain.finishedbooks.FinishedBookAdapter
 import com.example.books.domain.toRead.ToReadAdapter
+import com.example.books.domain.yourbooks.YourBooksStatus
 
 
 /**
@@ -134,6 +135,86 @@ class BindingAdapters {
                 }
             }
         }
+
+//        @BindingAdapter("bookListStatus")
+//        @JvmStatic
+//                /**
+//                 * Binding the status of the book to image of the status
+//                 *
+//                 * @param statusImageView the imageview
+//                 * @param status the status of the list
+//                 */
+//        fun bindListStatus(statusImageView: ImageView, status: YourBooksStatus?) {
+//            when (status) {
+//                YourBooksStatus.LOADING -> {
+//                    statusImageView.visibility = View.VISIBLE
+//                    statusImageView.setImageResource(R.drawable.ic_loading_animation)
+//                }
+//                YourBooksStatus.ERROR -> {
+//                    statusImageView.visibility = View.VISIBLE
+//                    statusImageView.setImageResource(R.drawable.ic_connection_erro)
+//                }
+//                YourBooksStatus.DONE -> {
+//                    statusImageView.visibility = View.GONE
+//                }
+//
+//                YourBooksStatus.EMPTY -> {
+//                    statusImageView.visibility = View.VISIBLE
+//                    statusImageView.setImageResource(R.drawable.sad)
+//                }
+//            }
+//        }
+
+
+//        @BindingAdapter("bookListStatusText")
+//        @JvmStatic
+//                /**
+//                 * Binding the status of the book to image of the status
+//                 *
+//                 * @param statusImageView the imageview
+//                 * @param status the status of the list
+//                 */
+//        fun bindListStatusText(statusText: TextView, status: YourBooksStatus?) {
+//            when (status) {
+//                YourBooksStatus.LOADING -> {
+//                    statusText.text = "Laden"
+//                }
+//                YourBooksStatus.ERROR -> {
+//                    statusText.text = "Error"
+//                }
+//                YourBooksStatus.DONE -> {
+//                    statusText.visibility = View.GONE
+//                }
+//
+//                YourBooksStatus.EMPTY -> {
+//                    statusText.text = "De lijst is leeg, probeer eens wat boeken toe te voegen! "
+//                }
+//            }
+//        }
+
+//        @BindingAdapter("generalListStatus")
+//        @JvmStatic
+//        fun bindListStatus(statusImageView: ImageView, status: YourBooksStatus) {
+//            when (status) {
+//                YourBooksStatus.EMPTY -> {
+//                    statusImageView.visibility = View.VISIBLE
+//                    statusImageView.setImageResource(R.drawable.unhappy_icon)
+//                }
+//                MyBooksApiStatus.ERROR -> {
+//                    statusImageView.visibility = View.VISIBLE
+//                    statusImageView.setImageResource(R.drawable.ic_connection_erro)
+//                }
+//                MyBooksApiStatus.DONE -> {
+//                    statusImageView.visibility = View.GONE
+//                }
+//
+//                MyBooksApiStatus.EMPTY -> {
+//                    statusImageView.visibility = View.VISIBLE
+//
+//                    statusImageView.setImageResource(R.drawable.book)
+//                }
+//            }
+//        }
 
 
         @BindingAdapter("bookApiStatusText")

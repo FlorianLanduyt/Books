@@ -37,15 +37,9 @@ class SearchBooksViewModel(private val application: Application) : ViewModel() {
     val navigateToSelectedBook: LiveData<Book>
         get() = _navigateToSelectedBook
 
-//    private val _editFieldClicked = MutableLiveData<Boolean>()
-//    val editFieldClicked: LiveData<Boolean>
-//        get() = _editFieldClicked
-
-
     init {
         _status.value = MyBooksApiStatus.EMPTY
         clearBooks()
-//        _editFieldClicked.postValue(false)
     }
 
 

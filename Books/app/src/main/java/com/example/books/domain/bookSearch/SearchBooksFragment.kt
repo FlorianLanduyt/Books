@@ -90,31 +90,12 @@ class SearchBooksFragment : Fragment(), CoroutineScope
         observeBookAddedToFinishedList(finishedViewModel)
         observeBookRemovedFinishedList(finishedViewModel)
         observeSearchTextChanged(viewModel, binding)
-//        observeSearchFieldClicked(viewModel)
 
 
         setHasOptionsMenu(true)
         return binding.root
     }
 
-
-//    /**
-//     *  Observes the searchfield and makes the list invisible if clicked
-//     *
-//     *  @param viewModel the SearchBooksViewModel
-//     */
-//    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-//    private fun observeSearchFieldClicked(viewModel: SearchBooksViewModel) {
-//        viewModel.editFieldClicked.observe(viewLifecycleOwner, Observer {
-//            it?.let {
-//                if (it){
-//                    binding.booksPhotosGrid.visibility = View.INVISIBLE
-//                } else {
-//                    binding.booksPhotosGrid.visibility = View.VISIBLE
-//                }
-//            }
-//        })
-//    }
 
 
     /**
@@ -157,6 +138,8 @@ class SearchBooksFragment : Fragment(), CoroutineScope
             }
         })
     }
+
+
 
 
     /**

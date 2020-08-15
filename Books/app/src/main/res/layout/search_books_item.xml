@@ -58,6 +58,7 @@
         <Button
             android:id="@+id/toReadButton"
             style="@style/searchList_button"
+            android:layout_width="194dp"
             android:onClick="@{() -> clickListener.onClick(book, `insertFavorites`)}"
             android:text="@string/toReadButtonText"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -69,11 +70,13 @@
         <Button
             android:id="@+id/FinishedButton"
             style="@style/searchList_button"
+            android:layout_width="193dp"
             android:onClick="@{() -> clickListener.onClick(book, `insertFinished`)}"
             android:text="@string/addInFinished"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/toReadButton"
             app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/authors_text" />
 

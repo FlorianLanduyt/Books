@@ -15,7 +15,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
- enum class YourBooksStatus { LOADING, ERROR, DONE, EMPTY }
+enum class YourBooksStatus { LOADING, ERROR, DONE, EMPTY }
 
 
 class YourBooksViewModel(application: Application) : ViewModel(){
@@ -39,6 +39,10 @@ class YourBooksViewModel(application: Application) : ViewModel(){
     val statusBookToRead:LiveData<YourBooksStatus>
         get() = _statusBookToRead
 
+    private val _generalStatus= MutableLiveData<YourBooksStatus>()
+    val generalStatus:LiveData<YourBooksStatus>
+        get() = _generalStatus
+
     private val _bookToNavigateTo = MutableLiveData<String>()
     val bookToNavigateTo: LiveData<String>
         get() = _bookToNavigateTo
@@ -61,10 +65,11 @@ class YourBooksViewModel(application: Application) : ViewModel(){
     val finishedBooks = finishedBooksRepository.finishedBooks
 
     init {
-        _statusFavorites.postValue(YourBooksStatus.EMPTY)
-        _statusBookToRead.postValue(YourBooksStatus.EMPTY)
-        _statusFinishedBooks.postValue(YourBooksStatus.EMPTY)
+        _statusFavorites.value = YourBooksStatus.EMPTY
+        _statusBookToRead.value = YourBooksStatus.EMPTY
+        _statusFinishedBooks.value = YourBooksStatus.EMPTY
     }
+
 
 
     fun refreshFavoriteBooks(){
@@ -72,12 +77,25 @@ class YourBooksViewModel(application: Application) : ViewModel(){
             try {
                 _statusFavorites.postValue(YourBooksStatus.LOADING)
                 favoritesRepository.refreshFavoriteBooks()
+//                checkForEmptyFavoriteList()
                 _statusFavorites.postValue(YourBooksStatus.DONE)
             } catch (e: Exception){
                 _statusFavorites.postValue(YourBooksStatus.ERROR)
             }
         }
     }
+
+//    fun checkForEmptyFavoriteList(){
+////        val viewModelScope = CoroutineScope(Job() + Dispatchers.Main)
+////        viewModelScope.launch(){
+//            if (favoriteBooks.value == null || favoriteBooks.value!!.isEmpty()){
+//                _statusFavorites.postValue(YourBooksStatus.EMPTY)
+//            } else {
+//                _statusFavorites.postValue(YourBooksStatus.DONE)
+//            }
+//        }
+//
+//    }
 
     fun refreshBooksToRead(){
         coroutineScope.launch {

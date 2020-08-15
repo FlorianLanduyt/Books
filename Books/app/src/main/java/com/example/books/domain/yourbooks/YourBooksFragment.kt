@@ -39,16 +39,21 @@ class YourBooksFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val viewModelFactory = YourBooksViewModelFactory(application)
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(YourBooksViewModel::class.java)
+        viewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(YourBooksViewModel::class.java)
 
         viewModel.refreshBooksToRead()
         viewModel.refreshFavoriteBooks()
         viewModel.refreshFinishedBooks()
 
+        //viewModel.checkForEmptyFavoriteList()
+
         binding.toReadBooksList.adapter = ToReadAdapter(
             ToReadAdapter.ToReadListener { book, action ->
-                when(action) {
-                    "remove" -> viewModel.onBookToReadRemovedClicked(book.bookId)
+                when (action) {
+                    "remove" -> {
+                        viewModel.onBookToReadRemovedClicked(book.bookId)
+                    }
                     "details" -> viewModel.navigateToBook(book.bookId)
                 }
             }
@@ -56,17 +61,21 @@ class YourBooksFragment : Fragment() {
 
         binding.favoriteBooksList.adapter = FavoritesAdapter(
             FavoritesAdapter.FavoriteListener { book, action ->
-                when(action) {
-                    "remove" -> viewModel.onBookFavoriteRemovedClicked(book.bookId)
+                when (action) {
+                    "remove" -> {
+                        viewModel.onBookFavoriteRemovedClicked(book.bookId)
+                    }
                     "details" -> viewModel.navigateToBook(book.bookId)
                 }
             }
         )
 
         binding.finishedBooksList.adapter =
-            FinishedBookAdapter(FinishedBookAdapter.FinishedBookListener{ book, action ->
-                when(action){
-                    "remove" -> viewModel.onFinishedBookRemovedClicked(book.bookId)
+            FinishedBookAdapter(FinishedBookAdapter.FinishedBookListener { book, action ->
+                when (action) {
+                    "remove" -> {
+                        viewModel.onFinishedBookRemovedClicked(book.bookId)
+                    }
                     "details" -> viewModel.navigateToBook(book.bookId)
                 }
             })
@@ -83,28 +92,51 @@ class YourBooksFragment : Fragment() {
         navigateToToReadBooksClicked()
         navigateToFavoriteBooksClicked()
         navigateToFinishedBooksClicked()
+        observeEmptyList()
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         return binding.root
     }
 
+    private fun observeEmptyList() {
+        viewModel
+    }
+
+//    private fun observeEmptyFavoriteList() {
+//        viewModel.statusFavorites.observe(viewLifecycleOwner, Observer {
+//            it?.let {
+//                when (it) {
+//                    YourBooksStatus.EMPTY -> {
+//                        binding.statusFavorites.visibility = View.VISIBLE
+//                        binding.toFavoritesButton.visibility = View.GONE
+//                    }
+//                    else -> {
+//                        binding.statusFavorites.visibility = View.GONE
+//                        binding.toFavoritesButton.visibility = View.VISIBLE
+//                    }
+//                }
+//            }
+//        })
+//    }
+
+
     private fun navigateToFinishedBooksClicked() {
-        binding.toFinishedBooks.setOnClickListener{
+        binding.toFinishedBooks.setOnClickListener {
             this.findNavController()
                 .navigate(YourBooksFragmentDirections.actionYourBooksFragmentToFinishedBookFragment())
         }
     }
 
     private fun navigateToFavoriteBooksClicked() {
-        binding.toFavoritesButton.setOnClickListener{
+        binding.toFavoritesButton.setOnClickListener {
             this.findNavController()
                 .navigate(YourBooksFragmentDirections.actionYourBooksFragmentToFavoritesFragment())
         }
     }
 
     private fun navigateToToReadBooksClicked() {
-        binding.toReadButton.setOnClickListener{
+        binding.toReadButton.setOnClickListener {
             this.findNavController()
                 .navigate(YourBooksFragmentDirections.actionYourBooksFragmentToToReadFragment())
         }
@@ -131,6 +163,7 @@ class YourBooksFragment : Fragment() {
             it?.let {
                 viewModel.removeFavorite(it)
                 viewModel.onBookFavoriteRemoved()
+//                viewModel.checkForEmptyFavoriteList()
             }
         })
     }
@@ -160,7 +193,6 @@ class YourBooksFragment : Fragment() {
             }
         })
     }
-
 
 
 }
