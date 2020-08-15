@@ -20,6 +20,7 @@
 | [com.example.books.domain.finishedbooks](com.example.books.domain.finishedbooks/index.md) |  |
 | [com.example.books.domain.models](com.example.books.domain.models/index.md) |  |
 | [com.example.books.domain.toRead](com.example.books.domain.to-read/index.md) |  |
+| [com.example.books.domain.yourbooks](com.example.books.domain.yourbooks/index.md) |  |
 | [com.example.books.network](com.example.books.network/index.md) |  |
 
 ### Index

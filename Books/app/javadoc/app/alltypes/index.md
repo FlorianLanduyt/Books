@@ -51,3 +51,7 @@
 | [com.example.books.domain.toRead.ToReadViewModelFactory](../com.example.books.domain.to-read/-to-read-view-model-factory/index.md) |  |
 | [com.example.books.domain.models.VolumeInfo](../com.example.books.domain.models/-volume-info/index.md) |  |
 | [com.example.books.data.converters.VolumeInfoConverter](../com.example.books.data.converters/-volume-info-converter/index.md) |  |
+| [com.example.books.domain.yourbooks.YourBooksFragment](../com.example.books.domain.yourbooks/-your-books-fragment/index.md) | A simple [Fragment](#) subclass. |
+| [com.example.books.domain.yourbooks.YourBooksStatus](../com.example.books.domain.yourbooks/-your-books-status/index.md) |  |
+| [com.example.books.domain.yourbooks.YourBooksViewModel](../com.example.books.domain.yourbooks/-your-books-view-model/index.md) |  |
+| [com.example.books.domain.yourbooks.YourBooksViewModelFactory](../com.example.books.domain.yourbooks/-your-books-view-model-factory/index.md) |  |

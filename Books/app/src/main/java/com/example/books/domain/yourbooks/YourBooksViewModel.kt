@@ -72,6 +72,9 @@ class YourBooksViewModel(application: Application) : ViewModel(){
 
 
 
+    /**
+     * Refreshes the favorite books
+     */
     fun refreshFavoriteBooks(){
         coroutineScope.launch {
             try {
@@ -97,6 +100,9 @@ class YourBooksViewModel(application: Application) : ViewModel(){
 //
 //    }
 
+    /**
+     * Refreshes the to read books
+     */
     fun refreshBooksToRead(){
         coroutineScope.launch {
             try {
@@ -109,6 +115,10 @@ class YourBooksViewModel(application: Application) : ViewModel(){
         }
     }
 
+
+    /**
+     * Refreshes the finished books
+     */
     fun refreshFinishedBooks(){
         coroutineScope.launch {
             try {
@@ -121,6 +131,10 @@ class YourBooksViewModel(application: Application) : ViewModel(){
         }
     }
 
+
+    /**
+     * Removes a book out of the to read list
+     */
     fun removeToRead(bookId: String){
         coroutineScope.launch {
             try {
@@ -133,6 +147,9 @@ class YourBooksViewModel(application: Application) : ViewModel(){
         }
     }
 
+    /**
+     * Removes a book out of the favorite books list
+     */
     fun removeFavorite(bookId: String){
         coroutineScope.launch {
             try {
@@ -145,6 +162,9 @@ class YourBooksViewModel(application: Application) : ViewModel(){
         }
     }
 
+    /**
+     * Removes a book out of the finished books list
+     */
     fun removeFinished(bookId: String){
         coroutineScope.launch {
             try {

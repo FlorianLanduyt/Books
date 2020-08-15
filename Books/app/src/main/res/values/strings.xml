@@ -39,5 +39,7 @@
     <string name="cd_cover_image">This is the cover of the book</string>
     <string name="cd_statusImage">This is the status image</string>
     <string name="yourBooksMenuItem">Jouw boeken</string>
+    <string name="error_apiStatusText">Er is iets mis gelopen, probeer opnieuw</string>
+    <string name="empty_apiStatusText">Welkom bij Books!</string>
 
 </resources>

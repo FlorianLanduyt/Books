@@ -29,6 +29,13 @@ class YourBooksFragment : Fragment() {
     private lateinit var binding: FragmentYourBooksBinding
     private lateinit var viewModel: YourBooksViewModel
 
+    /**
+     * Gets called by Android when the fragment gets inflated
+     *
+     * @param inflater the layout inflater
+     * @param container the container
+     * @param savedInstanceState the bundle created in onSaveInstanceState
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -103,6 +110,9 @@ class YourBooksFragment : Fragment() {
 
 
 
+    /**
+     * Navigates to search fragment after click on search icon
+     */
     private fun navigateToSearchBooksClicked() {
         binding.searchView.setOnClickListener {
             this.findNavController()
@@ -130,6 +140,9 @@ class YourBooksFragment : Fragment() {
 //    }
 
 
+    /**
+     * Navigates to finished book fragment
+     */
     private fun navigateToFinishedBooksClicked() {
         binding.toFinishedBooks.setOnClickListener {
             this.findNavController()
@@ -137,6 +150,9 @@ class YourBooksFragment : Fragment() {
         }
     }
 
+    /**
+     * Navigates to favorite books fragment
+     */
     private fun navigateToFavoriteBooksClicked() {
         binding.toFavoritesButton.setOnClickListener {
             this.findNavController()
@@ -144,6 +160,9 @@ class YourBooksFragment : Fragment() {
         }
     }
 
+    /**
+     * Navigates to to read books fragment
+     */
     private fun navigateToToReadBooksClicked() {
         binding.toReadButton.setOnClickListener {
             this.findNavController()
@@ -151,6 +170,10 @@ class YourBooksFragment : Fragment() {
         }
     }
 
+
+    /**
+     * Navigates details of a book
+     */
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun observeNavigateToBook() {
         viewModel.bookToNavigateTo.observe(viewLifecycleOwner, Observer {

@@ -10,7 +10,7 @@ class YourBooksViewModelFactory(
 ) : ViewModelProvider.Factory {
 
     /**
-     * Creates a BookDetailsViewModel
+     * Creates a YourBooksViewModel
      *
      * @param modelClass the class to make a viewmodel from
      * @return The viewmodel

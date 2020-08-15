@@ -39,7 +39,7 @@ class ToReadViewModel (application: Application): ViewModel(){
 
 
     /**
-     * Gets the books from the toread list
+     * Gets the books from the toread database list
      */
     fun getToReads(){
         coroutineScope.launch {

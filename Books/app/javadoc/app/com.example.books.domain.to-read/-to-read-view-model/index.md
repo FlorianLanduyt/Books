@@ -24,7 +24,7 @@
 
 | Name | Summary |
 |---|---|
-| [getToReads](get-to-reads.md) | `fun getToReads(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Gets the books from the toread list |
+| [getToReads](get-to-reads.md) | `fun getToReads(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Gets the books from the toread database list |
 | [insertBookToRead](insert-book-to-read.md) | `fun insertBookToRead(book: `[`Book`](../../com.example.books.domain.models/-book/index.md)`?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Inserts a book in the book to read list |
 | [navigateToBook](navigate-to-book.md) | `fun navigateToBook(id: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Assigns a value to bookToNavigateTo |
 | [navigateToBookFinished](navigate-to-book-finished.md) | `fun navigateToBookFinished(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Sets the value of bookToNavigateTo to null |

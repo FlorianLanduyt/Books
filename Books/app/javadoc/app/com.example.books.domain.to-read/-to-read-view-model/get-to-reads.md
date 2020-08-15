@@ -4,5 +4,5 @@
 
 `fun getToReads(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
 
-Gets the books from the toread list
+Gets the books from the toread database list
 

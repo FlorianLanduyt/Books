@@ -262,6 +262,10 @@ class SearchBooksFragment : Fragment(), CoroutineScope
         inflater.inflate(R.menu.overflow_menu, menu)
     }
 
+
+    /**
+     * prepares the overflow menu
+     */
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
         if(binding.searchText.text.isNullOrEmpty()){

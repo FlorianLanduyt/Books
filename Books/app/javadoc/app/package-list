@@ -17,4 +17,5 @@ com.example.books.domain.favorites
 com.example.books.domain.finishedbooks
 com.example.books.domain.models
 com.example.books.domain.toRead
+com.example.books.domain.yourbooks
 com.example.books.network
