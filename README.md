@@ -47,7 +47,7 @@ Checkout the repository, build the APK using Android Studio and test on your phy
 
 ## Documentation
 
-[Dokka files](app/javadoc/app/alltypes/index.md)
+[Dokka files](Books/app/javadoc/app/alltypes/index.md)
 
 ## Report Issues
 
