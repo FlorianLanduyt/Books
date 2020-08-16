@@ -43,9 +43,6 @@ android {
         }
     }
 
-    lintOptions {
-        abortOnError false
-    }
 
     dokka {
         outputFormat = 'gfm'
@@ -86,7 +83,7 @@ android {
         implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
         implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
-        implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
+        //implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
 
 
         //Testing
@@ -141,8 +138,4 @@ android {
         //Gson
         implementation 'com.google.code.gson:gson:2.8.6'
     }
-}
-
-dependencies {
-    implementation 'androidx.legacy:legacy-support-v4:+'
 }

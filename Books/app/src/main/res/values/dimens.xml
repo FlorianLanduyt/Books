@@ -3,7 +3,6 @@
     <dimen name="marginNormal">8dp</dimen>
     <dimen name="paddingNormal">16dp</dimen>
     <dimen name="paddingSmall">8dp</dimen>
-    <dimen name="bigBtn">300dp</dimen>
     <dimen name="titleSize">23sp</dimen>
     <dimen name="textSize">18sp</dimen>
     <dimen name="marginSmall">8dp</dimen>
@@ -18,8 +17,6 @@
 
     <dimen name="margin_top_button">16dp</dimen>
     <dimen name="margin_bottom_button">16dp</dimen>
-    <dimen name="margin_label_top">16dp</dimen>
-    <dimen name="margin_recycleView">16dp</dimen>
     <dimen name="marginLastContainer">16dp</dimen>
     <dimen name="circleView_width">60dp</dimen>
     <dimen name="circleView_height">60dp</dimen>

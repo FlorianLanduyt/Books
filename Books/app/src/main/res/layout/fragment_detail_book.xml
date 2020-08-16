@@ -80,7 +80,7 @@
             <TextView
                 android:id="@+id/descriptionText"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:lineHeight="20dp"
+                android:lineSpacingMultiplier="1.3"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/descriptionLabel"
                 style="@style/descriptionDetails_text" />

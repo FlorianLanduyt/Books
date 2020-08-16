@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="Algemeen">
+    <item android:title="@string/general_navdrawer_container">
         <menu>
             <group>
                 <item
@@ -15,7 +15,7 @@
         </menu>
     </item>
 
-    <item android:title="Lijsten">
+    <item android:title="@string/lists_navdrawer_container">
         <menu>
             <group>
                 <item

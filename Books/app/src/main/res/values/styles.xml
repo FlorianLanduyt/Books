@@ -8,19 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="normalBtn">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">@dimen/marginNormal</item>
-        <item name="android:layout_marginTop">@dimen/marginNormal</item>
-        <item name="android:layout_marginEnd">@dimen/marginNormal</item>
-        <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:paddingLeft">@dimen/paddingNormal</item>
-        <item name="android:paddingTop">@dimen/paddingSmall</item>
-        <item name="android:paddingRight">@dimen/paddingNormal</item>
-        <item name="android:paddingBottom">@dimen/paddingSmall</item>
-        <item name="android:width">@dimen/bigBtn</item>
-    </style>
 
     <style name="listItem_titleText">
         <item name="android:layout_width">0dp</item>
@@ -131,15 +118,6 @@
         <item name="android:textSize">@dimen/titleSize</item>
     </style>
 
-    <style name="descriptionDetails_label">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">@dimen/marginNormal</item>
-        <item name="android:layout_marginTop">24dp</item>
-        <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:textSize">@dimen/textSize</item>
-        <item name="android:visibility">invisible</item>
-    </style>
 
     <style name="descriptionDetails_text">
         <item name="android:layout_width">0dp</item>
@@ -150,15 +128,6 @@
         <item name="android:fontFamily">@font/roboto</item>
     </style>
 
-    <style name="authorsDetails_label">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">@dimen/marginNormal</item>
-        <item name="android:layout_marginTop">@dimen/marginNormal</item>
-        <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:textSize">@dimen/textSize</item>
-        <item name="android:visibility">invisible</item>
-    </style>
 
     <style name="authorsDetails_text">
         <item name="android:layout_width">0dp</item>
@@ -257,13 +226,7 @@
         <item name="android:textSize">@dimen/textSize</item>
     </style>
 
-    <style name="searchListAuthor_label">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">@dimen/marginNormal</item>
-        <item name="android:layout_marginTop">@dimen/marginNormal</item>
-        <item name="android:fontFamily">@font/roboto</item>
-    </style>
+
 
     <style name="searchListAuthor_text">
         <item name="android:layout_width">0dp</item>
