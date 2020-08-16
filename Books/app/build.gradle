@@ -72,7 +72,7 @@ android {
     dependencies {
         implementation fileTree(dir: 'libs', include: ['*.jar'])
         implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-        implementation 'androidx.appcompat:appcompat:1.1.0'
+        implementation 'androidx.appcompat:appcompat:1.2.0' //
         implementation 'androidx.core:core-ktx:1.3.1'
         implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
@@ -81,9 +81,6 @@ android {
 
         //Trying to fix the build error
         implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-
-        implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
-        //implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
 
 
         //Testing
@@ -94,13 +91,13 @@ android {
         androidTestImplementation 'androidx.test:runner:1.2.0'
         androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
         androidTestImplementation "io.mockk:mockk:$version_mockk"
-        androidTestImplementation 'androidx.test:rules:1.3.0-rc02'
+        androidTestImplementation 'androidx.test:rules:1.3.0-rc03'
         androidTestImplementation "androidx.test.ext:junit:$version_junit_androidx"
 
 
         //Navigation
-        implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
-        implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
+        implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
+        implementation 'androidx.navigation:navigation-ui-ktx:2.3.0'
 
 
         //Retrofit with scalar converters
@@ -109,7 +106,7 @@ android {
 
 
         //Lifecycle-extensions
-        implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+        implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
         //Material design
         //implementation 'androidx.cardview:cardview:1.0.0'

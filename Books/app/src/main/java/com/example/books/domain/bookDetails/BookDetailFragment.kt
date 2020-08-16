@@ -53,7 +53,7 @@ class BookDetailFragment : Fragment() {
         favoritesViewModel = ViewModelProviders.of(this, favoritesViewModelFactory)
             .get(FavoritesViewModel::class.java)
 
-        val args = BookDetailFragmentArgs.fromBundle(arguments!!).bookId
+        val args = BookDetailFragmentArgs.fromBundle(requireArguments()).bookId
         detailViewModel.getBookProperties(args)
         favoritesViewModel.bookInFavorites(args)
 
