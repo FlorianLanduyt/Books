@@ -2,16 +2,16 @@ package com.example.books.domain.finishedbooks
 
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.books.R
 import com.example.books.databinding.FragmentFavoritesBinding
@@ -59,6 +59,8 @@ class FinishedBookFragment : Fragment() {
         binding.finishedBooksList.adapter = adapter
         binding.finishedBooksList.layoutManager = LinearLayoutManager(this.context)
 
+
+        setHasOptionsMenu(true)
         observeFinishedBooks(binding)
         observeRemovedToRead()
         observeNavigateToBook(viewModel)
@@ -121,5 +123,26 @@ class FinishedBookFragment : Fragment() {
         })
     }
 
+
+    /**
+     * Shows the overflow menu
+     */
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.about_overflow_menu, menu)
+    }
+
+
+
+
+    /**
+     * When selecting an option of the overflow menu
+     */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return NavigationUI.onNavDestinationSelected(
+            item,
+            requireView().findNavController()
+        ) || super.onOptionsItemSelected(item)
+    }
 
 }

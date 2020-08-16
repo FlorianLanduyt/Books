@@ -155,7 +155,7 @@ class SearchBooksFragment : Fragment(), CoroutineScope
             it?.let {
                 if (it)
                     Snackbar.make(
-                        activity!!.findViewById(android.R.id.content),
+                        requireActivity().findViewById(android.R.id.content),
                         R.string.added_to_finished_books,
                         Snackbar.LENGTH_LONG
                     ).show()
@@ -178,7 +178,7 @@ class SearchBooksFragment : Fragment(), CoroutineScope
             it?.let {
                 if (it)
                     Snackbar.make(
-                        activity!!.findViewById(android.R.id.content),
+                        requireActivity().findViewById(android.R.id.content),
                         R.string.removed_from_finished_books,
                         Snackbar.LENGTH_LONG
                     ).show()
@@ -201,7 +201,7 @@ class SearchBooksFragment : Fragment(), CoroutineScope
             it?.let {
                 if (it) {
                     Snackbar.make(
-                        activity!!.findViewById(android.R.id.content),
+                        requireActivity().findViewById(android.R.id.content),
                         R.string.added_to_read_books,
                         Snackbar.LENGTH_LONG
                     ).show()
@@ -224,7 +224,7 @@ class SearchBooksFragment : Fragment(), CoroutineScope
             it?.let {
                 if (it) {
                     Snackbar.make(
-                        activity!!.findViewById(android.R.id.content),
+                        requireActivity().findViewById(android.R.id.content),
                         R.string.removed_to_read_books,
                         Snackbar.LENGTH_LONG
                     ).show()
@@ -244,7 +244,7 @@ class SearchBooksFragment : Fragment(), CoroutineScope
     private fun navigateToSelectedBook(
         viewModel: SearchBooksViewModel
     ) {
-        viewModel.navigateToSelectedBook.observe(this, Observer {
+        viewModel.navigateToSelectedBook.observe(viewLifecycleOwner, Observer {
             if (it != null) {
                 this.findNavController()
                     .navigate(SearchBooksFragmentDirections.actionShowDetails(it.id!!))

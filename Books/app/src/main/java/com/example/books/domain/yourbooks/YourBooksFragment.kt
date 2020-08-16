@@ -243,7 +243,7 @@ class YourBooksFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return NavigationUI.onNavDestinationSelected(
             item,
-            view!!.findNavController()
+            requireView().findNavController()
         ) || super.onOptionsItemSelected(item)
     }
 

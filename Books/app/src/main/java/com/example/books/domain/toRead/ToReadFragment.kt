@@ -2,15 +2,15 @@ package com.example.books.domain.toRead
 
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 
 import com.example.books.R
 import com.example.books.databinding.FragmentToReadBinding
@@ -107,6 +107,27 @@ class ToReadFragment : Fragment() {
                 viewModel.onBookToReadRemoved()
             }
         })
+    }
+
+    /**
+     * Shows the overflow menu
+     */
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.about_overflow_menu, menu)
+    }
+
+
+
+
+    /**
+     * When selecting an option of the overflow menu
+     */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return NavigationUI.onNavDestinationSelected(
+            item,
+            requireView().findNavController()
+        ) || super.onOptionsItemSelected(item)
     }
 
 

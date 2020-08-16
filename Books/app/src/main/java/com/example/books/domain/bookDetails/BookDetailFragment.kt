@@ -252,7 +252,7 @@ class BookDetailFragment : Fragment() {
         }
         return NavigationUI.onNavDestinationSelected(
             item,
-            view!!.findNavController()
+            requireView().findNavController()
         ) || super.onOptionsItemSelected(item)
     }
 
