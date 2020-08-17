@@ -25,8 +25,6 @@
             style="@style/searchListCover_image"
             android:contentDescription="@string/cd_cover_image"
             app:imageUrl="@{book.volumeInfo.imageLinks.thumbnail}"
-            app:layout_constraintEnd_toStartOf="@+id/FinishedButton"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
@@ -34,30 +32,41 @@
         <TextView
             android:id="@+id/titleText"
             style="@style/searchListTitle_text"
-            android:layout_marginStart="@dimen/marginBig"
-            android:layout_marginTop="@dimen/marginBig"
+            android:layout_width="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:text="@{book.volumeInfo.title}"
+            app:layout_constraintBottom_toTopOf="@+id/authorLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/thumbnail"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/authorLabel"
-            style="@style/yourBooksList_label"
-            android:layout_marginStart="@dimen/marginBig"
-            android:layout_marginBottom="@dimen/marginNormal"
-            android:text="@string/authorLabel"
-            app:layout_constraintBottom_toTopOf="@+id/authors_text"
-            app:layout_constraintStart_toEndOf="@+id/thumbnail" />
+            app:layout_constraintTop_toTopOf="@+id/thumbnail" />
 
         <TextView
             android:id="@+id/authors_text"
             style="@style/searchListAuthor_text"
-            android:layout_marginStart="@dimen/marginBig"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             app:authors="@{book.volumeInfo.authors}"
             app:layout_constraintBottom_toBottomOf="@+id/thumbnail"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/thumbnail" />
+            app:layout_constraintStart_toEndOf="@+id/thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/authorLabel" />
+
+        <TextView
+            android:id="@+id/authorLabel"
+            style="@style/yourBooksList_label"
+            android:layout_width="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/authorLabel"
+            app:layout_constraintBottom_toTopOf="@+id/authors_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/titleText" />
 
         <Button
             android:id="@+id/toReadButton"

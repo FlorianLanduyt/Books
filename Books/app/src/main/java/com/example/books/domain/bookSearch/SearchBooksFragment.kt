@@ -293,9 +293,9 @@ class SearchBooksFragment : Fragment(), CoroutineScope {
         return (super.onOptionsItemSelected(item));
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        viewModel.clearBooks()
-    }
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        viewModel.clearBooks()
+//    }
 }
 
