@@ -294,7 +294,7 @@ class SearchBooksFragment : Fragment(), CoroutineScope
                 else -> BookApiFilter.SHOW_ALL
             }
         )
-        return true
+        return(super.onOptionsItemSelected(item));
     }
 
 }
