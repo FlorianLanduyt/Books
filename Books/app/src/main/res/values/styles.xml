@@ -207,11 +207,11 @@
         <item name="android:layout_width">@dimen/coverImage_list</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">@dimen/marginNormal</item>
-        <item name="android:layout_marginTop">@dimen/marginNormal</item>
         <item name="android:layout_marginRight">@dimen/marginNormal</item>
         <item name="android:layout_marginBottom">@dimen/marginNormal</item>
         <item name="android:adjustViewBounds">true</item>
         <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_marginTop">@dimen/marginBig</item>
     </style>
 
     <style name="searchListTitle_text">
@@ -225,7 +225,6 @@
         <item name="android:scrollHorizontally">false</item>
         <item name="android:textSize">@dimen/textSize</item>
     </style>
-
 
 
     <style name="searchListAuthor_text">

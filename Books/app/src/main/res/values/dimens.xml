@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="marginNormal">8dp</dimen>
+    <dimen name="marginBig">16dp</dimen>
     <dimen name="paddingNormal">16dp</dimen>
     <dimen name="paddingSmall">8dp</dimen>
     <dimen name="titleSize">23sp</dimen>
@@ -21,4 +22,5 @@
     <dimen name="circleView_width">60dp</dimen>
     <dimen name="circleView_height">60dp</dimen>
     <dimen name="marginCircleView">24dp</dimen>
+    <dimen name="marginReallyBig">24dp</dimen>
 </resources>
