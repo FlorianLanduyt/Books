@@ -6,10 +6,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingComponent
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
-import androidx.lifecycle.OnLifecycleEvent
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.*
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -45,7 +42,7 @@ class FavoritesFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val viewModelFactory = FavoritesViewModelFactory(application)
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(FavoritesViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(FavoritesViewModel::class.java)
 
 
 

@@ -104,7 +104,6 @@
 
             <TextView
                 android:id="@+id/moreText"
-
                 android:onClick="@{()-> viewModel.moreText()}"
                 android:text="@string/moreText"
                 app:layout_constraintEnd_toEndOf="parent"

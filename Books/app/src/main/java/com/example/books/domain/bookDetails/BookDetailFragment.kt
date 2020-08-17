@@ -7,10 +7,7 @@ import android.view.*
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
-import androidx.lifecycle.OnLifecycleEvent
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.*
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.books.R
@@ -48,14 +45,15 @@ class BookDetailFragment : Fragment() {
         val bookDetailsViewModelFactory = BookDetailsViewModelFactory(application)
         val favoritesViewModelFactory = FavoritesViewModelFactory(application)
 
-        detailViewModel = ViewModelProviders.of(this, bookDetailsViewModelFactory)
+        detailViewModel = ViewModelProvider(this, bookDetailsViewModelFactory)
             .get(BookDetailsViewModel::class.java)
-        favoritesViewModel = ViewModelProviders.of(this, favoritesViewModelFactory)
+        favoritesViewModel = ViewModelProvider(this, favoritesViewModelFactory)
             .get(FavoritesViewModel::class.java)
 
         val args = BookDetailFragmentArgs.fromBundle(requireArguments()).bookId
         detailViewModel.getBookProperties(args)
         favoritesViewModel.bookInFavorites(args)
+
 
 
         observeBook(binding)
@@ -85,25 +83,28 @@ class BookDetailFragment : Fragment() {
         detailViewModel.selectedBook.observe(viewLifecycleOwner, Observer {
             it?.let { book ->
 
-                    binding.book = book
+                binding.book = book
 
-                    if (book.volumeInfo?.description != null) {
-                        if (book.volumeInfo.description.length > 100) {
-                            binding.descriptionText.text =
-                                book.volumeInfo.description.subSequence(
-                                    0,
-                                    100
-                                ).toString().plus(" ...")
-                        } else {
-                            binding.descriptionText.text =
-                                book.volumeInfo.description.toString()
-                            binding.moreText.visibility = View.GONE
-                        }
+                if (book.volumeInfo?.description != null) {
+                    if (book.volumeInfo.description.length > 100) {
+                        binding.descriptionText.text =
+                            book.volumeInfo.description.subSequence(
+                                0,
+                                100
+                            ).toString().plus(" ...")
+                        binding.moreText.visibility = View.VISIBLE
                     } else {
                         binding.descriptionText.text =
-                            resources.getText(R.string.no_description_found)
+                            book.volumeInfo.description.toString()
                         binding.moreText.visibility = View.GONE
                     }
+                } else {
+                    binding.descriptionText.text =
+                        resources.getText(R.string.no_description_found)
+
+                    binding.moreText.text = ""
+                    binding.moreText.visibility = View.GONE
+                }
 
             }
         })
@@ -119,14 +120,16 @@ class BookDetailFragment : Fragment() {
         detailViewModel.moreText.observe(viewLifecycleOwner, Observer {
             it?.let {
                 if (it) {
-                    binding.descriptionText.text = binding.book?.volumeInfo?.description!!.toString()
+                    binding.descriptionText.text =
+                        binding.book?.volumeInfo?.description!!.toString()
                     binding.moreText.visibility = View.GONE
                     binding.lessText.visibility = View.VISIBLE
                 } else {
-                    binding.descriptionText.text = binding.book?.volumeInfo?.description!!.subSequence(
-                        0,
-                        100
-                    ).toString().plus(" ...")
+                    binding.descriptionText.text =
+                        binding.book?.volumeInfo?.description!!.subSequence(
+                            0,
+                            100
+                        ).toString().plus(" ...")
                     binding.moreText.visibility = View.VISIBLE
                     binding.lessText.visibility = View.GONE
                 }
@@ -176,10 +179,10 @@ class BookDetailFragment : Fragment() {
      *  @param binding the FragmentDetailBookBinding
      */
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    private fun observeStatus(binding: FragmentDetailBookBinding){
+    private fun observeStatus(binding: FragmentDetailBookBinding) {
         detailViewModel.status.observe(viewLifecycleOwner, Observer {
             it?.let {
-                when(it) {
+                when (it) {
                     BookApiStatus.LOADING -> {
                         binding.authorsLabel.visibility = View.GONE
                         binding.descriptionLabel.visibility = View.GONE
@@ -234,7 +237,7 @@ class BookDetailFragment : Fragment() {
 
             putExtra(
                 Intent.EXTRA_TEXT,
-                "Zeker de moeite om " + detailViewModel.selectedBook.value!!.volumeInfo!!.title + " van "+ detailViewModel.selectedBook.value!!.volumeInfo!!.authors!![0] + " uit te checken op Books!"
+                "Zeker de moeite om " + detailViewModel.selectedBook.value!!.volumeInfo!!.title + " van " + detailViewModel.selectedBook.value!!.volumeInfo!!.authors!![0] + " uit te checken op Books!"
             )
 
         }, "Een topboek")
@@ -257,7 +260,6 @@ class BookDetailFragment : Fragment() {
     }
 
 
-
     /**
      * Sets the layoutfile to the menu
      */
@@ -265,7 +267,6 @@ class BookDetailFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.share_menu, menu)
     }
-
 
 
 }

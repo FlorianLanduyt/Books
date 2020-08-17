@@ -4,10 +4,7 @@ package com.example.books.domain.toRead
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
-import androidx.lifecycle.OnLifecycleEvent
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.*
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -43,8 +40,8 @@ class ToReadFragment : Fragment() {
         val viewModelFactory =ToReadViewModelFactory(application)
         val detailsViewModelFactory = BookDetailsViewModelFactory(application)
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(ToReadViewModel::class.java)
-        detailsViewModel = ViewModelProviders.of(this, detailsViewModelFactory).get(BookDetailsViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(ToReadViewModel::class.java)
+        detailsViewModel = ViewModelProvider(this, detailsViewModelFactory).get(BookDetailsViewModel::class.java)
 
         viewModel.getToReads()
 

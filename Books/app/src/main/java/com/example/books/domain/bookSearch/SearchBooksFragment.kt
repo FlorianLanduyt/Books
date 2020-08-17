@@ -58,10 +58,10 @@ class SearchBooksFragment : Fragment(), CoroutineScope {
         val finishedBookViewModelFactory = FinishedBooksViewModelFactory(application)
 
         viewModel =
-            ViewModelProviders.of(this, viewModelFactory).get(SearchBooksViewModel::class.java)
+            ViewModelProvider(this, viewModelFactory).get(SearchBooksViewModel::class.java)
         toReadViewModel =
-            ViewModelProviders.of(this, toReadViewModelFactory).get(ToReadViewModel::class.java)
-        finishedViewModel = ViewModelProviders.of(this, finishedBookViewModelFactory)
+            ViewModelProvider(this, toReadViewModelFactory).get(ToReadViewModel::class.java)
+        finishedViewModel = ViewModelProvider(this, finishedBookViewModelFactory)
             .get(FinishedBooksViewModel::class.java)
 
 

@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
-import androidx.lifecycle.OnLifecycleEvent
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.*
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -42,7 +39,7 @@ class FinishedBookFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
         val viewModelFactory = FinishedBooksViewModelFactory(application)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(FinishedBooksViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(FinishedBooksViewModel::class.java)
 
         viewModel.getFinishedBooks()
 

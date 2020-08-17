@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.core.view.ViewCompat.canScrollVertically
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
-import androidx.lifecycle.OnLifecycleEvent
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.*
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -47,7 +44,7 @@ class YourBooksFragment : Fragment() {
         val viewModelFactory = YourBooksViewModelFactory(application)
 
         viewModel =
-            ViewModelProviders.of(this, viewModelFactory).get(YourBooksViewModel::class.java)
+            ViewModelProvider(this, viewModelFactory).get(YourBooksViewModel::class.java)
 
         viewModel.refreshBooksToRead()
         viewModel.refreshFavoriteBooks()
