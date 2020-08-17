@@ -85,7 +85,7 @@ class SearchBooksViewModel(private val application: Application) : ViewModel() {
     /**
      * Clears the books in the database
      */
-    private fun clearBooks() {
+    fun clearBooks() {
         coroutineScope.launch {
             bookRepo.clearBooks()
         }
@@ -122,14 +122,7 @@ class SearchBooksViewModel(private val application: Application) : ViewModel() {
     fun updateFilter(title: String, filter: BookApiFilter) {
         getBooks(title, filter)
     }
-//
-//    fun searchFieldSelect(){
-//        _editFieldClicked.postValue(true)
-//    }
-//
-//    fun searchFieldUnselect(){
-//        _editFieldClicked.postValue(false)
-//    }
+
 }
 
 

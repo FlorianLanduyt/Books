@@ -28,8 +28,7 @@ import kotlin.coroutines.CoroutineContext
 /**
  * A simple [Fragment] subclass.
  */
-class SearchBooksFragment : Fragment(), CoroutineScope
-{
+class SearchBooksFragment : Fragment(), CoroutineScope {
     override val coroutineContext: CoroutineContext = Dispatchers.Main
 
 
@@ -97,7 +96,6 @@ class SearchBooksFragment : Fragment(), CoroutineScope
     }
 
 
-
     /**
      *  Observes the text in the input field
      *
@@ -109,7 +107,7 @@ class SearchBooksFragment : Fragment(), CoroutineScope
         binding: FragmentSearchBooksBinding?
     ) {
         binding!!.booksPhotosGrid.visibility = View.VISIBLE
-        binding.searchText.addTextChangedListener(object: TextWatcher{
+        binding.searchText.addTextChangedListener(object : TextWatcher {
 
             private var searchFor = ""
 
@@ -122,7 +120,7 @@ class SearchBooksFragment : Fragment(), CoroutineScope
              */
             override fun afterTextChanged(s: Editable?) {
                 val search = s.toString().trim()
-                if(search == searchFor)
+                if (search == searchFor)
                     return
 
                 searchFor = search
@@ -138,8 +136,6 @@ class SearchBooksFragment : Fragment(), CoroutineScope
             }
         })
     }
-
-
 
 
     /**
@@ -268,7 +264,7 @@ class SearchBooksFragment : Fragment(), CoroutineScope
      */
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
-        if(binding.searchText.text.isNullOrEmpty()){
+        if (binding.searchText.text.isNullOrEmpty()) {
             menu.getItem(0).setEnabled(false)
             menu.getItem(1).setEnabled(false)
             menu.getItem(2).setEnabled(false)
@@ -282,8 +278,8 @@ class SearchBooksFragment : Fragment(), CoroutineScope
 
 
     /**
-    //     * When selecting an option of the overflow menu
-    //     */
+     * When selecting an option of the overflow menu
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         viewModel.updateFilter(
             binding.searchText.text.toString(),
@@ -294,8 +290,12 @@ class SearchBooksFragment : Fragment(), CoroutineScope
                 else -> BookApiFilter.SHOW_ALL
             }
         )
-        return(super.onOptionsItemSelected(item));
+        return (super.onOptionsItemSelected(item));
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.clearBooks()
+    }
 }
 
